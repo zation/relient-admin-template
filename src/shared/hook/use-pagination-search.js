@@ -1,0 +1,449 @@
+import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  concat,
+  debounce,
+  find,
+  first,
+  flow,
+  isFunction,
+  isNil,
+  isUndefined,
+  keyBy,
+  map,
+  mapValues,
+  omitBy,
+  prop,
+  propEq,
+  reduce,
+  reject,
+} from 'lodash/fp';
+import { Message } from 'antd';
+import TableHeader from 'shared/components/table-header';
+import useBasicSearch from './use-basic-search';
+
+const omitEmpty = omitBy((val) => (isNil(val) || val === ''));
+
+const getFilterParams = flow(
+  keyBy('dataKey'),
+  mapValues(prop('value')),
+);
+
+const getDateParams = reduce((result, { dataKey, value }) => {
+  if (value && value.length > 1) {
+    return {
+      ...result,
+      [`${dataKey}After`]: new Date(value[0]).toISOString(),
+      [`${dataKey}Before`]: new Date(value[1]).toISOString(),
+    };
+  }
+  return result;
+}, {});
+
+const onFetch = async (
+  queryValue,
+  queryField,
+  readAction,
+  setPageData,
+  originSize,
+  filterValues,
+  dates,
+  page,
+  setIsLoading,
+) => {
+  setIsLoading(true);
+  const {
+    content,
+    number,
+    size,
+    totalElements,
+  } = await readAction(omitEmpty({
+    [queryField]: queryValue,
+    size: originSize,
+    page,
+    ...getFilterParams(filterValues),
+    ...getDateParams(dates),
+  }));
+  setIsLoading(false);
+  setPageData({
+    current: number,
+    size,
+    total: totalElements,
+    ids: map(prop('id'))(content),
+  });
+};
+
+const onQueryFetch = debounce(500, onFetch);
+
+// {
+//   query: {
+//     fields: [{ key, text }],
+//     onValueChange: func,
+//     onFieldChange: func,
+//     width: number,
+//     placeholder: string,
+//   },
+//   filters: [{
+//     dataKey: string,
+//     label: string,
+//     options: [{ text: string, value: string }],
+//     defaultValue: value,
+//     dropdownMatchSelectWidth: bool,
+//     onFilterChange: func,
+//     disabled: bool,
+//   }],
+//   createLink: { text: string, link: string },
+//   datePickers: [{
+//     dataKey: string,
+//     label: string,
+//     onDateChange: func,
+//     disabledDate: func,
+//   }],
+//   pagination: { size: number, getDataSource: func },
+//   paginationInitialData: {
+//     ids: array,
+//     current: number,
+//     size: number,
+//     total: number
+//   },
+//   readAction: func,
+//   createModal: {
+//     formName: string,
+//     title: string,
+//     initialValues: object,
+//     onSubmit: func,
+//     fields: array,
+//     layout: object,
+//   },
+//   editModal: {
+//     formName: string,
+//     title: string,
+//     initialValues: object,
+//     onSubmit: func,
+//     fields: array,
+//     layout: object,
+//     shouldReload: bool,
+//     getFields: func,
+//   },
+// }
+
+export default ({
+  query: { onFieldChange, onValueChange, fields, width, placeholder },
+  filters,
+  createLink,
+  datePickers,
+  pagination: { getDataSource, size },
+  paginationInitialData,
+  readAction,
+  createModal: { onSubmit: createSubmit },
+  createModal,
+  editModal: { onSubmit: editSubmit, shouldReload },
+  editModal,
+}) => {
+  const defaultQueryField = flow(first, prop('key'))(fields);
+  const defaultFilterValues = flow(
+    reject(flow(prop('defaultValue'), isUndefined)),
+    map(({ defaultValue, dataKey }) => ({
+      dataKey,
+      value: defaultValue,
+    })),
+  )(filters);
+  const [pageData, setPageData] = useState(paginationInitialData);
+  const data = useSelector((state) => getDataSource(state)(pageData.ids));
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    dates,
+    setDates,
+    queryField,
+    setQueryField,
+    queryValue,
+    setQueryValue,
+    filterValues,
+    setFilterValues,
+    createModalVisible,
+    editModalVisible,
+    editItem,
+    openCreateModal,
+    closeCreateModal,
+    openEditModal,
+    closeEditModal,
+    reset,
+  } = useBasicSearch({ fields, filters });
+
+  const onQueryFieldChange = useCallback(async (fieldKey) => {
+    setQueryField(fieldKey);
+    setQueryValue('');
+    if (isFunction(onFieldChange)) {
+      onFieldChange(fieldKey);
+    }
+    if (isFunction(onValueChange)) {
+      onValueChange('');
+    }
+    await onFetch(
+      null,
+      fieldKey,
+      readAction,
+      setPageData,
+      size,
+      filterValues,
+      dates,
+      0,
+      setIsLoading,
+    );
+  }, [
+    readAction,
+    size,
+    filterValues,
+    dates,
+    onFieldChange,
+    onValueChange,
+  ]);
+  const onQueryValueChange = useCallback(({ target: { value } }) => {
+    if (isFunction(onValueChange)) {
+      onValueChange(value);
+    }
+    setQueryValue(value);
+    onQueryFetch(
+      value,
+      queryField,
+      readAction,
+      setPageData,
+      size,
+      filterValues,
+      dates,
+      0,
+      setIsLoading,
+    );
+  }, [
+    onValueChange,
+    queryField,
+    readAction,
+    size,
+    filterValues,
+    dates,
+  ]);
+  const onFilterValueChange = useCallback(async (value, dataKey) => {
+    const onChange = flow(find(propEq('dataKey', dataKey)), prop('onFilterChange'))(filters);
+    if (isFunction(onChange)) {
+      onChange(value);
+    }
+    const newFilterValues = flow(
+      reject(propEq('dataKey')(dataKey)),
+      concat({
+        dataKey,
+        value,
+      }),
+    )(filters);
+    setFilterValues(newFilterValues);
+    await onFetch(
+      queryValue,
+      queryField,
+      readAction,
+      setPageData,
+      size,
+      newFilterValues,
+      dates,
+      0,
+      setIsLoading,
+    );
+  }, [
+    filters,
+    queryValue,
+    queryField,
+    readAction,
+    size,
+    dates,
+  ]);
+  const onDateChange = useCallback(async (value, dataKey) => {
+    const onChange = flow(find(propEq('dataKey', dataKey)), prop('onDateChange'))(datePickers);
+    if (isFunction(onChange)) {
+      onChange(value);
+    }
+    const newDates = flow(
+      reject(propEq('dataKey')(dataKey)),
+      concat({
+        dataKey,
+        value,
+      }),
+    )(dates);
+    setDates(newDates);
+    await onFetch(
+      queryValue,
+      queryField,
+      readAction,
+      setPageData,
+      size,
+      filterValues,
+      newDates,
+      0,
+      setIsLoading,
+    );
+  }, [
+    datePickers,
+    dates,
+    queryValue,
+    queryField,
+    readAction,
+    size,
+    filterValues,
+  ]);
+  const onReset = useCallback(async () => {
+    reset();
+
+    await onFetch(
+      null,
+      defaultQueryField,
+      readAction,
+      setPageData,
+      size,
+      defaultFilterValues,
+      [],
+      0,
+      setIsLoading,
+    );
+  }, [
+    defaultQueryField,
+    defaultFilterValues,
+    readAction,
+    reset,
+  ]);
+  const onPageChange = useCallback((page) => onFetch(
+    queryValue,
+    queryField,
+    readAction,
+    setPageData,
+    size,
+    filterValues,
+    dates,
+    page - 1,
+    setIsLoading,
+  ), [
+    queryValue,
+    queryField,
+    readAction,
+    size,
+    filterValues,
+    dates,
+  ]);
+  const onReload = useCallback(() => onFetch(
+    queryValue,
+    queryField,
+    readAction,
+    setPageData,
+    size,
+    filterValues,
+    dates,
+    pageData.current,
+    setIsLoading,
+  ), [
+    queryValue,
+    queryField,
+    readAction,
+    size,
+    filterValues,
+    dates,
+    pageData.current,
+  ]);
+  const onCreateSubmit = useCallback(async (values) => {
+    await createSubmit(values);
+    await onFetch(
+      queryValue,
+      queryField,
+      readAction,
+      setPageData,
+      size,
+      filterValues,
+      dates,
+      0,
+      setIsLoading,
+    );
+    closeCreateModal();
+    Message.success('创建成功');
+  }, [
+    createSubmit,
+    queryValue,
+    queryField,
+    readAction,
+    size,
+    filterValues,
+    dates,
+  ]);
+  const onEditSubmit = useCallback(async (values) => {
+    await editSubmit({ ...values, id: editItem.id }, values, editItem);
+    if (shouldReload) {
+      await onReload();
+    }
+    closeEditModal();
+    Message.success('编辑成功');
+  }, [
+    editSubmit,
+    editItem,
+    shouldReload,
+    onReload,
+  ]);
+
+  return {
+    data,
+    openEditModal,
+    reload: onReload,
+    reset: onReset,
+    isLoading,
+    pagination: {
+      showTotal: (total) => `总数 ${total}`,
+      pageSize: pageData.size,
+      current: pageData.current + 1,
+      total: pageData.total,
+      onChange: onPageChange,
+    },
+    filterValues,
+    tableHeader: <TableHeader
+      query={{
+        onFieldChange: onQueryFieldChange,
+        onValueChange: onQueryValueChange,
+        value: queryValue,
+        field: queryField,
+        fields,
+        width,
+        placeholder,
+      }}
+      createLink={createLink}
+      filter={{
+        items: flow(
+          reject(propEq('staticField', true)),
+          map(({
+            dataKey,
+            ...others
+          }) => ({
+            dataKey,
+            value: flow(find(propEq('dataKey')(dataKey)), prop('value'))(filters),
+            ...others,
+          })),
+        )(filters),
+        onSelect: onFilterValueChange,
+      }}
+      datePicker={{
+        items: map(({ dataKey, ...others }) => ({
+          dataKey,
+          value: flow(find(propEq('dataKey')(dataKey)), prop('value'))(dates),
+          ...others,
+        }))(datePickers),
+        onSelect: onDateChange,
+      }}
+      createModal={createModal}
+      editModal={editModal && {
+        ...editModal,
+        initialValues: editItem,
+        fields: editModal.getFields ? editModal.getFields(editItem) : editModal.fields,
+      }}
+      onCreateSubmit={onCreateSubmit}
+      onEditSubmit={onEditSubmit}
+      createModalVisible={createModalVisible}
+      editModalVisible={editModalVisible}
+      openCreateModal={openCreateModal}
+      closeCreateModal={closeCreateModal}
+      closeEditModal={closeEditModal}
+      reset={onReset}
+    />,
+  };
+};
