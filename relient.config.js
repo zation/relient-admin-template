@@ -1,7 +1,7 @@
 export default {
   babelPlugins: [
     ['import', { libraryName: 'antd', style: false }],
-    ['lodash', { id: ['lodash', 'recompose'] }],
+    ['lodash', { id: ['lodash'] }],
   ],
   proxy: {
     from: ['/api'],
