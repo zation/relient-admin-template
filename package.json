@@ -35,7 +35,7 @@
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "relient": "4.0.0",
+    "relient": "4.1.6",
     "universal-router": "^9.0.1"
   },
   "devDependencies": {
