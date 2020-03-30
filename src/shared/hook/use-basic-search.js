@@ -24,18 +24,18 @@ export default ({
   const [queryField, setQueryField] = useState(defaultQueryField);
   const [queryValue, setQueryValue] = useState('');
   const [filterValues, setFilterValues] = useState(defaultFilterValues);
-  const [createModalVisible, setCreateModalVisible] = useState(false);
-  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [creatorVisible, setCreatorVisible] = useState(false);
+  const [editorVisible, setEditorVisible] = useState(false);
   const [editItem, setEditItem] = useState(null);
 
-  const openCreateModal = useCallback(() => setCreateModalVisible(true), []);
-  const closeCreateModal = useCallback(() => setCreateModalVisible(false), []);
-  const openEditModal = useCallback((item) => {
-    setEditModalVisible(true);
+  const openCreator = useCallback(() => setCreatorVisible(true), []);
+  const closeCreator = useCallback(() => setCreatorVisible(false), []);
+  const openEditor = useCallback((item) => {
+    setEditorVisible(true);
     setEditItem(item);
   }, []);
-  const closeEditModal = useCallback(() => {
-    setEditModalVisible(false);
+  const closeEditor = useCallback(() => {
+    setEditorVisible(false);
     setEditItem(null);
   }, []);
   const reset = useCallback(async () => {
@@ -43,8 +43,8 @@ export default ({
     setQueryField(defaultQueryField);
     setQueryValue('');
     setFilterValues(defaultFilterValues);
-    setCreateModalVisible(false);
-    setEditModalVisible(false);
+    setCreatorVisible(false);
+    setEditorVisible(false);
     setEditItem(null);
   }, [
     defaultQueryField,
@@ -60,13 +60,13 @@ export default ({
     setQueryValue,
     filterValues,
     setFilterValues,
-    createModalVisible,
-    editModalVisible,
+    creatorVisible,
+    editorVisible,
     editItem,
-    openCreateModal,
-    closeCreateModal,
-    openEditModal,
-    closeEditModal,
+    openCreator,
+    closeCreator,
+    openEditor,
+    closeEditor,
     reset,
   };
 };

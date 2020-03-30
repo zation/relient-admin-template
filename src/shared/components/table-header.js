@@ -1,10 +1,10 @@
 import React from 'react';
-import { string, func, shape, arrayOf, array, number, oneOfType, object, bool } from 'prop-types';
+import { string, func, shape, arrayOf, array, number, oneOfType, object, bool, elementType } from 'prop-types';
 import { Input, Button, Select, DatePicker } from 'antd';
 import Link from 'shared/components/link';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { map, flow, join, prop } from 'lodash/fp';
-import FormModal from './edit-modal';
+import FormModal from './form-modal';
 
 import s from './table-header.less';
 
@@ -18,13 +18,13 @@ const result = ({
   filter,
   reset,
   datePicker,
-  createModalVisible,
-  editModalVisible,
-  createModal,
-  editModal,
-  openCreateModal,
-  closeCreateModal,
-  closeEditModal,
+  creatorVisible,
+  editorVisible,
+  creator,
+  editor,
+  openCreator,
+  closeCreator,
+  closeEditor,
   onCreateSubmit,
   onEditSubmit,
 }) => {
@@ -32,29 +32,25 @@ const result = ({
 
   return (
     <div className={s.Root}>
-      {createModal && (
-        <FormModal
-          title={createModal.title || '创建'}
-          visible={createModalVisible}
-          onCancel={closeCreateModal}
-          onSubmit={onCreateSubmit}
-          initialValues={createModal.initialValues}
-          fields={createModal.fields}
-          layout={createModal.layout}
-        />
-      )}
+      {creator && (creator.component || FormModal)({
+        title: creator.title || '创建',
+        visible: creatorVisible,
+        onCancel: closeCreator,
+        onSubmit: onCreateSubmit,
+        initialValues: creator.initialValues,
+        fields: creator.fields,
+        layout: creator.layout,
+      })}
 
-      {editModal && (
-        <FormModal
-          title={editModal.title || '编辑'}
-          visible={editModalVisible}
-          onCancel={closeEditModal}
-          onSubmit={onEditSubmit}
-          initialValues={editModal.initialValues}
-          fields={editModal.fields}
-          layout={editModal.layout}
-        />
-      )}
+      {editor && (editor.component || FormModal)({
+        title: editor.title || '编辑',
+        visible: editorVisible,
+        onCancel: closeEditor,
+        onSubmit: onEditSubmit,
+        initialValues: editor.initialValues,
+        fields: editor.fields,
+        layout: editor.layout,
+      })}
 
       <div className={s.operations}>
         {query && (
@@ -131,9 +127,9 @@ const result = ({
         )}
       </div>
 
-      {createModal && (
-        <Button type="primary" size="large" onClick={openCreateModal}>
-          {createModal.title || '创建'}
+      {creator && (
+        <Button type="primary" size="large" onClick={openCreator}>
+          {creator.title || '创建'}
         </Button>
       )}
 
@@ -174,7 +170,8 @@ result.propTypes = {
     })).isRequired,
     onSelect: func.isRequired,
   }),
-  createModal: shape({
+  creator: shape({
+    component: elementType,
     title: string,
     onSubmit: func,
     initialValues: object,
@@ -188,7 +185,8 @@ result.propTypes = {
     })),
     layout: object,
   }),
-  editModal: shape({
+  editor: shape({
+    component: elementType,
     title: string,
     onSubmit: func,
     initialValues: object,
@@ -202,11 +200,11 @@ result.propTypes = {
     })),
     layout: object,
   }),
-  openCreateModal: func,
-  closeCreateModal: func,
-  closeEditModal: func,
-  createModalVisible: bool,
-  editModalVisible: bool,
+  openCreator: func,
+  closeCreator: func,
+  closeEditor: func,
+  creatorVisible: bool,
+  editorVisible: bool,
   onCreateSubmit: func.isRequired,
   onEditSubmit: func.isRequired,
   datePicker: shape({

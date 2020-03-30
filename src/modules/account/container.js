@@ -10,7 +10,8 @@ import { required, password, confirmedPassword, phoneNumber } from 'shared/utils
 import { prop } from 'lodash/fp';
 import useToggleNormalStatus from 'shared/hook/use-toggle-normal-status';
 import { formatNormalStatus, parseNormalStatus } from 'shared/constants/normal-status';
-import EditModal from 'shared/components/edit-modal';
+import FormModal from 'shared/components/form-modal';
+import FormDrawer from 'shared/components/form-drawer';
 import useAction from 'shared/hook/use-action';
 import useSearch from 'shared/hook/use-search';
 
@@ -98,7 +99,7 @@ const result = ({ roleKeys }) => {
   }];
 
   const {
-    openEditModal,
+    openEditor,
     tableHeader,
     getDataSource,
     pagination,
@@ -118,16 +119,18 @@ const result = ({ roleKeys }) => {
         text: '用户名',
       }],
     },
-    createModal: {
+    creator: {
       title: '创建帐号',
       initialValues: createInitialValues,
       onSubmit: create,
       fields: [...fields, ...passwordFields],
+      component: FormDrawer,
     },
-    editModal: {
+    editor: {
       title: '编辑帐号',
       onSubmit: update,
       fields,
+      component: FormDrawer,
     },
   });
   const columns = [{
@@ -160,7 +163,7 @@ const result = ({ roleKeys }) => {
       <>
         <Button
           type="primary"
-          onClick={() => openEditModal(record)}
+          onClick={() => openEditor(record)}
           style={{ marginBottom: 10, marginRight: 10 }}
           size="small"
           ghost
@@ -176,7 +179,7 @@ const result = ({ roleKeys }) => {
     <Layout>
       {tableHeader}
       <Table dataSource={getDataSource(data)} columns={columns} rowKey="id" pagination={pagination} />
-      <EditModal
+      <FormModal
         visible={passwordModalVisible}
         onCancel={closePasswordModal}
         onSubmit={onPasswordSubmit}

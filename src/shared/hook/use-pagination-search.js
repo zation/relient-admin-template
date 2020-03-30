@@ -109,15 +109,16 @@ const onQueryFetch = debounce(500, onFetch);
 //     total: number
 //   },
 //   readAction: func,
-//   createModal: {
+//   creator: {
 //     formName: string,
 //     title: string,
 //     initialValues: object,
 //     onSubmit: func,
 //     fields: array,
 //     layout: object,
+//     component: ReactComponent,
 //   },
-//   editModal: {
+//   editor: {
 //     formName: string,
 //     title: string,
 //     initialValues: object,
@@ -126,6 +127,7 @@ const onQueryFetch = debounce(500, onFetch);
 //     layout: object,
 //     shouldReload: bool,
 //     getFields: func,
+//     component: ReactComponent,
 //   },
 // }
 
@@ -137,10 +139,10 @@ export default ({
   pagination: { getDataSource, size },
   paginationInitialData,
   readAction,
-  createModal: { onSubmit: createSubmit } = {},
-  createModal,
-  editModal: { onSubmit: editSubmit, shouldReload } = {},
-  editModal,
+  creator: { onSubmit: createSubmit } = {},
+  creator,
+  editor: { onSubmit: editSubmit, shouldReload } = {},
+  editor,
 }) => {
   const defaultQueryField = flow(first, prop('key'))(fields);
   const defaultFilterValues = flow(
@@ -163,13 +165,13 @@ export default ({
     setQueryValue,
     filterValues,
     setFilterValues,
-    createModalVisible,
-    editModalVisible,
+    creatorVisible,
+    editorVisible,
     editItem,
-    openCreateModal,
-    closeCreateModal,
-    openEditModal,
-    closeEditModal,
+    openCreator,
+    closeCreator,
+    openEditor,
+    closeEditor,
     reset,
   } = useBasicSearch({ fields, filters });
 
@@ -375,7 +377,7 @@ export default ({
       setIsLoading,
       fussyKey,
     );
-    closeCreateModal();
+    closeCreator();
     Message.success('创建成功');
   }, [
     createSubmit,
@@ -392,7 +394,7 @@ export default ({
     if (shouldReload) {
       await onReload();
     }
-    closeEditModal();
+    closeEditor();
     Message.success('编辑成功');
   }, [
     editSubmit,
@@ -403,7 +405,7 @@ export default ({
 
   return {
     data,
-    openEditModal,
+    openEditor,
     reload: onReload,
     reset: onReset,
     isLoading,
@@ -449,19 +451,19 @@ export default ({
         }))(datePickers),
         onSelect: onDateChange,
       }}
-      createModal={createModal}
-      editModal={editModal && {
-        ...editModal,
+      creator={creator}
+      editor={editor && {
+        ...editor,
         initialValues: editItem,
-        fields: editModal.getFields ? editModal.getFields(editItem) : editModal.fields,
+        fields: editor.getFields ? editor.getFields(editItem) : editor.fields,
       }}
       onCreateSubmit={onCreateSubmit}
       onEditSubmit={onEditSubmit}
-      createModalVisible={createModalVisible}
-      editModalVisible={editModalVisible}
-      openCreateModal={openCreateModal}
-      closeCreateModal={closeCreateModal}
-      closeEditModal={closeEditModal}
+      creatorVisible={creatorVisible}
+      editorVisible={editorVisible}
+      openCreator={openCreator}
+      closeCreator={closeCreator}
+      closeEditor={closeEditor}
       reset={onReset}
     />,
   };

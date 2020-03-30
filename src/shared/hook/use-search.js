@@ -44,20 +44,22 @@ import useBasicSearch from './use-basic-search';
 //     onDateChange: func,
 //     disabledDate: func,
 //   }],
-//   createModal: {
+//   creator: {
 //     title: string,
 //     initialValues: object,
 //     onSubmit: func,
 //     fields: array,
 //     layout: object,
+//     component: ReactComponent,
 //   },
-//   editModal: {
+//   editor: {
 //     title: string,
 //     initialValues: object,
 //     onSubmit: func,
 //     fields: array,
 //     layout: object,
 //     getFields: func,
+//     component: ReactComponent,
 //   },
 // })
 
@@ -66,10 +68,10 @@ export default ({
   filters = [],
   createLink,
   datePickers,
-  createModal: { onSubmit: createSubmit } = {},
-  createModal,
-  editModal: { onSubmit: editSubmit } = {},
-  editModal,
+  creator: { onSubmit: createSubmit } = {},
+  creator,
+  editor: { onSubmit: editSubmit } = {},
+  editor,
 }) => {
   const {
     dates,
@@ -80,13 +82,13 @@ export default ({
     setQueryValue,
     filterValues,
     setFilterValues,
-    createModalVisible,
-    editModalVisible,
+    creatorVisible,
+    editorVisible,
     editItem,
-    openCreateModal,
-    closeCreateModal,
-    openEditModal,
-    closeEditModal,
+    openCreator,
+    closeCreator,
+    openEditor,
+    closeEditor,
     reset,
   } = useBasicSearch({ fields, filters });
 
@@ -144,14 +146,14 @@ export default ({
   ]);
   const onCreateSubmit = useCallback(async (values) => {
     await createSubmit(values);
-    closeCreateModal();
+    closeCreator();
     Message.success('创建成功');
   }, [
     createSubmit,
   ]);
   const onEditSubmit = useCallback(async (values) => {
     await editSubmit({ ...values, id: editItem.id }, values, editItem);
-    closeEditModal();
+    closeEditor();
     Message.success('编辑成功');
   }, [
     editSubmit,
@@ -205,7 +207,7 @@ export default ({
   return {
     getDataSource,
     filterValues,
-    openEditModal,
+    openEditor,
     reset,
     pagination: {
       showTotal: (total) => `总数 ${total}`,
@@ -232,19 +234,19 @@ export default ({
         }))(filters),
         onSelect: onFilterValueChange,
       }}
-      editModal={editModal && {
-        ...editModal,
+      editor={editor && {
+        ...editor,
         initialValues: editItem,
-        fields: editModal.getFields ? editModal.getFields(editItem) : editModal.fields,
+        fields: editor.getFields ? editor.getFields(editItem) : editor.fields,
       }}
-      createModal={createModal}
+      creator={creator}
       onCreateSubmit={onCreateSubmit}
       onEditSubmit={onEditSubmit}
-      createModalVisible={createModalVisible}
-      editModalVisible={editModalVisible}
-      openCreateModal={openCreateModal}
-      closeCreateModal={closeCreateModal}
-      closeEditModal={closeEditModal}
+      creatorVisible={creatorVisible}
+      editorVisible={editorVisible}
+      openCreator={openCreator}
+      closeCreator={closeCreator}
+      closeEditor={closeEditor}
       reset={(filters || fields) && reset}
       datePicker={{
         items: map(({ dataKey, ...others }) => ({
