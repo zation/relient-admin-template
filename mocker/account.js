@@ -3,8 +3,9 @@ import { map, sample, range, find, propEq } from 'lodash/fp';
 import { ACTIVE, normalStatuses } from 'shared/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
 import { genders } from 'shared/constants/gender';
+import { pagination } from './util';
 
-export const getItem = (values) => ({
+export const createItem = (values) => ({
   id: random.number(),
   username: internet.userName(),
   password: internet.password(),
@@ -20,12 +21,12 @@ export const getItem = (values) => ({
   ...values,
 });
 
-export const current = getItem({
+export const current = createItem({
   status: ACTIVE,
   roleKey: ADMIN,
 });
 
-export const items = map(getItem)(range(1, 40));
+export const items = map(createItem)(range(1, 40));
 
 export default (router) => {
   router.get('/api/account/mine', (request, response) => {
@@ -34,11 +35,11 @@ export default (router) => {
 
   router.post('/api/account', ({ body }, response) => {
     const now = new Date().toISOString();
-    response.status(200).send(getItem({ ...body, createdAt: now, updatedAt: now }));
+    response.status(200).send(createItem({ ...body, createdAt: now, updatedAt: now }));
   });
 
-  router.get('/api/account/all', (request, response) => {
-    response.status(200).send({ content: items });
+  router.get('/api/account/all', ({ query }, response) => {
+    response.status(200).send(pagination(query)(items));
   });
 
   router.get('/api/account/:id', ({ params: { id } }, response) => {

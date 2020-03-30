@@ -5,7 +5,7 @@ import {
   put,
   post,
 } from 'relient/actions';
-import { DEFAULT_PAGE, DEFAULT_SIZE } from '../constants/pagination';
+import { DEFAULT_PAGE, DEFAULT_SIZE } from 'shared/constants/pagination';
 
 const actionType = actionTypeCreator('actions/account');
 

@@ -5,7 +5,7 @@ import { Table } from 'antd';
 import { prop } from 'lodash/fp';
 import useSearch from 'shared/hook/use-search';
 
-import selector from './basic-local-selector';
+import selector from './local-selector';
 
 const result = () => {
   const {
