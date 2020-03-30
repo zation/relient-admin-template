@@ -7,8 +7,9 @@ import {
   PROFILE,
   ADMIN_ACCOUNT,
   BASIC_LOCAL_PAGINATION_TABLE,
-  BASIC_PAGINATION_DATA_TABLE,
+  BASIC_API_PAGINATION_TABLE,
   FUSSY_LOCAL_PAGINATION_TABLE,
+  FUSSY_API_PAGINATION_TABLE,
 } from 'shared/constants/features';
 
 export const items = [{
@@ -24,10 +25,13 @@ export const items = [{
   key: BASIC_LOCAL_PAGINATION_TABLE,
   roleKeys,
 }, {
-  key: BASIC_PAGINATION_DATA_TABLE,
+  key: BASIC_API_PAGINATION_TABLE,
   roleKeys,
 }, {
   key: FUSSY_LOCAL_PAGINATION_TABLE,
+  roleKeys,
+}, {
+  key: FUSSY_API_PAGINATION_TABLE,
   roleKeys,
 }];
 

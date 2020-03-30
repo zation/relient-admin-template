@@ -18,17 +18,29 @@ export const createItem = (values) => ({
 
 export const items = map(createItem)(range(1, 40));
 
+const includesSerialNumber = (item) => (serialNumber) => includes(
+  serialNumber.toUpperCase(),
+)(item.serialNumber.toUpperCase());
+const includesName = (item) => (name) => includes(
+  name.toUpperCase(),
+)(item.name.toUpperCase());
+
 export default (router) => {
-  router.get('/api/order/all', ({ query: { serialNumber, name, ...query } }, response) => {
+  router.get('/api/order/all', ({ query: { serialNumber, name, serialNumberOrName, ...query } }, response) => {
     let result = items;
-    if (serialNumber && name) {
+    if (serialNumberOrName) {
       result = filter(
-        (item) => includes(serialNumber)(item.serialNumber) || includes(name)(item.name),
+        (item) => includesSerialNumber(item)(serialNumberOrName)
+          || includesName(item)(serialNumberOrName),
+      )(items);
+    } else if (serialNumber && name) {
+      result = filter(
+        (item) => includesSerialNumber(item)(serialNumber) && includesName(item)(name),
       )(items);
     } else if (serialNumber) {
-      result = filter((item) => includes(serialNumber)(item.serialNumber))(items);
+      result = filter(includesSerialNumber(serialNumber))(items);
     } else if (name) {
-      result = filter((item) => includes(name)(item.name))(items);
+      result = filter(includesName(name))(items);
     }
     response.status(200).send(pagination(query)(result));
   });

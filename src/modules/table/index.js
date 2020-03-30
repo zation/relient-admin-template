@@ -2,13 +2,15 @@ import React from 'react';
 import {
   BASIC_LOCAL_PAGINATION_TABLE,
   FUSSY_LOCAL_PAGINATION_TABLE,
-  BASIC_PAGINATION_DATA_TABLE,
+  BASIC_API_PAGINATION_TABLE,
+  FUSSY_API_PAGINATION_TABLE,
 } from 'shared/constants/features';
 import { readAll as readAllOrders } from 'shared/actions/order';
 import { map, prop } from 'lodash/fp';
 import BasicLocal from './containers/basic-local';
 import FussyLocal from './containers/fussy-local';
 import BasicAPI from './containers/basic-api';
+import FussyAPI from './containers/fussy-api';
 
 export default async () => [{
   path: '/local/basic',
@@ -20,7 +22,7 @@ export default async () => [{
   component: <FussyLocal />,
 }, {
   path: '/api/basic',
-  feature: BASIC_PAGINATION_DATA_TABLE,
+  feature: BASIC_API_PAGINATION_TABLE,
   action: async ({ store: { dispatch } }) => {
     const {
       content,
@@ -32,6 +34,27 @@ export default async () => [{
     }));
     return {
       component: <BasicAPI
+        ids={map(prop('id'))(content)}
+        total={totalElements}
+        current={number}
+        size={size}
+      />,
+    };
+  },
+}, {
+  path: '/api/fussy',
+  feature: FUSSY_API_PAGINATION_TABLE,
+  action: async ({ store: { dispatch } }) => {
+    const {
+      content,
+      totalElements,
+      number,
+      size,
+    } = await dispatch(readAllOrders({
+      size: 10,
+    }));
+    return {
+      component: <FussyAPI
         ids={map(prop('id'))(content)}
         total={totalElements}
         current={number}

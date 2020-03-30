@@ -38,12 +38,14 @@ export const readAll = createAction(
     sort = 'createdAt,desc',
     name,
     serialNumber,
+    serialNumberOrName,
   } = {}) => read('/order/all', {
     page,
     size,
     sort,
     name,
     serialNumber,
+    serialNumberOrName,
   }),
 );
 

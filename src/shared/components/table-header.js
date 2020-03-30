@@ -152,11 +152,12 @@ result.propTypes = {
   query: shape({
     onFieldChange: func.isRequired,
     onValueChange: func.isRequired,
-    field: string.isRequired,
+    field: string,
     value: string,
     width: number,
-    fields: array.isRequired,
+    fields: array,
     placeholder: string,
+    fussy: bool,
   }),
   createLink: shape({
     text: string.isRequired,

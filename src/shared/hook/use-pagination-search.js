@@ -50,6 +50,7 @@ const onFetch = async (
   dates,
   page,
   setIsLoading,
+  fussyKey,
 ) => {
   setIsLoading(true);
   const {
@@ -58,7 +59,7 @@ const onFetch = async (
     size,
     totalElements,
   } = await readAction(omitEmpty({
-    [queryField]: queryValue,
+    [fussyKey || queryField]: queryValue,
     size: originSize,
     page,
     ...getFilterParams(filterValues),
@@ -82,6 +83,7 @@ const onQueryFetch = debounce(500, onFetch);
 //     onFieldChange: func,
 //     width: number,
 //     placeholder: string,
+//     fussyKey: string,
 //   },
 //   filters: [{
 //     dataKey: string,
@@ -128,7 +130,7 @@ const onQueryFetch = debounce(500, onFetch);
 // }
 
 export default ({
-  query: { onFieldChange, onValueChange, fields, width, placeholder },
+  query: { onFieldChange, onValueChange, fields, width, placeholder, fussyKey },
   filters,
   createLink,
   datePickers,
@@ -190,6 +192,7 @@ export default ({
       dates,
       0,
       setIsLoading,
+      fussyKey,
     );
   }, [
     readAction,
@@ -198,6 +201,7 @@ export default ({
     dates,
     onFieldChange,
     onValueChange,
+    fussyKey,
   ]);
   const onQueryValueChange = useCallback(({ target: { value } }) => {
     if (isFunction(onValueChange)) {
@@ -214,6 +218,7 @@ export default ({
       dates,
       0,
       setIsLoading,
+      fussyKey,
     );
   }, [
     onValueChange,
@@ -222,6 +227,7 @@ export default ({
     size,
     filterValues,
     dates,
+    fussyKey,
   ]);
   const onFilterValueChange = useCallback(async (value, dataKey) => {
     const onChange = flow(find(propEq('dataKey', dataKey)), prop('onFilterChange'))(filters);
@@ -246,6 +252,7 @@ export default ({
       dates,
       0,
       setIsLoading,
+      fussyKey,
     );
   }, [
     filters,
@@ -254,6 +261,7 @@ export default ({
     readAction,
     size,
     dates,
+    fussyKey,
   ]);
   const onDateChange = useCallback(async (value, dataKey) => {
     const onChange = flow(find(propEq('dataKey', dataKey)), prop('onDateChange'))(datePickers);
@@ -278,6 +286,7 @@ export default ({
       newDates,
       0,
       setIsLoading,
+      fussyKey,
     );
   }, [
     datePickers,
@@ -287,6 +296,7 @@ export default ({
     readAction,
     size,
     filterValues,
+    fussyKey,
   ]);
   const onReset = useCallback(async () => {
     reset();
@@ -301,12 +311,14 @@ export default ({
       [],
       0,
       setIsLoading,
+      fussyKey,
     );
   }, [
     defaultQueryField,
     defaultFilterValues,
     readAction,
     reset,
+    fussyKey,
   ]);
   const onPageChange = useCallback((page) => onFetch(
     queryValue,
@@ -318,6 +330,7 @@ export default ({
     dates,
     page - 1,
     setIsLoading,
+    fussyKey,
   ), [
     queryValue,
     queryField,
@@ -325,6 +338,7 @@ export default ({
     size,
     filterValues,
     dates,
+    fussyKey,
   ]);
   const onReload = useCallback(() => onFetch(
     queryValue,
@@ -336,6 +350,7 @@ export default ({
     dates,
     pageData.current,
     setIsLoading,
+    fussyKey,
   ), [
     queryValue,
     queryField,
@@ -344,6 +359,7 @@ export default ({
     filterValues,
     dates,
     pageData.current,
+    fussyKey,
   ]);
   const onCreateSubmit = useCallback(async (values) => {
     await createSubmit(values);
@@ -357,6 +373,7 @@ export default ({
       dates,
       0,
       setIsLoading,
+      fussyKey,
     );
     closeCreateModal();
     Message.success('创建成功');
@@ -368,6 +385,7 @@ export default ({
     size,
     filterValues,
     dates,
+    fussyKey,
   ]);
   const onEditSubmit = useCallback(async (values) => {
     await editSubmit({ ...values, id: editItem.id }, values, editItem);
@@ -406,6 +424,7 @@ export default ({
         fields,
         width,
         placeholder,
+        fussy: !!fussyKey,
       }}
       createLink={createLink}
       filter={{

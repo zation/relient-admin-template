@@ -12,7 +12,8 @@ export const LOCAL_PAGINATION_TABLE = 'LOCAL_PAGINATION_TABLE';
 export const BASIC_LOCAL_PAGINATION_TABLE = 'BASIC_LOCAL_PAGINATION_TABLE';
 export const FUSSY_LOCAL_PAGINATION_TABLE = 'FUSSY_LOCAL_PAGINATION_TABLE';
 export const API_PAGINATION_TABLE = 'API_PAGINATION_TABLE';
-export const BASIC_PAGINATION_DATA_TABLE = 'BASIC_PAGINATION_DATA_TABLE';
+export const BASIC_API_PAGINATION_TABLE = 'BASIC_API_PAGINATION_TABLE';
+export const FUSSY_API_PAGINATION_TABLE = 'FUSSY_API_PAGINATION_TABLE';
 
 export const features = [{
   key: ACCOUNT,
@@ -58,9 +59,13 @@ export const features = [{
     link: 'api',
     text: '分页数据表格',
     items: [{
-      key: BASIC_PAGINATION_DATA_TABLE,
+      key: BASIC_API_PAGINATION_TABLE,
       link: 'basic',
       text: '基础',
+    }, {
+      key: FUSSY_API_PAGINATION_TABLE,
+      link: 'fussy',
+      text: '模糊搜索',
     }],
   }],
 }];
