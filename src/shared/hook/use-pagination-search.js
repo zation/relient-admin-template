@@ -85,6 +85,7 @@ const onQueryFetch = debounce(500, onFetch);
 //     placeholder: string,
 //     fussyKey: string,
 //   },
+//   showReset: bool,
 //   filters: [{
 //     dataKey: string,
 //     label: string,
@@ -132,7 +133,8 @@ const onQueryFetch = debounce(500, onFetch);
 // }
 
 export default ({
-  query: { onFieldChange, onValueChange, fields, width, placeholder, fussyKey },
+  query: { onFieldChange, onValueChange, fields, width, placeholder, fussyKey } = {},
+  showReset,
   filters,
   createLink,
   datePickers,
@@ -464,7 +466,7 @@ export default ({
       openCreator={openCreator}
       closeCreator={closeCreator}
       closeEditor={closeEditor}
-      reset={onReset}
+      reset={showReset ? onReset : null}
     />,
   };
 };

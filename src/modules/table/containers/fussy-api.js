@@ -70,6 +70,7 @@ const result = ({
       fussyKey: 'serialNumberOrName',
       placeholder: '根据 订单号、订单名称 搜索',
     },
+    showReset: true,
     creator: {
       title: '创建订单',
       initialValues: { status: PENDING },

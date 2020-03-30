@@ -34,6 +34,7 @@ const result = () => {
         text: '用户名',
       }],
     },
+    showReset: true,
   });
   const columns = [{
     title: '姓名',

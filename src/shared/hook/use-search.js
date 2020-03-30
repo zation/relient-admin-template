@@ -28,6 +28,7 @@ import useBasicSearch from './use-basic-search';
 //     placeholder: string,
 //     fussy: bool,
 //   },
+//   showReset: bool,
 //   filters: [{
 //     dataKey: string,
 //     label: string,
@@ -65,6 +66,7 @@ import useBasicSearch from './use-basic-search';
 
 export default ({
   query: { onFieldChange, onValueChange, fields, width, fussy } = {},
+  showReset,
   filters = [],
   createLink,
   datePickers,
@@ -247,7 +249,7 @@ export default ({
       openCreator={openCreator}
       closeCreator={closeCreator}
       closeEditor={closeEditor}
-      reset={(filters || fields) && reset}
+      reset={showReset ? reset : null}
       datePicker={{
         items: map(({ dataKey, ...others }) => ({
           dataKey,
