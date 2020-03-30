@@ -1,9 +1,14 @@
-import { flow, orderBy } from 'lodash/fp';
-import { getEntityArray } from 'relient/selectors';
+import { flow, orderBy, map } from 'lodash/fp';
+import { getEntity, getEntityArray } from 'relient/selectors';
 
 export default (state) => ({
   data: flow(
     getEntityArray('account'),
     orderBy('createdAt', 'desc'),
+  )(state),
+  roleEntity: getEntity('role')(state),
+  roleFilters: flow(
+    getEntityArray('role'),
+    map(({ key, name }) => ({ value: key, text: name })),
   )(state),
 });

@@ -1,9 +1,8 @@
 import { random, name, internet, phone, date } from 'faker';
-import { map, flow, sample, prop, range, find, propEq } from 'lodash/fp';
+import { map, sample, range, find, propEq } from 'lodash/fp';
 import { ACTIVE, normalStatuses } from 'shared/constants/normal-status';
-import { ADMIN } from 'shared/constants/role-key';
+import { ADMIN, roleKeys } from 'shared/constants/role-key';
 import { genders } from 'shared/constants/gender';
-import { items as roles } from './role';
 
 export const getItem = (values) => ({
   id: random.number(),
@@ -12,7 +11,7 @@ export const getItem = (values) => ({
   phoneNumber: phone.phoneNumber(),
   email: internet.email(),
   name: `${name.firstName()} ${name.lastName()}`,
-  roleKey: flow(sample, prop('key'))(roles),
+  roleKey: sample(roleKeys),
   status: sample(normalStatuses),
   createdAt: date.past(),
   updatedAt: date.past(),

@@ -1,10 +1,14 @@
 import {
   ADMIN,
+  CUSTOMER,
 } from 'shared/constants/role-key';
 
 export const items = [{
   key: ADMIN,
   name: '平台管理员',
+}, {
+  key: CUSTOMER,
+  name: '用户',
 }];
 
 export default (router) => {
