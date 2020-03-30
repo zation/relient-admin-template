@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { readMine as readProfile } from 'shared/actions/account';
-import { readAll as readAllPermission } from 'shared/actions/permission';
 import { setAuthorization, removeAuthorization } from 'shared/actions/auth';
-import { readAll as readAllRole } from 'shared/actions/role';
 import { AUTHORIZATION } from 'shared/constants/cookies';
 import { getEntity } from 'relient/selectors';
 import router from 'shared/router';
@@ -11,7 +9,7 @@ import { getCurrentAccount } from 'shared/selectors/account';
 import getConfig from 'relient/config';
 import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';
-import { flow, reduce, concat } from 'lodash/fp';
+import { flow, reduce, concat, compact } from 'lodash/fp';
 import createStore from '../create-store';
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import Html from '../html';
@@ -47,10 +45,7 @@ export default async (req, res, next) => {
     try {
       const state = store.getState();
 
-      let preloader = [
-        dispatch(readAllRole()),
-        dispatch(readAllPermission()),
-      ];
+      let preloader = [];
 
       const isLogin = getEntity('auth.isLogin')(state);
       if (isLogin) {
@@ -114,6 +109,7 @@ export default async (req, res, next) => {
           getChunks,
           reduce((result, chunk) => result.concat(chunks[chunk]), []),
           concat(chunks.client),
+          compact,
         )(route)}
         initialState={JSON.stringify(store.getState())}
       >

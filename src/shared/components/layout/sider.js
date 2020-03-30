@@ -1,5 +1,5 @@
 import React from 'react';
-import { array } from 'prop-types';
+import { array, elementType, string } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout, Menu } from 'antd';
 import Link from 'shared/components/link';
@@ -10,6 +10,36 @@ import s from './sider.less';
 
 const { Sider } = Layout;
 const { Item, SubMenu } = Menu;
+
+const MenuItem = ({
+  icon,
+  items,
+  text,
+  key,
+}) => (items ? (
+  <SubMenu
+    title={(
+      <>
+        {icon && <Icon component={icon} />}
+        <span>{text}</span>
+      </>
+    )}
+    key={key}
+  >
+    {map(MenuItem)(items)}
+  </SubMenu>
+) : (
+  <Item key={key}>
+    <Link showIcon feature={key} />
+  </Item>
+));
+
+MenuItem.propTypes = {
+  icon: elementType,
+  items: array,
+  text: string,
+  key: string.isRequired,
+};
 
 const result = ({ selectedFeatureKeys, features }) => {
   useStyles(s);
@@ -29,27 +59,7 @@ const result = ({ selectedFeatureKeys, features }) => {
         selectedKeys={selectedFeatureKeys}
         defaultOpenKeys={selectedFeatureKeys}
       >
-        {map(({ icon, items, text, key }) => (items ? (
-          <SubMenu
-            title={(
-              <>
-                {icon && <Icon component={icon} />}
-                <span>{text}</span>
-              </>
-            )}
-            key={key}
-          >
-            {map(({ key: itemKey }) => (
-              <Item key={itemKey}>
-                <Link showIcon feature={itemKey} />
-              </Item>
-            ))(items)}
-          </SubMenu>
-        ) : (
-          <Item key={key}>
-            <Link showIcon feature={key} />
-          </Item>
-        )))(features)}
+        {map(MenuItem)(features)}
       </Menu>
     </Sider>
   );

@@ -135,9 +135,9 @@ export default ({
   pagination: { getDataSource, size },
   paginationInitialData,
   readAction,
-  createModal: { onSubmit: createSubmit },
+  createModal: { onSubmit: createSubmit } = {},
   createModal,
-  editModal: { onSubmit: editSubmit, shouldReload },
+  editModal: { onSubmit: editSubmit, shouldReload } = {},
   editModal,
 }) => {
   const defaultQueryField = flow(first, prop('key'))(fields);

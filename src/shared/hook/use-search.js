@@ -64,9 +64,9 @@ export default ({
   filters = [],
   createLink,
   datePickers,
-  createModal: { onSubmit: createSubmit },
+  createModal: { onSubmit: createSubmit } = {},
   createModal,
-  editModal: { onSubmit: editSubmit },
+  editModal: { onSubmit: editSubmit } = {},
   editModal,
 }) => {
   const {

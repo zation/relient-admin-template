@@ -28,6 +28,14 @@ export default [
   },
 
   {
+    path: '/table',
+    chunks: ['table'],
+    children: true,
+    requireAuth: true,
+    load: () => import(/* webpackChunkName: 'personal' */ 'modules/table'),
+  },
+
+  {
     path: '/(.*)',
     chunks: ['not-found'],
     featureGroup: 'NOT_FOUND',
