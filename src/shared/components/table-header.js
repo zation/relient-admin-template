@@ -3,7 +3,7 @@ import { string, func, shape, arrayOf, array, number, oneOfType, object, bool } 
 import { Input, Button, Select, DatePicker } from 'antd';
 import Link from 'shared/components/link';
 import useStyles from 'isomorphic-style-loader/useStyles';
-import { map } from 'lodash/fp';
+import { map, flow, join, prop } from 'lodash/fp';
 import FormModal from './edit-modal';
 
 import s from './table-header.less';
@@ -59,24 +59,26 @@ const result = ({
       <div className={s.operations}>
         {query && (
           <div>
-            <Select
-              onSelect={query.onFieldChange}
-              value={query.field}
-              style={{ marginRight: 10 }}
-              dropdownMatchSelectWidth={false}
-            >
-              {map(({ key, text }) => (
-                <Option
-                  value={key}
-                  key={key}
-                >
-                  {text}
-                </Option>
-              ))(query.fields)}
-            </Select>
+            {!query.fussy && (
+              <Select
+                onSelect={query.onFieldChange}
+                value={query.field}
+                style={{ marginRight: 10 }}
+                dropdownMatchSelectWidth={false}
+              >
+                {map(({ key, text }) => (
+                  <Option
+                    value={key}
+                    key={key}
+                  >
+                    {text}
+                  </Option>
+                ))(query.fields)}
+              </Select>
+            )}
             <Search
               style={{ width: query.width || 300 }}
-              placeholder={query.placeholder || '搜索'}
+              placeholder={query.placeholder || (query.fussy ? `根据 ${flow(map(prop('text')), join('、'))(query.fields)} 搜索` : '搜索')}
               onChange={query.onValueChange}
               value={query.value}
             />

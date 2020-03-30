@@ -10,6 +10,7 @@ export const PROFILE = 'PROFILE';
 export const TABLE = 'TABLE';
 export const LOCAL_PAGINATION_TABLE = 'LOCAL_PAGINATION_TABLE';
 export const BASIC_LOCAL_PAGINATION_TABLE = 'BASIC_LOCAL_PAGINATION_TABLE';
+export const FUSSY_LOCAL_PAGINATION_TABLE = 'FUSSY_LOCAL_PAGINATION_TABLE';
 export const API_PAGINATION_TABLE = 'API_PAGINATION_TABLE';
 export const BASIC_PAGINATION_DATA_TABLE = 'BASIC_PAGINATION_DATA_TABLE';
 
@@ -47,6 +48,10 @@ export const features = [{
       key: BASIC_LOCAL_PAGINATION_TABLE,
       link: 'basic',
       text: '基础',
+    }, {
+      key: FUSSY_LOCAL_PAGINATION_TABLE,
+      link: 'fussy',
+      text: '模糊搜索',
     }],
   }, {
     key: API_PAGINATION_TABLE,

@@ -8,6 +8,7 @@ import {
   ADMIN_ACCOUNT,
   BASIC_LOCAL_PAGINATION_TABLE,
   BASIC_PAGINATION_DATA_TABLE,
+  FUSSY_LOCAL_PAGINATION_TABLE,
 } from 'shared/constants/features';
 
 export const items = [{
@@ -24,6 +25,9 @@ export const items = [{
   roleKeys,
 }, {
   key: BASIC_PAGINATION_DATA_TABLE,
+  roleKeys,
+}, {
+  key: FUSSY_LOCAL_PAGINATION_TABLE,
   roleKeys,
 }];
 

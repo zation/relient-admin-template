@@ -13,6 +13,7 @@ import {
   propEq,
   reject,
   toUpper,
+  any,
 } from 'lodash/fp';
 import { Message } from 'antd';
 import TableHeader from 'shared/components/table-header';
@@ -25,6 +26,7 @@ import useBasicSearch from './use-basic-search';
 //     onFieldChange: func,
 //     width: number,
 //     placeholder: string,
+//     fussy: bool,
 //   },
 //   filters: [{
 //     dataKey: string,
@@ -60,7 +62,7 @@ import useBasicSearch from './use-basic-search';
 // })
 
 export default ({
-  query: { onFieldChange, onValueChange, fields, width } = {},
+  query: { onFieldChange, onValueChange, fields, width, fussy } = {},
   filters = [],
   createLink,
   datePickers,
@@ -158,12 +160,20 @@ export default ({
   const getDataSource = useCallback(filter(
     (item) => {
       let queryResult = true;
-      if (queryValue && queryField) {
-        queryResult = flow(
-          prop(queryField),
-          toUpper,
-          includes(toUpper(queryValue)),
-        )(item);
+      if (queryValue) {
+        if (fussy) {
+          queryResult = any(({ key }) => flow(
+            prop(key),
+            toUpper,
+            includes(toUpper(queryValue)),
+          )(item))(fields);
+        } else if (queryField) {
+          queryResult = flow(
+            prop(queryField),
+            toUpper,
+            includes(toUpper(queryValue)),
+          )(item);
+        }
       }
 
       let filterResult = true;
@@ -208,6 +218,7 @@ export default ({
         field: queryField,
         fields,
         width,
+        fussy,
       }}
       createLink={createLink}
       filter={{
