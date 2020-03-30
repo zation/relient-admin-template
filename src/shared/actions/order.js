@@ -51,20 +51,22 @@ export const readAll = createAction(
 
 export const create = createAction(
   CREATE, ({
-    accountId,
+    name,
+    status,
   }) => post('/order', {
-    accountId,
+    name,
+    status,
   }),
 );
 
 export const update = createAction(
   UPDATE, ({
     id,
-    items,
+    name,
     status,
   }) => put(`/order/${id}`, {
     id,
-    items,
+    name,
     status,
   }),
 );

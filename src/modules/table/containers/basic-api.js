@@ -1,13 +1,21 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 import { map, flow } from 'lodash/fp';
 import useSearch from 'shared/hook/use-pagination-search';
-import { readAll as readAllOrdersAction } from 'shared/actions/order';
+import {
+  readAll as readAllOrdersAction,
+  update as updateOrderAction,
+  create as createOrderAction,
+} from 'shared/actions/order';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
 import useAction from 'shared/hook/use-action';
+import FormDrawer from 'shared/components/form-drawer';
+import { required } from 'shared/utils/validators';
+import Select from 'shared/components/fields/select';
+import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 
 const getDataSource = (state) => map((id) => flow(
   getEntity(`order.${id}`),
@@ -17,6 +25,21 @@ const getDataSource = (state) => map((id) => flow(
   }),
 )(state));
 
+const fields = [{
+  label: '订单名称',
+  name: 'name',
+  type: 'text',
+  required: true,
+  validate: required,
+}, {
+  label: '订单状态',
+  name: 'status',
+  component: Select,
+  options: orderStatusOptions,
+  required: true,
+  validate: required,
+}];
+
 const result = ({
   ids,
   total,
@@ -24,10 +47,14 @@ const result = ({
   size,
 }) => {
   const readAllOrders = useAction(readAllOrdersAction);
+  const createOrder = useAction(createOrderAction);
+  const updateOrder = useAction(updateOrderAction);
+
   const {
     tableHeader,
     data,
     pagination,
+    openEditor,
   } = useSearch({
     paginationInitialData: {
       ids,
@@ -49,6 +76,19 @@ const result = ({
         text: '订单号',
       }],
     },
+    creator: {
+      title: '创建订单',
+      initialValues: { status: PENDING },
+      onSubmit: createOrder,
+      fields,
+      component: FormDrawer,
+    },
+    editor: {
+      title: '编辑帐号',
+      onSubmit: updateOrder,
+      fields,
+      component: FormDrawer,
+    },
   });
   const columns = [{
     title: '订单号',
@@ -63,6 +103,21 @@ const result = ({
     title: '创建时间',
     dataIndex: 'createdAt',
     render: time(),
+  }, {
+    title: '操作',
+    key: 'operations',
+    width: 200,
+    render: (record) => (
+      <Button
+        type="primary"
+        onClick={() => openEditor(record)}
+        style={{ marginBottom: 10, marginRight: 10 }}
+        size="small"
+        ghost
+      >
+        编辑
+      </Button>
+    ),
   }];
 
   return (

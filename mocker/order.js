@@ -18,10 +18,10 @@ export const createItem = (values) => ({
 
 export const items = map(createItem)(range(1, 40));
 
-const includesSerialNumber = (item) => (serialNumber) => includes(
+const includesSerialNumber = (serialNumber) => (item) => includes(
   serialNumber.toUpperCase(),
 )(item.serialNumber.toUpperCase());
-const includesName = (item) => (name) => includes(
+const includesName = (name) => (item) => includes(
   name.toUpperCase(),
 )(item.name.toUpperCase());
 
@@ -30,12 +30,12 @@ export default (router) => {
     let result = items;
     if (serialNumberOrName) {
       result = filter(
-        (item) => includesSerialNumber(item)(serialNumberOrName)
-          || includesName(item)(serialNumberOrName),
+        (item) => includesSerialNumber(serialNumberOrName)(item)
+          || includesName(serialNumberOrName)(item),
       )(items);
     } else if (serialNumber && name) {
       result = filter(
-        (item) => includesSerialNumber(item)(serialNumber) && includesName(item)(name),
+        (item) => includesSerialNumber(serialNumber)(item) && includesName(name)(item),
       )(items);
     } else if (serialNumber) {
       result = filter(includesSerialNumber(serialNumber))(items);
@@ -43,5 +43,15 @@ export default (router) => {
       result = filter(includesName(name))(items);
     }
     response.status(200).send(pagination(query)(result));
+  });
+
+  router.post('/api/order', ({ body }, response) => {
+    const item = createItem(body);
+    items.push(item);
+    response.status(200).send(item);
+  });
+
+  router.put('/api/order/:id', ({ body, params: { id } }, response) => {
+    response.status(200).send({ ...body, id: Number(id) });
   });
 };

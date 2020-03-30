@@ -13,5 +13,5 @@ const textMap = {
 };
 
 export const orderStatuses = keys(textMap);
-export const getOrderStatusText = getText(textMap);
-export const orderStatusOptions = getOptions(textMap);
+export const getOrderStatusText = getText(textMap)();
+export const orderStatusOptions = getOptions(textMap)();
