@@ -1,4 +1,12 @@
 import { prop, last, flow, join, map } from 'lodash/fp';
+import {
+  UserOutlined,
+  TeamOutlined,
+  SettingOutlined,
+  InfoCircleOutlined,
+  LockOutlined,
+  TableOutlined,
+} from '@ant-design/icons';
 
 export const ACCOUNT = 'ACCOUNT';
 export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT';
@@ -19,53 +27,65 @@ export const features = [{
   key: ACCOUNT,
   link: 'account',
   text: '账户管理',
+  icon: TeamOutlined,
   items: [{
     key: ADMIN_ACCOUNT,
     link: 'admin',
     text: '管理员',
+    icon: UserOutlined,
   }],
 }, {
   key: PERSONAL,
   link: 'personal',
   text: '个人信息',
+  icon: InfoCircleOutlined,
   items: [{
     key: PROFILE,
     link: 'profile',
     text: '信息管理',
+    icon: SettingOutlined,
   }, {
     key: PASSWORD,
     link: 'password',
     text: '修改密码',
+    icon: LockOutlined,
   }],
 }, {
   key: TABLE,
   link: 'table',
   text: '表格演示',
+  icon: TableOutlined,
   items: [{
     key: LOCAL_PAGINATION_TABLE,
     link: 'local',
     text: '本地分页表格',
+    icon: TableOutlined,
     items: [{
       key: BASIC_LOCAL_PAGINATION_TABLE,
       link: 'basic',
       text: '基础',
+      icon: TableOutlined,
     }, {
       key: FUSSY_LOCAL_PAGINATION_TABLE,
       link: 'fussy',
       text: '模糊搜索',
+      icon: TableOutlined,
     }],
   }, {
     key: API_PAGINATION_TABLE,
     link: 'api',
     text: '分页数据表格',
+    icon: TableOutlined,
     items: [{
       key: BASIC_API_PAGINATION_TABLE,
       link: 'basic',
       text: '基础',
+      icon: TableOutlined,
     }, {
       key: FUSSY_API_PAGINATION_TABLE,
       link: 'fussy',
       text: '模糊搜索',
+      icon: TableOutlined,
     }],
   }],
 }];

@@ -1,10 +1,10 @@
-import React from 'react';
-import { array, elementType, string } from 'prop-types';
+import React, { createElement } from 'react';
+import { array, elementType, string, bool } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout, Menu } from 'antd';
 import Link from 'shared/components/link';
 import { map } from 'lodash/fp';
-import Icon from '@ant-design/icons';
+import logo from './logo.svg';
 
 import s from './sider.less';
 
@@ -19,10 +19,10 @@ const MenuItem = ({
 }) => (items ? (
   <SubMenu
     title={(
-      <>
-        {icon && <Icon component={icon} />}
+      <span>
+        {icon && createElement(icon)}
         <span>{text}</span>
-      </>
+      </span>
     )}
     key={key}
   >
@@ -41,21 +41,25 @@ MenuItem.propTypes = {
   key: string.isRequired,
 };
 
-const result = ({ selectedFeatureKeys, features }) => {
+const result = ({ selectedFeatureKeys, features, isCollapsed }) => {
   useStyles(s);
 
   return (
     <Sider
-      theme="light"
       trigger={null}
-      breakpoint="md"
       width={256}
+      collapsible
+      collapsed={isCollapsed}
       className={s.Root}
     >
+      <div className={s.Title}>
+        <img src={logo} alt="Logo" className={s.Logo} />
+        {!isCollapsed && <h1>Relient Admin</h1>}
+      </div>
+
       <Menu
-        theme="light"
+        theme="dark"
         mode="inline"
-        style={{ padding: '16px 0', width: '100%' }}
         selectedKeys={selectedFeatureKeys}
         defaultOpenKeys={selectedFeatureKeys}
       >
@@ -68,6 +72,7 @@ const result = ({ selectedFeatureKeys, features }) => {
 result.propTypes = {
   selectedFeatureKeys: array.isRequired,
   features: array.isRequired,
+  isCollapsed: bool.isRequired,
 };
 
 result.displayName = __filename;

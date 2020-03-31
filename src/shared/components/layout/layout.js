@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { string, node, bool } from 'prop-types';
 import { Layout, Card } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,41 +30,46 @@ const result = ({
     dispatch(logoutAction());
     global.document.location.replace('/auth/login');
   }, [logoutAction]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const toggleSider = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);
 
   return (
-    <Layout>
-      {currentAccount && (
-        <Header
-          email={currentAccount.email}
-          username={currentAccount.username}
-          logout={logout}
-        />
-      )}
-      <Layout hasSider>
-        <Sider
-          selectedFeatureKeys={selectedFeatureKeys}
-          features={features}
-        />
-        <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-          <div className={s.Title}>
-            <h1 className={s.TitleText}>
-              {title || (subTitle
-                ? <Link feature={last(selectedFeatureKeys)} />
-                : getFeatureBy('text')(last(selectedFeatureKeys)))}
-            </h1>
-            {subTitle && <div className={s.Separator}>/</div>}
-            <div className={s.SubTitle}>{subTitle}</div>
-          </div>
-          <div className={className}>
-            {multipleCard ? children : (
-              <Card bordered={false}>
-                {children}
-              </Card>
-            )}
-          </div>
-          <Footer />
-        </Content>
-      </Layout>
+    <Layout hasSider className={s.Root}>
+      <Sider
+        selectedFeatureKeys={selectedFeatureKeys}
+        features={features}
+        isCollapsed={isCollapsed}
+      />
+      <Content style={{ height: '100%' }}>
+        {currentAccount && (
+          <Header
+            email={currentAccount.email}
+            username={currentAccount.username}
+            logout={logout}
+            toggleSider={toggleSider}
+            isCollapsed={isCollapsed}
+          />
+        )}
+
+        <div className={s.Title}>
+          <h1 className={s.TitleText}>
+            {title || (subTitle
+              ? <Link feature={last(selectedFeatureKeys)} />
+              : getFeatureBy('text')(last(selectedFeatureKeys)))}
+          </h1>
+          {subTitle && <div className={s.Separator}>/</div>}
+          <div className={s.SubTitle}>{subTitle}</div>
+        </div>
+
+        <div className={className} style={{ margin: '24px 24px 0' }}>
+          {multipleCard ? children : (
+            <Card bordered={false}>
+              {children}
+            </Card>
+          )}
+        </div>
+        <Footer />
+      </Content>
     </Layout>
   );
 };

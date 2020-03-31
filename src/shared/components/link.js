@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, createElement } from 'react';
 import { string, node, func, bool } from 'prop-types';
 import { propEq, omit } from 'lodash/fp';
 import { useDispatch } from 'react-redux';
 import { push, goBack } from 'relient/actions/history';
 import { getFeatureBy } from 'shared/constants/features';
-import Icon from '@ant-design/icons';
 
 const isLeftClickEvent = propEq('button')(0);
 
@@ -56,8 +55,8 @@ const result = ({ to, back = false, children, feature, showIcon, onClick, target
       onClick={handleClick}
     >
       {children}
-      {!children && icon && showIcon && <Icon component={icon} />}
-      {!children && getFeatureBy('text')(feature)}
+      {!children && icon && showIcon && createElement(icon)}
+      {!children && <span>{getFeatureBy('text')(feature)}</span>}
     </a>
   );
 };
