@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func, shape, arrayOf, array, number, oneOfType, object, bool, elementType } from 'prop-types';
+import { string, func, shape, arrayOf, array, number, oneOfType, object, bool, elementType, any } from 'prop-types';
 import { Input, Button, Select, DatePicker } from 'antd';
 import Link from 'shared/components/link';
 import useStyles from 'isomorphic-style-loader/useStyles';
@@ -175,14 +175,19 @@ result.propTypes = {
     title: string,
     onSubmit: func,
     initialValues: object,
-    fields: arrayOf(shape({
-      name: string.isRequired,
-      label: string.isRequired,
-      type: string,
-      options: array,
-      placeholder: string,
-      validate: oneOfType([func, array]),
-    })),
+    fields: arrayOf(oneOfType([
+      shape({
+        name: string.isRequired,
+        label: string.isRequired,
+        htmlType: string,
+        options: array,
+        placeholder: string,
+        validate: oneOfType([func, array]),
+        required: bool,
+        component: any,
+      }),
+      func,
+    ])),
     layout: object,
   }),
   editor: shape({
@@ -190,14 +195,19 @@ result.propTypes = {
     title: string,
     onSubmit: func,
     initialValues: object,
-    fields: arrayOf(shape({
-      name: string.isRequired,
-      label: string.isRequired,
-      type: string,
-      options: array,
-      placeholder: string,
-      validate: oneOfType([func, array]),
-    })),
+    fields: arrayOf(oneOfType([
+      shape({
+        name: string.isRequired,
+        label: string.isRequired,
+        htmlType: string,
+        options: array,
+        placeholder: string,
+        validate: oneOfType([func, array]),
+        required: bool,
+        component: any,
+      }),
+      func,
+    ])),
     layout: object,
   }),
   openCreator: func,
