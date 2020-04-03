@@ -8990,10 +8990,10 @@ relient-cli@2.6.4:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@4.1.7:
-  version "4.1.7"
-  resolved "https://registry.npm.taobao.org/relient/download/relient-4.1.7.tgz#b5e3782be76f9ab312a3835bb10dc8e04b6b07d9"
-  integrity sha1-teN4K+dvmrMSo4NbsQ3I4EtrB9k=
+relient@4.1.8:
+  version "4.1.8"
+  resolved "https://registry.npm.taobao.org/relient/download/relient-4.1.8.tgz?cache=0&sync_timestamp=1585908664016&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient%2Fdownload%2Frelient-4.1.8.tgz#c45847e2c2a853683eb5893472df8109148a15f3"
+  integrity sha1-xFhH4sKoU2g+tYk0ct+BCRSKFfM=
   dependencies:
     "@types/history" "^4.7.5"
     "@types/lodash" "^4.14.149"

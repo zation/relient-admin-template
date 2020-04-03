@@ -17,7 +17,7 @@ import {
 } from 'lodash/fp';
 import { Message } from 'antd';
 import TableHeader from 'shared/components/table-header';
-import useBasicSearch from './use-basic-search';
+import { useBasicTable } from './utils';
 
 // {
 //   query: {
@@ -74,7 +74,7 @@ export default ({
   creator,
   editor: { onSubmit: editSubmit } = {},
   editor,
-}) => {
+} = {}) => {
   const {
     dates,
     setDates,
@@ -92,7 +92,7 @@ export default ({
     openEditor,
     closeEditor,
     reset,
-  } = useBasicSearch({ fields, filters });
+  } = useBasicTable({ fields, filters });
 
   const onQueryFieldChange = useCallback((fieldKey) => {
     if (isFunction(onFieldChange)) {

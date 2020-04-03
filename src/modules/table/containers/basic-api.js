@@ -3,7 +3,7 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table } from 'antd';
 import { map, flow } from 'lodash/fp';
-import useSearch from 'shared/hook/use-pagination-search';
+import useTable from 'shared/hook/use-api-table';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
@@ -55,7 +55,7 @@ const result = ({
     data,
     pagination,
     openEditor,
-  } = useSearch({
+  } = useTable({
     paginationInitialData: {
       ids,
       total,

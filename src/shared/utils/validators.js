@@ -6,11 +6,10 @@ import {
   positiveNumberValidator,
   lessOrEqualThanValidator,
   moreOrEqualThanValidator,
+  composeValidators,
 } from 'relient/form';
 import { isFinite, isNil, flow, size, split, nth } from 'lodash/fp';
 
-export const composeValidators = (...validators) => (value, allValues, meta) => validators
-  .reduce((error, validator) => error || validator(value, allValues, meta), undefined);
 export const required = requiredValidator('必填项');
 export const sameAs = sameAsValidator('输入与之前不同');
 export const minLength = minLengthValidator('输入字符太少');

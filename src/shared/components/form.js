@@ -4,7 +4,7 @@ import { Field, Form as FinalForm } from 'react-final-form';
 import { Form, Button } from 'antd';
 import Input from 'shared/components/fields/input';
 import { func, object, arrayOf, shape, string, oneOfType, bool, any, array } from 'prop-types';
-import { map } from 'lodash/fp';
+import { map, isFunction } from 'lodash/fp';
 
 const { Item } = Form;
 const defaultLayout = {
@@ -21,17 +21,20 @@ const result = ({
   <FinalForm onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, submitting, form }) => (
       <Form onSubmit={handleSubmit}>
-        {map(({ name, htmlType = 'text', ...rest }) => (
-          <Field
-            key={name}
-            name={name}
-            htmlType={htmlType}
-            component={Input}
-            size="large"
-            layout={layout}
-            {...rest}
-          />
-        ))(fields)}
+        {map((field) => {
+          const { name, htmlType = 'text', ...rest } = isFunction(field) ? field({ form }) : field;
+          return (
+            <Field
+              key={name}
+              name={name}
+              htmlType={htmlType}
+              component={Input}
+              size="large"
+              layout={layout}
+              {...rest}
+            />
+          );
+        })(fields)}
         <Item wrapperCol={{ span: 10, offset: 8 }}>
           <Button
             size="large"
@@ -55,16 +58,19 @@ const result = ({
 result.propTypes = {
   onSubmit: func.isRequired,
   initialValues: object,
-  fields: arrayOf(shape({
-    name: string.isRequired,
-    label: string.isRequired,
-    htmlType: string,
-    options: array,
-    placeholder: string,
-    validate: oneOfType([func, array]),
-    required: bool,
-    component: any,
-  })),
+  fields: arrayOf(oneOfType([
+    shape({
+      name: string.isRequired,
+      label: string.isRequired,
+      htmlType: string,
+      options: array,
+      placeholder: string,
+      validate: oneOfType([func, array]),
+      required: bool,
+      component: any,
+    }),
+    func,
+  ])),
   layout: object,
 };
 

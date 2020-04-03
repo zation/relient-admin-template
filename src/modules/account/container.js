@@ -13,7 +13,7 @@ import { formatNormalStatus, parseNormalStatus } from 'shared/constants/normal-s
 import FormModal from 'shared/components/form-modal';
 import FormDrawer from 'shared/components/form-drawer';
 import useAction from 'shared/hook/use-action';
-import useSearch from 'shared/hook/use-search';
+import useTable from 'shared/hook/use-local-table';
 
 import selector from './selector';
 
@@ -103,7 +103,7 @@ const result = ({ roleKeys }) => {
     tableHeader,
     getDataSource,
     pagination,
-  } = useSearch({
+  } = useTable({
     query: {
       fields: [{
         key: 'name',

@@ -20,7 +20,7 @@ import {
 } from 'lodash/fp';
 import { Message } from 'antd';
 import TableHeader from 'shared/components/table-header';
-import useBasicSearch from './use-basic-search';
+import { useBasicTable } from './utils';
 
 const omitEmpty = omitBy((val) => (isNil(val) || val === ''));
 
@@ -145,7 +145,7 @@ export default ({
   creator,
   editor: { onSubmit: editSubmit, shouldReload } = {},
   editor,
-}) => {
+} = {}) => {
   const defaultQueryField = flow(first, prop('key'))(fields);
   const defaultFilterValues = flow(
     reject(flow(prop('defaultValue'), isUndefined)),
@@ -175,7 +175,7 @@ export default ({
     openEditor,
     closeEditor,
     reset,
-  } = useBasicSearch({ fields, filters });
+  } = useBasicTable({ fields, filters });
 
   const onQueryFieldChange = useCallback(async (fieldKey) => {
     setQueryField(fieldKey);

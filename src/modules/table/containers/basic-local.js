@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { Table } from 'antd';
 import { prop } from 'lodash/fp';
-import useSearch from 'shared/hook/use-search';
+import useTable from 'shared/hook/use-local-table';
 
 import selector from './local-selector';
 
@@ -18,7 +18,7 @@ const result = () => {
     tableHeader,
     getDataSource,
     pagination,
-  } = useSearch({
+  } = useTable({
     query: {
       fields: [{
         key: 'name',
