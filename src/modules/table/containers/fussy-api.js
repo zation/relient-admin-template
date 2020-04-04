@@ -76,11 +76,13 @@ const result = ({
       initialValues: { status: PENDING },
       onSubmit: createOrder,
       fields,
+      checkEditing: true,
     },
     editor: {
       title: '编辑帐号',
       onSubmit: updateOrder,
       fields,
+      checkEditing: true,
     },
   });
   const columns = [{

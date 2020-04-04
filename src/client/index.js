@@ -33,6 +33,9 @@ const container = document.getElementById('app');
 let currentLocation = history.location;
 let appInstance;
 
+global.addEventListener('beforeunload', () => (global.isFormEditing ? '确认离开正在编辑的表单吗？' : undefined));
+history.block(() => (global.isFormEditing ? '确认离开正在编辑的表单吗？' : undefined));
+
 // Switch off the native scroll restoration behavior and handle it manually
 // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
 const scrollPositionsHistory = {};
