@@ -3,6 +3,7 @@ export default {
     ['import', { libraryName: 'antd', style: false }],
     ['lodash', { id: ['lodash'] }],
   ],
+  baseUrl: '/admin/',
   proxy: {
     from: ['/api'],
     target: 'http://localhost:9001',
