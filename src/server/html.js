@@ -32,7 +32,7 @@ const result = ({
     </head>
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
-      <script dangerouslySetInnerHTML={{ __html: clientConfig(['cdnDomain']) }} />
+      <script dangerouslySetInnerHTML={{ __html: clientConfig(['cdnDomain', 'baseUrl']) }} />
       <script dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__=${initialState}` }} />
       {scripts.map((script) => <script key={script} src={script} />)}
     </body>
