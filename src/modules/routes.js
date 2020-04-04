@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    action: () => ({ redirect: '/personal/profile' }),
+    redirect: '/personal/profile',
   },
 
   {

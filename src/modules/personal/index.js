@@ -6,13 +6,9 @@ import Profile from './containers/profile';
 export default async () => [{
   path: '/password',
   feature: PASSWORD,
-  action: () => ({
-    component: <Password />,
-  }),
+  component: <Password />,
 }, {
   path: '/profile',
   feature: PROFILE,
-  action: () => ({
-    component: <Profile />,
-  }),
+  component: <Profile />,
 }];

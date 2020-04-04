@@ -7,6 +7,8 @@ import useStyles from 'isomorphic-style-loader/useStyles';
 import { Link } from 'relient-admin/components';
 import { last } from 'lodash/fp';
 import { getFeatureBy } from 'relient-admin/features';
+import getConfig from 'relient/config';
+import { getWithBaseUrl } from 'relient/url';
 import Sider from './sider';
 import antDesignStyle from './global_.less';
 import s from './layout.less';
@@ -28,7 +30,7 @@ const result = ({
   const dispatch = useDispatch();
   const logout = useCallback(() => {
     dispatch(logoutAction());
-    global.document.location.replace('/auth/login');
+    global.document.location.replace(getWithBaseUrl('/auth/login', getConfig('baseUrl')));
   }, [logoutAction]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleSider = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);

@@ -14,7 +14,7 @@
   resolved "https://registry.npm.taobao.org/@ant-design/icons-svg/download/@ant-design/icons-svg-4.0.0.tgz#6683db0df97c0c6900bb28a280faf391522ec734"
   integrity sha1-ZoPbDfl8DGkAuyiigPrzkVIuxzQ=
 
-"@ant-design/icons@^4.0.0", "@ant-design/icons@^4.0.5":
+"@ant-design/icons@>=4.0.5", "@ant-design/icons@^4.0.0", "@ant-design/icons@^4.0.5":
   version "4.0.5"
   resolved "https://registry.npm.taobao.org/@ant-design/icons/download/@ant-design/icons-4.0.5.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40ant-design%2Ficons%2Fdownload%2F%40ant-design%2Ficons-4.0.5.tgz#2433cad04abc7f48d61a487297b326c152a35935"
   integrity sha1-JDPK0Eq8f0jWGkhyl7MmwVKjWTU=
@@ -1058,11 +1058,6 @@
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha1-HBJhu+qhCoBVu8XYq4S3sq/IRqA=
 
-"@types/history@^4.7.5":
-  version "4.7.5"
-  resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
-  integrity sha1-Un0g72hXGkrwLtdDUBZOemdUSGA=
-
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.npm.taobao.org/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz?cache=0&sync_timestamp=1580842904889&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fhoist-non-react-statics%2Fdownload%2F%40types%2Fhoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
@@ -1078,25 +1073,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.149":
-  version "4.14.149"
-  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
-  integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
-
 "@types/minimist@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/@types/minimist/download/@types/minimist-1.2.0.tgz?cache=0&sync_timestamp=1580843226043&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fminimist%2Fdownload%2F%40types%2Fminimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node-fetch@^2.5.5":
-  version "2.5.5"
-  resolved "https://registry.npm.taobao.org/@types/node-fetch/download/@types/node-fetch-2.5.5.tgz#cd264e20a81f4600a6c52864d38e7fef72485e92"
-  integrity sha1-zSZOIKgfRgCmxShk045/73JIXpI=
-  dependencies:
-    "@types/node" "*"
-    form-data "^3.0.0"
-
-"@types/node@*", "@types/node@^13.9.5":
+"@types/node@*":
   version "13.11.0"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.11.0.tgz#390ea202539c61c8fa6ba4428b57e05bc36dc47b"
   integrity sha1-OQ6iAlOcYcj6a6RCi1fgW8NtxHs=
@@ -1128,18 +1110,13 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.26":
+"@types/react@*":
   version "16.9.32"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.32.tgz#f6368625b224604148d1ddf5920e4fefbd98d383"
   integrity sha1-9jaGJbIkYEFI0d31kg5P772Y04M=
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
-
-"@types/serialize-javascript@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.npm.taobao.org/@types/serialize-javascript/download/@types/serialize-javascript-1.5.0.tgz#bdd334cfbb4fc0eca1fc608da37ad733c86381eb"
-  integrity sha1-vdM0z7tPwOyh/GCNo3rXM8hjges=
 
 "@types/shallowequal@^1.1.1":
   version "1.1.1"
@@ -2645,7 +2622,7 @@ color@^3.0.0:
     color-convert "^1.9.1"
     color-string "^1.5.2"
 
-combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
+combined-stream@^1.0.6, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.npm.taobao.org/combined-stream/download/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
   integrity sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=
@@ -4300,7 +4277,7 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-final-form@>=4.19.1, final-form@^4.18.7, final-form@^4.19.1:
+final-form@>=4.19.1, final-form@^4.19.1:
   version "4.19.1"
   resolved "https://registry.npm.taobao.org/final-form/download/final-form-4.19.1.tgz#1aa1a3bf67f7399b54ed6185d56f9a8d74cfda5a"
   integrity sha1-GqGjv2f3OZtU7WGF1W+ajXTP2lo=
@@ -4438,15 +4415,6 @@ fork-ts-checker-webpack-plugin@3.1.1:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
-
-form-data@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npm.taobao.org/form-data/download/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
-  integrity sha1-MbfjnIXxNVtxOe4MZHzw3n+DxoI=
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.8"
-    mime-types "^2.1.12"
 
 form-data@~2.3.2:
   version "2.3.3"
@@ -8920,12 +8888,12 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.2.tgz?cache=0&sync_timestamp=1585987298663&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient-admin%2Fdownload%2Frelient-admin-0.0.2.tgz#affb746a09e5dd8a363bd96d37e27e7665cd4d5a"
-  integrity sha1-r/t0agnl3Yo2O9ltN+J+dmXNTVo=
+relient-admin@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.8.tgz?cache=0&sync_timestamp=1586008210190&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient-admin%2Fdownload%2Frelient-admin-0.0.8.tgz#89e4a7fc8bc165f57b6846b01528577ca387e7bf"
+  integrity sha1-ieSn/IvBZfV7aEawFShXfKOH578=
   dependencies:
-    "@ant-design/icons" "^4.0.5"
+    "@ant-design/icons" ">=4.0.5"
     antd ">=4.1.0"
     bignumber.js ">=9.0.0"
     final-form ">=4.19.1"
@@ -8939,8 +8907,8 @@ relient-admin@0.0.2:
     react-redux "^7.2.0"
     redux ">=4.0.5"
     redux-actions ">=2.6.5"
-    relient "^4.1.8"
-    universal-router "^9.0.1"
+    relient ">=4.2.12"
+    universal-router ">=9.0.1"
 
 relient-cli@2.6.5:
   version "2.6.5"
@@ -9017,20 +8985,13 @@ relient-cli@2.6.5:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@4.1.8, relient@^4.1.8:
-  version "4.1.8"
-  resolved "https://registry.npm.taobao.org/relient/download/relient-4.1.8.tgz?cache=0&sync_timestamp=1585908664016&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient%2Fdownload%2Frelient-4.1.8.tgz#c45847e2c2a853683eb5893472df8109148a15f3"
-  integrity sha1-xFhH4sKoU2g+tYk0ct+BCRSKFfM=
+relient@4.2.12, relient@>=4.2.12:
+  version "4.2.12"
+  resolved "https://registry.npm.taobao.org/relient/download/relient-4.2.12.tgz#a1883ffef084906e08b2402ac023f004de03d866"
+  integrity sha1-oYg//vCEkG4IskAqwCPwBN4D2GY=
   dependencies:
-    "@types/history" "^4.7.5"
-    "@types/lodash" "^4.14.149"
-    "@types/node" "^13.9.5"
-    "@types/node-fetch" "^2.5.5"
-    "@types/react" "^16.9.26"
-    "@types/serialize-javascript" "^1.5.0"
     config ">=3.3.0"
     date-fns ">=2.11.0"
-    final-form "^4.18.7"
     intl-messageformat-parser ">=4.1.1"
     lodash ">=4.17.15"
     normalizr ">=3.6.0"
@@ -10788,7 +10749,7 @@ unist-util-visit@^1.1.0:
   dependencies:
     unist-util-visit-parents "^2.0.0"
 
-universal-router@^9.0.1:
+universal-router@>=9.0.1, universal-router@^9.0.1:
   version "9.0.1"
   resolved "https://registry.npm.taobao.org/universal-router/download/universal-router-9.0.1.tgz#1f4cdd51a45f9e989e40a556a71a2c134552afea"
   integrity sha1-H0zdUaRfnpieQKVWpxosE0VSr+o=
