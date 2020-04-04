@@ -15,7 +15,8 @@ import routes from 'shared/routes';
 import history from './history';
 import store from './store';
 
-const router = createRouter({ routes, baseUrl: getConfig('baseUrl') });
+const baseUrl = getConfig('baseUrl');
+let router = createRouter({ routes, baseUrl });
 
 const domainContext = {
   apiDomain: `${global.location.origin}/api`,
@@ -155,8 +156,9 @@ onLocationChange(currentLocation);
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  // eslint-disable-next-line global-require
   module.hot.accept('shared/routes', () => {
+    // eslint-disable-next-line global-require
+    router = createRouter({ routes: require('shared/routes').default, baseUrl });
     if (appInstance && appInstance.updater.isMounted(appInstance)) {
       // Force-update the whole tree, including components that refuse to update
       deepForceUpdate(appInstance);
