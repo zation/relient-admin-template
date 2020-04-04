@@ -3,10 +3,10 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table } from 'antd';
 import { map, flow } from 'lodash/fp';
-import useTable from 'shared/hook/use-api-table';
+import useTable from 'relient-admin/hooks/use-api-table';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
-import useAction from 'shared/hook/use-action';
+import useAction from 'relient-admin/hooks/use-action';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 import {
   readAll as readAllOrdersAction,
@@ -14,7 +14,7 @@ import {
   create as createOrderAction,
 } from 'shared/actions/order';
 import { required } from 'shared/utils/validators';
-import Select from 'shared/components/fields/select';
+import { Select } from 'relient-admin/components';
 
 const getDataSource = (state) => map((id) => flow(
   getEntity(`order.${id}`),

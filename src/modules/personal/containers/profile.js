@@ -5,11 +5,10 @@ import { Message } from 'antd';
 import { update as updateAction } from 'shared/actions/account';
 import { getCurrentAccount } from 'shared/selectors/account';
 import { flow, prop, pick, map } from 'lodash/fp';
-import Form from 'shared/components/form';
 import { phoneNumber, required } from 'shared/utils/validators';
-import PlainText from 'shared/components/fields/plain-text';
+import { PlainText, Form } from 'relient-admin/components';
 import { getEntity } from 'relient/selectors';
-import useAction from 'shared/hook/use-action';
+import useAction from 'relient-admin/hooks/use-action';
 
 const fields = [{
   label: '用户名',

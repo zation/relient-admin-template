@@ -1,4 +1,3 @@
-import { prop, last, flow, join, map } from 'lodash/fp';
 import {
   UserOutlined,
   TeamOutlined,
@@ -7,6 +6,8 @@ import {
   LockOutlined,
   TableOutlined,
 } from '@ant-design/icons';
+import { setFeatures } from 'relient-admin/features';
+import getConfig from 'relient/config';
 
 export const ACCOUNT = 'ACCOUNT';
 export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT';
@@ -90,26 +91,4 @@ export const features = [{
   }],
 }];
 
-export const getSelectedFeatures = (key, items = features, previous = []) => {
-  for (let index = 0; index < items.length; index += 1) {
-    const feature = items[index];
-    if (feature.key === key) {
-      return [...previous, feature];
-    }
-    if (feature.items) {
-      const result = getSelectedFeatures(key, feature.items, [...previous, feature]);
-      if (result) {
-        return result;
-      }
-    }
-  }
-  return null;
-};
-
-export const getFeatureBy = (attribute) => (key) => {
-  const selectedFeatures = getSelectedFeatures(key);
-  if (attribute === 'link') {
-    return `/${flow(map(prop('link')), join('/'))(selectedFeatures)}`;
-  }
-  return flow(last, prop(attribute))(selectedFeatures);
-};
+setFeatures(features, getConfig('baseUrl'));

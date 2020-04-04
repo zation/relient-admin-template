@@ -2,18 +2,15 @@ import React, { useState, useCallback } from 'react';
 import { array } from 'prop-types';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
-import Select from 'shared/components/fields/select';
-import SwitchField from 'shared/components/fields/switch';
+import { Select, Switch as SwitchField, FormDrawer, FormModal } from 'relient-admin/components';
 import { Table, Switch, Message, Button } from 'antd';
 import { create as createAction, update as updateAction } from 'shared/actions/account';
 import { required, password, confirmedPassword, phoneNumber } from 'shared/utils/validators';
 import { prop } from 'lodash/fp';
-import useToggleNormalStatus from 'shared/hook/use-toggle-normal-status';
+import useToggleNormalStatus from 'relient-admin/hooks/use-toggle-normal-status';
 import { formatNormalStatus, parseNormalStatus } from 'shared/constants/normal-status';
-import FormModal from 'shared/components/form-modal';
-import FormDrawer from 'shared/components/form-drawer';
-import useAction from 'shared/hook/use-action';
-import useTable from 'shared/hook/use-local-table';
+import useAction from 'relient-admin/hooks/use-action';
+import useTable from 'relient-admin/hooks/use-local-table';
 
 import selector from './selector';
 

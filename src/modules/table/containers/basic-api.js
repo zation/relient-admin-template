@@ -3,7 +3,7 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table } from 'antd';
 import { map, flow } from 'lodash/fp';
-import useTable from 'shared/hook/use-api-table';
+import useTable from 'relient-admin/hooks/use-api-table';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
@@ -11,10 +11,9 @@ import {
 } from 'shared/actions/order';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
-import useAction from 'shared/hook/use-action';
-import FormDrawer from 'shared/components/form-drawer';
+import useAction from 'relient-admin/hooks/use-action';
 import { required } from 'shared/utils/validators';
-import Select from 'shared/components/fields/select';
+import { Select, FormDrawer } from 'relient-admin/components';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 
 const getDataSource = (state) => map((id) => flow(

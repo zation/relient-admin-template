@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { Table } from 'antd';
 import { prop } from 'lodash/fp';
-import useTable from 'shared/hook/use-local-table';
+import useTable from 'relient-admin/hooks/use-local-table';
 
 import selector from './local-selector';
 

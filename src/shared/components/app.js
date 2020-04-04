@@ -2,7 +2,7 @@ import React from 'react';
 import { object, func, node } from 'prop-types';
 import { Provider as ReactReduxProvider } from 'react-redux';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
-import { DomainContext } from 'shared/contexts';
+import { DomainContext } from 'relient-admin/contexts';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment/moment';

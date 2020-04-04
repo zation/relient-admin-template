@@ -3,7 +3,7 @@ import { map, sample, range, find, propEq } from 'lodash/fp';
 import { ACTIVE, normalStatuses } from 'shared/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
 import { genders } from 'shared/constants/gender';
-import { pagination } from './util';
+import pagination from 'relient-admin/utils/mock-pagination';
 
 export const createItem = (values) => ({
   id: random.number(),

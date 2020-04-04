@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Form, Button, Message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import Input from 'shared/components/fields/input';
+import { Input } from 'relient-admin/components';
 import { useDispatch } from 'react-redux';
 import { push as pushAction } from 'relient/actions/history';
 import { username, password, required } from 'shared/utils/validators';

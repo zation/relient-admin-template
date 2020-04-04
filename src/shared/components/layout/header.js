@@ -2,7 +2,7 @@ import React, { createElement } from 'react';
 import { string, func, bool } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout, Dropdown, Menu } from 'antd';
-import Link from 'shared/components/link';
+import { Link } from 'relient-admin/components';
 import { PASSWORD, PROFILE } from 'shared/constants/features';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined } from '@ant-design/icons';
 

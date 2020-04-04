@@ -2,17 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { readMine as readProfile } from 'shared/actions/account';
 import { setAuthorization, removeAuthorization } from 'shared/actions/auth';
-import { AUTHORIZATION } from 'shared/constants/cookies';
+import AUTHORIZATION from 'relient-admin/constants/authorization';
 import { getEntity } from 'relient/selectors';
-import router from 'shared/router';
 import { getCurrentAccount } from 'shared/selectors/account';
 import getConfig from 'relient/config';
 import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';
 import { flow, reduce, concat, compact } from 'lodash/fp';
+import createRouter from 'relient-admin/create-router';
+import routes from 'shared/routes';
 import createStore from '../create-store';
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import Html from '../html';
+
+const router = createRouter({ routes, baseUrl: getConfig('baseUrl') });
 
 const getChunks = (route) => {
   if (route.parent) {

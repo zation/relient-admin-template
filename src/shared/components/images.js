@@ -1,8 +1,7 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { bool, array } from 'prop-types';
 import { map, first } from 'lodash/fp';
-import { DomainContext } from 'shared/contexts';
-
+import { DomainContext } from 'relient-admin/contexts';
 import Lightbox from 'react-images';
 import Gallery from 'react-photo-gallery';
 

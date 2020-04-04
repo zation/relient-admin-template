@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string';
 import { createPath } from 'history';
-import router from 'shared/router';
+import createRouter from 'relient-admin/create-router';
 import {
   updateMeta,
   updateCustomMeta,
@@ -11,8 +11,11 @@ import {
 import deepForceUpdate from 'react-deep-force-update';
 import getConfig from 'relient/config';
 import App from 'shared/components/app';
+import routes from 'shared/routes';
 import history from './history';
 import store from './store';
+
+const router = createRouter({ routes, baseUrl: getConfig('baseUrl') });
 
 const domainContext = {
   apiDomain: `${global.location.origin}/api`,
@@ -153,7 +156,7 @@ onLocationChange(currentLocation);
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
   // eslint-disable-next-line global-require
-  module.hot.accept('shared/router', () => {
+  module.hot.accept('shared/routes', () => {
     if (appInstance && appInstance.updater.isMounted(appInstance)) {
       // Force-update the whole tree, including components that refuse to update
       deepForceUpdate(appInstance);

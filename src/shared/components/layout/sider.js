@@ -2,7 +2,7 @@ import React, { createElement } from 'react';
 import { array, elementType, string, bool } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout, Menu } from 'antd';
-import Link from 'shared/components/link';
+import { Link } from 'relient-admin/components';
 import { map } from 'lodash/fp';
 import logo from './logo.svg';
 
