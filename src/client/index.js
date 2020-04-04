@@ -33,7 +33,14 @@ const container = document.getElementById('app');
 let currentLocation = history.location;
 let appInstance;
 
-global.addEventListener('beforeunload', () => (global.isFormEditing ? '确认离开正在编辑的表单吗？' : undefined));
+global.addEventListener('beforeunload', (event) => {
+  if (global.isFormEditing) {
+    // eslint-disable-next-line no-param-reassign
+    event.returnValue = '确认离开正在编辑的表单吗？';
+    return '确认离开正在编辑的表单吗？';
+  }
+  return undefined;
+});
 history.block(() => (global.isFormEditing ? '确认离开正在编辑的表单吗？' : undefined));
 
 // Switch off the native scroll restoration behavior and handle it manually

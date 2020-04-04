@@ -8888,10 +8888,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@0.0.9:
-  version "0.0.9"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.9.tgz#d3dcca4c6958467ab545a8f98a963ed84466535d"
-  integrity sha1-09zKTGlYRnq1Raj5ipY+2ERmU10=
+relient-admin@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.10.tgz#b578ad8f85cb27efe2d56e31b5ff1c574b4f27db"
+  integrity sha1-tXitj4XLJ+/i1W4xtf8cV0tPJ9s=
   dependencies:
     "@ant-design/icons" ">=4.0.5"
     antd ">=4.1.0"

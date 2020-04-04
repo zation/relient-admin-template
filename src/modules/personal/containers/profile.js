@@ -64,6 +64,7 @@ const result = () => {
   return (
     <Layout hideNursingDropDown>
       <Form
+        checkEditing
         onSubmit={onSubmit}
         fields={fields}
         initialValues={initialValues}
