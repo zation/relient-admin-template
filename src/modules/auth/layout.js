@@ -3,14 +3,14 @@ import { node, string } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import Footer from 'shared/components/layout/footer';
 
-import antDesignStyle from 'shared/components/layout/antd_.less';
+import globalStyle from 'shared/components/layout/global_.less';
 import s from './layout.less';
 
 const result = ({
   children,
   className,
 }) => {
-  useStyles(antDesignStyle, s);
+  useStyles(globalStyle, s);
 
   return (
     <div className={s.Root}>

@@ -8,7 +8,7 @@ import { Link } from 'relient-admin/components';
 import { last } from 'lodash/fp';
 import { getFeatureBy } from 'relient-admin/features';
 import Sider from './sider';
-import antDesignStyle from './antd_.less';
+import antDesignStyle from './global_.less';
 import s from './layout.less';
 import Footer from './footer';
 import Header from './header';
