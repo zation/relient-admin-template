@@ -4,7 +4,7 @@ import { readMine as readProfile } from 'shared/actions/account';
 import { setAuthorization, removeAuthorization } from 'shared/actions/auth';
 import AUTHORIZATION from 'relient-admin/constants/authorization';
 import { getEntity } from 'relient/selectors';
-import { getCurrentAccount } from 'shared/selectors/account';
+import { getCurrentAccount } from 'relient-admin/selectors/account';
 import getConfig from 'relient/config';
 import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';

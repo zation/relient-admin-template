@@ -1,5 +1,5 @@
 import { flow, includes, prop, map } from 'lodash/fp';
-import { getCurrentAccount } from 'shared/selectors/account';
+import { getCurrentAccount } from 'relient-admin/selectors/account';
 import { features } from 'shared/constants/features';
 import { getSelectedFeatures } from 'relient-admin/features';
 import { getEntity } from 'relient/selectors';

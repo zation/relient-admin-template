@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { Message } from 'antd';
 import { update as updateAction } from 'shared/actions/account';
-import { getCurrentAccount } from 'shared/selectors/account';
+import { getCurrentAccount } from 'relient-admin/selectors/account';
 import { flow, prop, pick, map } from 'lodash/fp';
 import { phoneNumber, required } from 'shared/utils/validators';
 import { PlainText, Form } from 'relient-admin/components';
