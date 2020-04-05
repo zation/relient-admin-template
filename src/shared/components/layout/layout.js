@@ -10,7 +10,7 @@ import { getFeatureBy } from 'relient-admin/features';
 import getConfig from 'relient/config';
 import { getWithBaseUrl } from 'relient/url';
 import Sider from './sider';
-import antDesignStyle from './global_.less';
+import globalStyle from './global_.less';
 import s from './layout.less';
 import Footer from './footer';
 import Header from './header';
@@ -25,7 +25,7 @@ const result = ({
   subTitle,
   multipleCard = false,
 }) => {
-  useStyles(antDesignStyle, s);
+  useStyles(globalStyle, s);
   const { features, currentAccount, selectedFeatureKeys } = useSelector(selector);
   const dispatch = useDispatch();
   const logout = useCallback(() => {
