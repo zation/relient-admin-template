@@ -1,7 +1,10 @@
 export default [
   {
     path: '/',
-    redirect: '/personal/profile',
+    chunks: ['home'],
+    children: true,
+    requireAuth: true,
+    load: () => import(/* webpackChunkName: 'home' */ 'modules/home'),
   },
 
   {

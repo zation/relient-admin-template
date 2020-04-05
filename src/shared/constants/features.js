@@ -5,9 +5,12 @@ import {
   InfoCircleOutlined,
   LockOutlined,
   TableOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
 import { setFeatures } from 'relient-admin/features';
 import getConfig from 'relient/config';
+
+export const HOME = 'HOME';
 
 export const ACCOUNT = 'ACCOUNT';
 export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT';
@@ -25,6 +28,11 @@ export const BASIC_API_PAGINATION_TABLE = 'BASIC_API_PAGINATION_TABLE';
 export const FUSSY_API_PAGINATION_TABLE = 'FUSSY_API_PAGINATION_TABLE';
 
 export const features = [{
+  key: HOME,
+  link: '',
+  text: '首页',
+  icon: HomeOutlined,
+}, {
   key: ACCOUNT,
   link: 'account',
   text: '账户管理',

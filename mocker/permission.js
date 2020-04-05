@@ -10,6 +10,7 @@ import {
   BASIC_API_PAGINATION_TABLE,
   FUSSY_LOCAL_PAGINATION_TABLE,
   FUSSY_API_PAGINATION_TABLE,
+  HOME,
 } from 'shared/constants/features';
 
 export const items = [{
@@ -32,6 +33,9 @@ export const items = [{
   roleKeys,
 }, {
   key: FUSSY_API_PAGINATION_TABLE,
+  roleKeys,
+}, {
+  key: HOME,
   roleKeys,
 }];
 
