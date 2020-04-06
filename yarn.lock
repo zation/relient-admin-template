@@ -8985,7 +8985,23 @@ relient-cli@2.7.5:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@4.2.12, relient@>=4.2.12:
+relient@4.2.13:
+  version "4.2.13"
+  resolved "https://registry.npm.taobao.org/relient/download/relient-4.2.13.tgz#9017a59d516c8a8143d6b4867025dd0a49916861"
+  integrity sha1-kBelnVFsioFD1rSGcCXdCkmRaGE=
+  dependencies:
+    config ">=3.3.0"
+    date-fns ">=2.11.0"
+    intl-messageformat-parser ">=4.1.1"
+    lodash ">=4.17.15"
+    normalizr ">=3.6.0"
+    query-string ">=6.11.1"
+    react ">=16.13.1"
+    redux ">=4.0.5"
+    redux-actions ">=2.6.5"
+    serialize-javascript ">=3.0.0"
+
+relient@>=4.2.12:
   version "4.2.12"
   resolved "https://registry.npm.taobao.org/relient/download/relient-4.2.12.tgz#a1883ffef084906e08b2402ac023f004de03d866"
   integrity sha1-oYg//vCEkG4IskAqwCPwBN4D2GY=
