@@ -36,7 +36,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "relient": "4.2.13",
-    "relient-admin": "0.0.12",
+    "relient-admin": "0.0.13",
     "universal-router": "^9.0.1"
   },
   "devDependencies": {

@@ -8888,10 +8888,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.12.tgz#a44d7de2b3a9d91cba9afa02580a3ea9df9963c5"
-  integrity sha1-pE194rOp2Ry6mvoCWAo+qd+ZY8U=
+relient-admin@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-0.0.13.tgz?cache=0&sync_timestamp=1586194055161&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient-admin%2Fdownload%2Frelient-admin-0.0.13.tgz#7e890348274fab611719d00aee36e1fc254a693c"
+  integrity sha1-fokDSCdPq2EXGdAK7jbh/CVKaTw=
   dependencies:
     "@ant-design/icons" ">=4.0.5"
     antd ">=4.1.0"
@@ -8907,7 +8907,7 @@ relient-admin@0.0.12:
     react-redux "^7.2.0"
     redux ">=4.0.5"
     redux-actions ">=2.6.5"
-    relient ">=4.2.12"
+    relient ">=4.2.13"
     universal-router ">=9.0.1"
 
 relient-cli@2.7.5:
@@ -8985,26 +8985,10 @@ relient-cli@2.7.5:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@4.2.13:
+relient@4.2.13, relient@>=4.2.13:
   version "4.2.13"
   resolved "https://registry.npm.taobao.org/relient/download/relient-4.2.13.tgz#9017a59d516c8a8143d6b4867025dd0a49916861"
   integrity sha1-kBelnVFsioFD1rSGcCXdCkmRaGE=
-  dependencies:
-    config ">=3.3.0"
-    date-fns ">=2.11.0"
-    intl-messageformat-parser ">=4.1.1"
-    lodash ">=4.17.15"
-    normalizr ">=3.6.0"
-    query-string ">=6.11.1"
-    react ">=16.13.1"
-    redux ">=4.0.5"
-    redux-actions ">=2.6.5"
-    serialize-javascript ">=3.0.0"
-
-relient@>=4.2.12:
-  version "4.2.12"
-  resolved "https://registry.npm.taobao.org/relient/download/relient-4.2.12.tgz#a1883ffef084906e08b2402ac023f004de03d866"
-  integrity sha1-oYg//vCEkG4IskAqwCPwBN4D2GY=
   dependencies:
     config ">=3.3.0"
     date-fns ">=2.11.0"
