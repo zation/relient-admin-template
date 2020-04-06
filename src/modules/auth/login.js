@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { push as pushAction } from 'relient/actions/history';
 import { username, password, required } from 'shared/utils/validators';
 import { login as loginAction } from 'shared/actions/auth';
-import { PROFILE } from 'shared/constants/features';
+import { HOME } from 'shared/constants/features';
 import Captcha from 'shared/components/captcha';
 import getPreloader from 'shared/utils/preloader';
 import { Field, Form as FinalForm } from 'react-final-form';
@@ -24,7 +24,7 @@ const result = () => {
     const { account } = await dispatch(loginAction({ ...values }));
     await Promise.all(getPreloader(account, dispatch));
     Message.success('登录成功');
-    dispatch(pushAction(PROFILE));
+    dispatch(pushAction(HOME));
   }, []);
 
   return (
