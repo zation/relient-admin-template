@@ -88,7 +88,7 @@
     "copy": "relient copy",
     "bundle": "relient bundle",
     "build": "relient build",
-    "build-stats": "relient build --release --analyse",
+    "build-stats": "relient build --analyse",
     "serve": "relient serve",
     "start": "relient start",
     "mocker": "relient mocker"
