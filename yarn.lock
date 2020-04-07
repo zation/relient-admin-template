@@ -8910,10 +8910,10 @@ relient-admin@0.0.13:
     relient ">=4.2.13"
     universal-router ">=9.0.1"
 
-relient-cli@2.7.5:
-  version "2.7.5"
-  resolved "https://registry.npm.taobao.org/relient-cli/download/relient-cli-2.7.5.tgz?cache=0&sync_timestamp=1586013855876&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient-cli%2Fdownload%2Frelient-cli-2.7.5.tgz#9eeb8f8934ea8623971a508a539e18c53c34bf20"
-  integrity sha1-nuuPiTTqhiOXGlCKU54YxTw0vyA=
+relient-cli@2.7.6:
+  version "2.7.6"
+  resolved "https://registry.npm.taobao.org/relient-cli/download/relient-cli-2.7.6.tgz#5567982123b08043876e4e9563625e2d59d0df4a"
+  integrity sha1-VWeYISOwgEOHbk6VY2JeLVnQ30o=
   dependencies:
     "@babel/core" "^7.9.0"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
