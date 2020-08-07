@@ -9506,7 +9506,24 @@ relient-cli@2.7.8:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@4.3.1, relient@>=4.3.1:
+relient@4.4.1:
+  version "4.4.1"
+  resolved "https://registry.npm.taobao.org/relient/download/relient-4.4.1.tgz#f440a0bfeff979a16d3574af4ebd444d97dd6ffb"
+  integrity sha1-9ECgv+/5eaFtNXSvTr1ETZfdb/s=
+  dependencies:
+    bignumber.js "^9.0.0"
+    config ">=3.3.0"
+    date-fns ">=2.15.0"
+    intl-messageformat-parser ">=5.3.7"
+    lodash ">=4.17.19"
+    normalizr ">=3.6.0"
+    query-string ">=6.13.1"
+    react ">=16.13.1"
+    redux ">=4.0.5"
+    redux-actions ">=2.6.5"
+    serialize-javascript ">=4.0.0"
+
+relient@>=4.3.1:
   version "4.3.1"
   resolved "https://registry.npm.taobao.org/relient/download/relient-4.3.1.tgz#85cb5117b1727a0ac65e23ec74d183e9d3082b99"
   integrity sha1-hctRF7FyegrGXiPsdNGD6dMIK5k=

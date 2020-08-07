@@ -72,7 +72,7 @@ export default async (req, res, next) => {
       cdnDomain: getConfig('cdnDomain'),
     };
     const messages = { ...relientAdminMessageCN };
-    const i18nContext = i18n(messages);
+    const i18nContext = i18n(messages, { ignoreNoMessageWarning: true });
     const baseUrl = getConfig('baseUrl');
 
     const route = await router.resolve({

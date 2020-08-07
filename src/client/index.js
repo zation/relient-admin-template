@@ -23,7 +23,7 @@ const domainContext = {
   apiDomain: `${global.location.origin}/api`,
   cdnDomain: getConfig('cdnDomain'),
 };
-const i18nContext = i18n(global.messages);
+const i18nContext = i18n(global.messages, { ignoreNoMessageWarning: true });
 const baseUrlContext = getConfig('baseUrl');
 
 const insertCss = (...styles) => {
