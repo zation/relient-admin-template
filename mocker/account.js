@@ -1,6 +1,6 @@
 import { random, name, internet, phone, date } from 'faker';
 import { map, sample, range, find, propEq } from 'lodash/fp';
-import { ACTIVE, normalStatuses } from 'shared/constants/normal-status';
+import { ACTIVE, normalStatuses } from 'relient-admin/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
 import { genders } from 'shared/constants/gender';
 import pagination from 'relient-admin/mocker/pagination';

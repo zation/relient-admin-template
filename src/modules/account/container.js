@@ -2,18 +2,17 @@ import React, { useState, useCallback } from 'react';
 import { array } from 'prop-types';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
-import { Select, Switch as SwitchField, FormDrawer, FormModal } from 'relient-admin/components';
-import { Table, Switch, Message, Button } from 'antd';
+import { Select, Switch as SwitchField, FormPop, getSwitchStatus } from 'relient-admin/components';
+import { Table, Message, Button, Drawer, Modal } from 'antd';
 import { create as createAction, update as updateAction } from 'shared/actions/account';
 import { required, password, confirmedPassword, phoneNumber } from 'shared/utils/validators';
 import { prop } from 'lodash/fp';
-import useToggleNormalStatus from 'relient-admin/hooks/use-toggle-normal-status';
-import { formatNormalStatus, parseNormalStatus } from 'shared/constants/normal-status';
-import useAction from 'relient-admin/hooks/use-action';
-import useTable from 'relient-admin/hooks/use-local-table';
+import { formatNormalStatus, parseNormalStatus } from 'relient-admin/constants/normal-status';
+import { useAction, useLocalTable } from 'relient-admin/hooks';
 
 import selector from './selector';
 
+const SwitchStatus = getSwitchStatus(updateAction);
 const passwordFields = [{
   label: '密码',
   name: 'password',
@@ -47,7 +46,6 @@ const result = ({ roleKeys }) => {
   }, []);
   const update = useAction(updateAction);
   const create = useAction(createAction);
-  const toggleNormalStatus = useToggleNormalStatus({ update });
   const onPasswordSubmit = useCallback(async (values) => {
     await update({
       ...values,
@@ -100,7 +98,7 @@ const result = ({ roleKeys }) => {
     tableHeader,
     getDataSource,
     pagination,
-  } = useTable({
+  } = useLocalTable({
     query: {
       fields: [{
         key: 'name',
@@ -121,13 +119,13 @@ const result = ({ roleKeys }) => {
       initialValues: createInitialValues,
       onSubmit: create,
       fields: [...fields, ...passwordFields],
-      component: FormDrawer,
+      component: Drawer,
     },
     editor: {
       title: '编辑帐号',
       onSubmit: update,
       fields,
-      component: FormDrawer,
+      component: Drawer,
     },
   });
   const columns = [{
@@ -145,13 +143,12 @@ const result = ({ roleKeys }) => {
   }, {
     title: '角色',
     dataIndex: 'roleKey',
-    width: 100,
+    width: 110,
     render: (roleKey) => prop(`${roleKey}.name`)(roleEntity),
   }, {
     title: '是否激活',
-    dataIndex: 'status',
     width: 100,
-    render: (status, record) => <Switch checked={status === 'ACTIVE'} onChange={() => toggleNormalStatus(record)} />,
+    render: SwitchStatus,
   }, {
     title: '操作',
     key: 'operations',
@@ -176,9 +173,10 @@ const result = ({ roleKeys }) => {
     <Layout>
       {tableHeader}
       <Table dataSource={getDataSource(data)} columns={columns} rowKey="id" pagination={pagination} />
-      <FormModal
+      <FormPop
+        component={Modal}
         visible={passwordModalVisible}
-        onCancel={closePasswordModal}
+        close={closePasswordModal}
         onSubmit={onPasswordSubmit}
         fields={passwordFields}
         title="编辑密码"

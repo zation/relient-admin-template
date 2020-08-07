@@ -1,7 +1,7 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Button, Table } from 'antd';
+import { Button, Table, Drawer } from 'antd';
 import { map, flow } from 'lodash/fp';
 import useTable from 'relient-admin/hooks/use-api-table';
 import {
@@ -13,7 +13,7 @@ import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
 import useAction from 'relient-admin/hooks/use-action';
 import { required } from 'shared/utils/validators';
-import { Select, FormDrawer } from 'relient-admin/components';
+import { Select } from 'relient-admin/components';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 
 const getDataSource = (state) => map((id) => flow(
@@ -80,13 +80,13 @@ const result = ({
       initialValues: { status: PENDING },
       onSubmit: createOrder,
       fields,
-      component: FormDrawer,
+      component: Drawer,
     },
     editor: {
       title: '编辑帐号',
       onSubmit: updateOrder,
       fields,
-      component: FormDrawer,
+      component: Drawer,
     },
   });
   const columns = [{

@@ -1,5 +1,5 @@
 import { handleActions, combineActions } from 'relient/reducers';
-import { ACTIVE } from 'shared/constants/normal-status';
+import { ACTIVE } from 'relient-admin/constants/normal-status';
 import {
   LOGIN,
   SET_AUTHORIZATION,
