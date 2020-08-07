@@ -51,7 +51,7 @@ const result = () => {
   }, {
     title: '角色',
     dataIndex: 'roleKey',
-    width: 100,
+    width: 110,
     filters: roleFilters,
     onFilter: (value, record) => record.roleKey === value,
     render: (roleKey) => prop(`${roleKey}.name`)(roleEntity),

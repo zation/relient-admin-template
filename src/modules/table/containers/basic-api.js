@@ -3,7 +3,7 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table, Drawer } from 'antd';
 import { map, flow } from 'lodash/fp';
-import useTable from 'relient-admin/hooks/use-api-table';
+import { useAPITable } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
@@ -54,17 +54,14 @@ const result = ({
     data,
     pagination,
     openEditor,
-  } = useTable({
+  } = useAPITable({
     paginationInitialData: {
       ids,
       total,
       current,
       size,
     },
-    pagination: {
-      getDataSource,
-      size,
-    },
+    getDataSource,
     readAction: readAllOrders,
     query: {
       fields: [{
@@ -74,6 +71,9 @@ const result = ({
         key: 'serialNumber',
         text: '订单号',
       }],
+    },
+    createButton: {
+      text: '创建订单',
     },
     creator: {
       title: '创建订单',

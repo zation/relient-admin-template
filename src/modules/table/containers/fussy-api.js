@@ -1,7 +1,7 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Button, Table } from 'antd';
+import { Button, Table, Modal } from 'antd';
 import { map, flow } from 'lodash/fp';
 import useTable from 'relient-admin/hooks/use-api-table';
 import { time } from 'relient/formatters';
@@ -61,28 +61,30 @@ const result = ({
       current,
       size,
     },
-    pagination: {
-      getDataSource,
-      size,
-    },
+    getDataSource,
     readAction: readAllOrders,
     query: {
       fussyKey: 'serialNumberOrName',
       placeholder: '根据 订单号、订单名称 搜索',
     },
     showReset: true,
+    createButton: {
+      text: '创建订单',
+    },
     creator: {
       title: '创建订单',
       initialValues: { status: PENDING },
       onSubmit: createOrder,
       fields,
       checkEditing: true,
+      component: Modal,
     },
     editor: {
       title: '编辑帐号',
       onSubmit: updateOrder,
       fields,
       checkEditing: true,
+      component: Modal,
     },
   });
   const columns = [{
