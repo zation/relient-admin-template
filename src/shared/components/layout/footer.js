@@ -15,7 +15,7 @@ const result = ({ className }) => {
         <div>
           Copyright&nbsp;
           <CopyrightOutlined />
-          &nbsp;2019 Relient Admin All Rights Reserved.
+          &nbsp;2020 Relient Admin All Rights Reserved.
         </div>
       </div>
     </div>

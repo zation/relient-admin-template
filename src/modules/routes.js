@@ -1,13 +1,5 @@
 export default [
   {
-    path: '/',
-    chunks: ['home'],
-    children: true,
-    requireAuth: true,
-    load: () => import(/* webpackChunkName: 'home' */ 'modules/home'),
-  },
-
-  {
     path: '/auth',
     chunks: ['auth'],
     children: true,
@@ -36,6 +28,14 @@ export default [
     children: true,
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'personal' */ 'modules/table'),
+  },
+
+  {
+    path: '/',
+    chunks: ['home'],
+    children: true,
+    requireAuth: true,
+    load: () => import(/* webpackChunkName: 'home' */ 'modules/home'),
   },
 
   {

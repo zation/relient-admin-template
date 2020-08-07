@@ -16,6 +16,10 @@ import Layout from './layout';
 import s from './base.less';
 
 const { Item } = Form;
+const layout = {
+  wrapperCol: { span: 24 },
+  labelCol: { span: 0 },
+};
 
 const result = () => {
   useStyles(s);
@@ -40,6 +44,7 @@ const result = () => {
               validate={username}
               size="large"
               prefix={<UserOutlined />}
+              layout={layout}
             />
             <Field
               name="password"
@@ -49,6 +54,7 @@ const result = () => {
               validate={password}
               size="large"
               prefix={<LockOutlined />}
+              layout={layout}
             />
             <div style={{ display: 'flex' }}>
               <div style={{ flex: 1 }}>
@@ -59,6 +65,7 @@ const result = () => {
                   placeholder="验证码"
                   validate={required}
                   size="large"
+                  layout={layout}
                 />
               </div>
               <div className={s.Captcha}>

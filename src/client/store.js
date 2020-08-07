@@ -9,6 +9,7 @@ import fetchMiddleware from 'shared/middlewares/fetch';
 import { Message } from 'antd';
 import { prop, flow, first } from 'lodash/fp';
 import pushMiddleware from 'relient-admin/middlewares/push';
+import getConfig from 'relient/config';
 import authorization from './middlewares/cookie';
 import history from './history';
 
@@ -17,7 +18,7 @@ const { __REDUX_DEVTOOLS_EXTENSION__, __INITIAL_STATE__ = {} } = global;
 const middlewares = [
   fetchMiddleware({ fetch, apiDomain: `${global.location.origin}/api` }),
   authorization,
-  pushMiddleware,
+  pushMiddleware(getConfig('baseUrl')),
   historyMiddleware(history),
   serverError({
     onUnauthorized: () => {

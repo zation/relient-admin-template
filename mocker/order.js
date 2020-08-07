@@ -1,7 +1,7 @@
 import { random, date } from 'faker';
 import { map, sample, range, filter, includes, flow, prop } from 'lodash/fp';
 import { orderStatuses } from 'shared/constants/order-status';
-import pagination from 'relient-admin/utils/mock-pagination';
+import pagination from 'relient-admin/mocker/pagination';
 import { items as accounts } from './account';
 
 export const createItem = (values) => ({

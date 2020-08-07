@@ -22,6 +22,7 @@ const domainContext = {
   apiDomain: `${global.location.origin}/api`,
   cdnDomain: getConfig('cdnDomain'),
 };
+const baseUrlContext = getConfig('baseUrl');
 
 const insertCss = (...styles) => {
   // eslint-disable-next-line no-underscore-dangle
@@ -35,13 +36,13 @@ let appInstance;
 
 global.addEventListener('beforeunload', (event) => {
   if (global.isFormEditing) {
+    const returnValue = '确认离开正在编辑的表单吗？';
     // eslint-disable-next-line no-param-reassign
-    event.returnValue = '确认离开正在编辑的表单吗？';
-    return '确认离开正在编辑的表单吗？';
+    event.returnValue = returnValue;
+    return returnValue;
   }
   return undefined;
 });
-history.block(() => (global.isFormEditing ? '确认离开正在编辑的表单吗？' : undefined));
 
 // Switch off the native scroll restoration behavior and handle it manually
 // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
@@ -51,7 +52,7 @@ if (window.history && 'scrollRestoration' in window.history) {
 }
 
 // Re-render the app when window.location changes
-async function onLocationChange(location, action) {
+async function onLocationChange({ location, action }) {
   // Remember the latest scroll position for the previous location
   scrollPositionsHistory[currentLocation.key] = {
     scrollX: window.pageXOffset,
@@ -70,6 +71,7 @@ async function onLocationChange(location, action) {
     // and whose action method returns anything other than `undefined`.
     const route = await router.resolve({
       ...domainContext,
+      baseUrl: baseUrlContext,
       store,
       pathname: location.pathname,
       query: queryString.parse(location.search),
@@ -88,7 +90,12 @@ async function onLocationChange(location, action) {
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
     appInstance = renderReactApp(
-      <App insertCss={insertCss} store={store} domainContext={domainContext}>
+      <App
+        insertCss={insertCss}
+        store={store}
+        domainContext={domainContext}
+        baseUrlContext={baseUrlContext}
+      >
         {route.component}
       </App>,
       container,
@@ -162,7 +169,7 @@ async function onLocationChange(location, action) {
 // Handle client-side navigation by using HTML5 History API
 // For more information visit https://github.com/mjackson/history#readme
 history.listen(onLocationChange);
-onLocationChange(currentLocation);
+onLocationChange({ location: currentLocation });
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
@@ -174,6 +181,6 @@ if (module.hot) {
       deepForceUpdate(appInstance);
     }
 
-    onLocationChange(currentLocation);
+    onLocationChange({ location: currentLocation });
   });
 }

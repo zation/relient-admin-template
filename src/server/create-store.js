@@ -4,6 +4,7 @@ import reducers from 'shared/reducers';
 import AUTHORIZATION from 'relient-admin/constants/authorization';
 import fetchMiddleware from 'shared/middlewares/fetch';
 import fetch from 'isomorphic-fetch/fetch-npm-node';
+import { getWithBaseUrl } from 'relient/url';
 import getConfig from 'relient/config';
 import logger from './redux-logger';
 
@@ -15,7 +16,7 @@ export default ({ res, initialState = {} }) => createStore(
     serverError({
       onUnauthorized: () => {
         res.clearCookie(AUTHORIZATION);
-        res.redirect(302, `${getConfig('path') || ''}/auth/login`);
+        res.redirect(302, getWithBaseUrl('/auth/login', getConfig('baseUrl')));
       },
     }),
     logger,

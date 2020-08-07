@@ -4,7 +4,7 @@ import { readMine as readProfile } from 'shared/actions/account';
 import { setAuthorization, removeAuthorization } from 'shared/actions/auth';
 import AUTHORIZATION from 'relient-admin/constants/authorization';
 import { getEntity } from 'relient/selectors';
-import { getCurrentAccount } from 'relient-admin/selectors/account';
+import { getCurrentAccount } from 'shared/selectors/account';
 import getConfig from 'relient/config';
 import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';
@@ -63,18 +63,18 @@ export default async (req, res, next) => {
 
       await Promise.all(preloader);
     } catch (error) {
-      /* eslint-disable no-console */
-      console.log('error ---> ', error);
-      /* eslint-enable no-console */
+      console.error('preloader error ---> ', error);
     }
 
     const domainContext = {
       apiDomain: getConfig('serverAPIDomain'),
       cdnDomain: getConfig('cdnDomain'),
     };
+    const baseUrl = getConfig('baseUrl');
 
     const route = await router.resolve({
       ...domainContext,
+      baseUrl,
       store,
       pathname: req.path,
       query: req.query,
