@@ -9,6 +9,7 @@ const result = ({
   description = 'Relient Admin',
   styles = [],
   scripts = [],
+  messages,
   children,
   initialState,
 }) => (
@@ -34,6 +35,7 @@ const result = ({
       <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
       <script dangerouslySetInnerHTML={{ __html: clientConfig(['cdnDomain', 'baseUrl']) }} />
       <script dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__=${initialState}` }} />
+      <script dangerouslySetInnerHTML={{ __html: `window.messages=${messages}` }} />
       {scripts.map((script) => <script key={script} src={script} />)}
     </body>
   </html>
@@ -51,6 +53,7 @@ result.propTypes = {
   scripts: arrayOf(string.isRequired),
   children: string.isRequired,
   initialState: string,
+  messages: string,
 };
 
 result.displayName = __filename;

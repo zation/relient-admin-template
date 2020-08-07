@@ -12,6 +12,7 @@ import deepForceUpdate from 'react-deep-force-update';
 import getConfig from 'relient/config';
 import App from 'shared/components/app';
 import routes from 'shared/routes';
+import i18n from 'relient/i18n';
 import history from './history';
 import store from './store';
 
@@ -22,6 +23,7 @@ const domainContext = {
   apiDomain: `${global.location.origin}/api`,
   cdnDomain: getConfig('cdnDomain'),
 };
+const i18nContext = i18n(global.messages);
 const baseUrlContext = getConfig('baseUrl');
 
 const insertCss = (...styles) => {
@@ -36,7 +38,7 @@ let appInstance;
 
 global.addEventListener('beforeunload', (event) => {
   if (global.isFormEditing) {
-    const returnValue = '确认离开正在编辑的表单吗？';
+    const returnValue = i18nContext('confirmLeave');
     // eslint-disable-next-line no-param-reassign
     event.returnValue = returnValue;
     return returnValue;
@@ -72,6 +74,7 @@ async function onLocationChange({ location, action }) {
     const route = await router.resolve({
       ...domainContext,
       baseUrl: baseUrlContext,
+      i18n: i18nContext,
       store,
       pathname: location.pathname,
       query: queryString.parse(location.search),
@@ -94,6 +97,7 @@ async function onLocationChange({ location, action }) {
         insertCss={insertCss}
         store={store}
         domainContext={domainContext}
+        i18nContext={i18nContext}
         baseUrlContext={baseUrlContext}
       >
         {route.component}

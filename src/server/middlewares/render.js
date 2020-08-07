@@ -11,6 +11,8 @@ import App from 'shared/components/app';
 import { flow, reduce, concat, compact } from 'lodash/fp';
 import createRouter from 'relient-admin/create-router';
 import routes from 'shared/routes';
+import i18n from 'relient/i18n';
+import relientAdminMessageCN from 'relient-admin/messages/cn';
 import createStore from '../create-store';
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import Html from '../html';
@@ -60,7 +62,6 @@ export default async (req, res, next) => {
           ),
         ];
       }
-
       await Promise.all(preloader);
     } catch (error) {
       console.error('preloader error ---> ', error);
@@ -70,11 +71,14 @@ export default async (req, res, next) => {
       apiDomain: getConfig('serverAPIDomain'),
       cdnDomain: getConfig('cdnDomain'),
     };
+    const messages = { ...relientAdminMessageCN };
+    const i18nContext = i18n(messages);
     const baseUrl = getConfig('baseUrl');
 
     const route = await router.resolve({
       ...domainContext,
       baseUrl,
+      i18n: i18nContext,
       store,
       pathname: req.path,
       query: req.query,
@@ -94,7 +98,13 @@ export default async (req, res, next) => {
     // eslint-disable-next-line no-underscore-dangle
     const insertCss = (...styles) => styles.forEach((style) => css.add(style._getCss()));
     const children = ReactDOM.renderToString(
-      <App insertCss={insertCss} store={store} domainContext={domainContext}>
+      <App
+        insertCss={insertCss}
+        store={store}
+        domainContext={domainContext}
+        i18nContext={i18nContext}
+        baseUrlContext={baseUrl}
+      >
         {route.component}
       </App>,
     );
@@ -115,6 +125,7 @@ export default async (req, res, next) => {
           compact,
         )(route)}
         initialState={JSON.stringify(store.getState())}
+        messages={JSON.stringify(messages)}
       >
         {children}
       </Html>,

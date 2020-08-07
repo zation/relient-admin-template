@@ -29,7 +29,7 @@ export const FUSSY_API_PAGINATION_TABLE = 'FUSSY_API_PAGINATION_TABLE';
 
 export const features = [{
   key: HOME,
-  link: '',
+  link: '/',
   text: '首页',
   icon: HomeOutlined,
 }, {
