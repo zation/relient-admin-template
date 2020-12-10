@@ -10,7 +10,7 @@ import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';
 import { flow, reduce, concat, compact } from 'lodash/fp';
 import createRouter from 'relient-admin/create-router';
-import routes from 'shared/routes';
+import routes from 'modules/routes';
 import i18n from 'relient/i18n';
 import relientAdminMessageCN from 'relient-admin/messages/cn';
 import createStore from '../create-store';

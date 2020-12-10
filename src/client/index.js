@@ -11,7 +11,7 @@ import {
 import deepForceUpdate from 'react-deep-force-update';
 import getConfig from 'relient/config';
 import App from 'shared/components/app';
-import routes from 'shared/routes';
+import routes from 'modules/routes';
 import i18n from 'relient/i18n';
 import history from './history';
 import store from './store';
@@ -177,9 +177,9 @@ onLocationChange({ location: currentLocation });
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  module.hot.accept('shared/routes', () => {
+  module.hot.accept('modules/routes', () => {
     // eslint-disable-next-line global-require
-    router = createRouter({ routes: require('shared/routes').default, baseUrl });
+    router = createRouter({ routes: require('modules/routes').default, baseUrl });
     if (appInstance && appInstance.updater.isMounted(appInstance)) {
       // Force-update the whole tree, including components that refuse to update
       deepForceUpdate(appInstance);

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import errorPageStyle from 'shared/error/error-page.css';
+import errorPageStyle from 'modules/error/error-page.css';
 
-import { ErrorPageWithoutStyle } from 'shared/error/error-page';
+import { ErrorPageWithoutStyle } from 'modules/error/error-page';
 import Html from '../html';
 import logger from '../logger';
 
