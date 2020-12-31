@@ -39,6 +39,7 @@ export const readAll = createAction(
     name,
     serialNumber,
     serialNumberOrName,
+    accountIds,
   } = {}) => read('/order/all', {
     page,
     size,
@@ -46,6 +47,7 @@ export const readAll = createAction(
     name,
     serialNumber,
     serialNumberOrName,
+    accountIds,
   }),
 );
 

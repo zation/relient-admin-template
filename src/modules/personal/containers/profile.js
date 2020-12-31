@@ -8,7 +8,7 @@ import { flow, prop, pick, map } from 'lodash/fp';
 import { phoneNumber, required } from 'shared/utils/validators';
 import { PlainText, Form } from 'relient-admin/components';
 import { getEntity } from 'relient/selectors';
-import useAction from 'relient-admin/hooks/use-action';
+import { useAction } from 'relient-admin/hooks';
 
 const fields = [{
   label: '用户名',

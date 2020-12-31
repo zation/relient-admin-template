@@ -26,6 +26,7 @@ export const FUSSY_LOCAL_PAGINATION_TABLE = 'FUSSY_LOCAL_PAGINATION_TABLE';
 export const API_PAGINATION_TABLE = 'API_PAGINATION_TABLE';
 export const BASIC_API_PAGINATION_TABLE = 'BASIC_API_PAGINATION_TABLE';
 export const FUSSY_API_PAGINATION_TABLE = 'FUSSY_API_PAGINATION_TABLE';
+export const FILTER_API_PAGINATION_TABLE = 'FILTER_API_PAGINATION_TABLE';
 
 export const features = [{
   key: HOME,
@@ -94,6 +95,11 @@ export const features = [{
       key: FUSSY_API_PAGINATION_TABLE,
       link: 'fussy',
       text: '模糊搜索',
+      icon: TableOutlined,
+    }, {
+      key: FILTER_API_PAGINATION_TABLE,
+      link: 'filter',
+      text: '按列过滤',
       icon: TableOutlined,
     }],
   }],

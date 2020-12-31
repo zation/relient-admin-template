@@ -1,5 +1,5 @@
 import { random, date } from 'faker';
-import { map, sample, range, filter, includes, flow, prop } from 'lodash/fp';
+import { map, sample, range, filter, includes, flow, prop, split, toNumber } from 'lodash/fp';
 import { orderStatuses } from 'shared/constants/order-status';
 import pagination from 'relient-admin/mocker/pagination';
 import { items as accounts } from './account';
@@ -26,21 +26,25 @@ const includesName = (name) => (item) => includes(
 )(item.name.toUpperCase());
 
 export default (router) => {
-  router.get('/api/order/all', ({ query: { serialNumber, name, serialNumberOrName, ...query } }, response) => {
+  router.get('/api/order/all', ({ query: { serialNumber, name, serialNumberOrName, accountIds, ...query } }, response) => {
     let result = items;
     if (serialNumberOrName) {
       result = filter(
         (item) => includesSerialNumber(serialNumberOrName)(item)
           || includesName(serialNumberOrName)(item),
-      )(items);
+      )(result);
     } else if (serialNumber && name) {
       result = filter(
         (item) => includesSerialNumber(serialNumber)(item) && includesName(name)(item),
-      )(items);
+      )(result);
     } else if (serialNumber) {
-      result = filter(includesSerialNumber(serialNumber))(items);
+      result = filter(includesSerialNumber(serialNumber))(result);
     } else if (name) {
-      result = filter(includesName(name))(items);
+      result = filter(includesName(name))(result);
+    }
+    if (accountIds) {
+      const accountIdNumbers = flow(split(','), map(toNumber))(accountIds);
+      result = filter(({ accountId }) => includes(accountId)(accountIdNumbers))(result);
     }
     response.status(200).send(pagination(query)(result));
   });

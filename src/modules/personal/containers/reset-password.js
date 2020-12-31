@@ -4,7 +4,7 @@ import { Message } from 'antd';
 import { resetMinePassword as resetMinePasswordAction } from 'shared/actions/account';
 import { password, confirmedNewPassword } from 'shared/utils/validators';
 import { Form } from 'relient-admin/components';
-import useAction from 'relient-admin/hooks/use-action';
+import { useAction } from 'relient-admin/hooks';
 
 const fields = [{
   name: 'oldPassword',

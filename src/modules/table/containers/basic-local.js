@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { Table } from 'antd';
 import { prop } from 'lodash/fp';
-import useTable from 'relient-admin/hooks/use-local-table';
+import { useLocalTable } from 'relient-admin/hooks';
 
 import selector from './local-selector';
 
@@ -18,7 +18,7 @@ const result = () => {
     tableHeader,
     getDataSource,
     pagination,
-  } = useTable({
+  } = useLocalTable({
     query: {
       fields: [{
         key: 'name',

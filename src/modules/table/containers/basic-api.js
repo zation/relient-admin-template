@@ -3,7 +3,7 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table, Drawer } from 'antd';
 import { map, flow } from 'lodash/fp';
-import { useAPITable } from 'relient-admin/hooks';
+import { useAPITable, useAction } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
@@ -11,7 +11,6 @@ import {
 } from 'shared/actions/order';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
-import useAction from 'relient-admin/hooks/use-action';
 import { required } from 'shared/utils/validators';
 import { Select } from 'relient-admin/components';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';

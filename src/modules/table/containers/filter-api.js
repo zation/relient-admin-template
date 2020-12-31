@@ -1,19 +1,20 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Button, Table, Modal } from 'antd';
+import { Button, Table, Drawer } from 'antd';
 import { map, flow } from 'lodash/fp';
-import { time } from 'relient/formatters';
-import { getEntity } from 'relient/selectors';
-import { useAction, useAPITable } from 'relient-admin/hooks';
-import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
+import { useAPITable, useAction, useTableFilter } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
   create as createOrderAction,
 } from 'shared/actions/order';
+import { time } from 'relient/formatters';
+import { getEntity, getEntityArray } from 'relient/selectors';
 import { required } from 'shared/utils/validators';
 import { Select } from 'relient-admin/components';
+import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
+import { useSelector } from 'react-redux';
 
 const getDataSource = (state) => map((id) => flow(
   getEntity(`order.${id}`),
@@ -47,12 +48,17 @@ const result = ({
   const readAllOrders = useAction(readAllOrdersAction);
   const createOrder = useAction(createOrderAction);
   const updateOrder = useAction(updateOrderAction);
+  const accountOptions = useSelector(flow(
+    getEntityArray('account'),
+    map(({ email, id }) => ({ value: id, text: email })),
+  ));
 
   const {
     tableHeader,
     data,
     pagination,
     openEditor,
+    changeFilterValue,
   } = useAPITable({
     paginationInitialData: {
       ids,
@@ -63,10 +69,14 @@ const result = ({
     getDataSource,
     readAction: readAllOrders,
     query: {
-      fussyKey: 'serialNumberOrName',
-      placeholder: '根据 订单号、订单名称 搜索',
+      fields: [{
+        key: 'name',
+        text: '订单名称',
+      }, {
+        key: 'serialNumber',
+        text: '订单号',
+      }],
     },
-    showReset: true,
     createButton: {
       text: '创建订单',
     },
@@ -75,17 +85,16 @@ const result = ({
       initialValues: { status: PENDING },
       onSubmit: createOrder,
       fields,
-      checkEditing: true,
-      component: Modal,
+      component: Drawer,
     },
     editor: {
       title: '编辑帐号',
       onSubmit: updateOrder,
       fields,
-      checkEditing: true,
-      component: Modal,
+      component: Drawer,
     },
   });
+  const filterProps = useTableFilter({ changeFilterValue, dataKey: 'accountIds', options: accountOptions });
   const columns = [{
     title: '订单号',
     dataIndex: 'serialNumber',
@@ -95,6 +104,7 @@ const result = ({
   }, {
     title: '用户',
     dataIndex: ['account', 'email'],
+    ...filterProps,
   }, {
     title: '创建时间',
     dataIndex: 'createdAt',
@@ -119,7 +129,12 @@ const result = ({
   return (
     <Layout>
       {tableHeader}
-      <Table dataSource={data} columns={columns} rowKey="id" pagination={pagination} />
+      <Table
+        dataSource={data}
+        columns={columns}
+        rowKey="id"
+        pagination={pagination}
+      />
     </Layout>
   );
 };
