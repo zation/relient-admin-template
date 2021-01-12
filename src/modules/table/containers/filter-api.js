@@ -3,7 +3,7 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table, Drawer } from 'antd';
 import { map, flow } from 'lodash/fp';
-import { useAPITable, useAction, useTableFilter } from 'relient-admin/hooks';
+import { useAPITable, useAction, useTableFilter, useTableSearch } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,
@@ -95,12 +95,14 @@ const result = ({
     },
   });
   const filterProps = useTableFilter({ changeFilterValue, dataKey: 'accountIds', options: accountOptions });
+  const searchProps = useTableSearch({ changeFilterValue, dataKey: 'name', options: accountOptions });
   const columns = [{
     title: '订单号',
     dataIndex: 'serialNumber',
   }, {
     title: '订单名称',
     dataIndex: 'name',
+    ...searchProps,
   }, {
     title: '用户',
     dataIndex: ['account', 'email'],
