@@ -9200,10 +9200,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-3.2.0.tgz?cache=0&sync_timestamp=1610444343689&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frelient-admin%2Fdownload%2Frelient-admin-3.2.0.tgz#923f835f439e717867047591a27397f7e394321c"
-  integrity sha1-kj+DX0OecXhnBHWRonOX9+OUMhw=
+relient-admin@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-3.3.0.tgz#de5ddba56596a27f95b25a8622a17b6f5fef34ec"
+  integrity sha1-3l3bpWWWon+VslqGIqF7b1/vNOw=
   dependencies:
     "@ant-design/icons" ">=4.3.0"
     antd ">=4.9.4"
