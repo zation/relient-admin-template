@@ -18,8 +18,7 @@ const result = () => {
     tableHeader,
     getDataSource,
     pagination,
-    changeCustomFussyQueryValue,
-    changeCustomFussyQueryField,
+    changeCustomQuery,
   } = useLocalTable({
     query: {
       fields: [{
@@ -39,21 +38,27 @@ const result = () => {
     showReset: true,
   });
 
-  const searchProps = useTableSearch({
-    changeQueryValue: changeCustomFussyQueryValue,
-    changeQueryField: changeCustomFussyQueryField,
+  const searchNameProps = useTableSearch({
+    changeFilterValue: changeCustomQuery,
     dataKey: 'name',
+    fussy: true,
+  });
+  const searchPhoneNumberProps = useTableSearch({
+    changeFilterValue: changeCustomQuery,
+    dataKey: 'phoneNumber',
+    fussy: false,
   });
   const columns = [{
     title: '姓名',
     dataIndex: 'name',
-    ...searchProps,
+    ...searchNameProps,
   }, {
     title: '邮件',
     dataIndex: 'email',
   }, {
     title: '手机号',
     dataIndex: 'phoneNumber',
+    ...searchPhoneNumberProps,
   }, {
     title: '用户名',
     dataIndex: 'username',
