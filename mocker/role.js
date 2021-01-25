@@ -8,7 +8,7 @@ export const items = [{
   name: '平台管理员',
 }, {
   key: CUSTOMER,
-  name: '用户',
+  name: '普通用户',
 }];
 
 export default (router) => {

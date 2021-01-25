@@ -7,7 +7,7 @@ export default (state) => ({
     orderBy('createdAt', 'desc'),
   )(state),
   roleEntity: getEntity('role')(state),
-  roleFilters: flow(
+  roleOptions: flow(
     getEntityArray('role'),
     map(({ key, name }) => ({ value: key, text: name })),
   )(state),

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { Table } from 'antd';
 import { prop } from 'lodash/fp';
-import { useLocalTable } from 'relient-admin/hooks';
+import { useLocalTable, useTableSearch } from 'relient-admin/hooks';
 
 import selector from './local-selector';
 
@@ -11,13 +11,15 @@ const result = () => {
   const {
     data,
     roleEntity,
-    roleFilters,
+    roleOptions,
   } = useSelector(selector);
 
   const {
     tableHeader,
     getDataSource,
     pagination,
+    changeCustomFussyQueryValue,
+    changeCustomFussyQueryField,
   } = useLocalTable({
     query: {
       fields: [{
@@ -36,9 +38,16 @@ const result = () => {
     },
     showReset: true,
   });
+
+  const searchProps = useTableSearch({
+    changeQueryValue: changeCustomFussyQueryValue,
+    changeQueryField: changeCustomFussyQueryField,
+    dataKey: 'name',
+  });
   const columns = [{
     title: '姓名',
     dataIndex: 'name',
+    ...searchProps,
   }, {
     title: '邮件',
     dataIndex: 'email',
@@ -52,7 +61,7 @@ const result = () => {
     title: '角色',
     dataIndex: 'roleKey',
     width: 110,
-    filters: roleFilters,
+    filters: roleOptions,
     onFilter: (value, record) => record.roleKey === value,
     render: (roleKey) => prop(`${roleKey}.name`)(roleEntity),
   }];

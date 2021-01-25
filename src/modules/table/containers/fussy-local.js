@@ -11,7 +11,7 @@ const result = () => {
   const {
     data,
     roleEntity,
-    roleFilters,
+    roleOptions,
   } = useSelector(selector);
 
   const {
@@ -52,7 +52,7 @@ const result = () => {
     title: '角色',
     dataIndex: 'roleKey',
     width: 110,
-    filters: roleFilters,
+    filters: roleOptions,
     onFilter: (value, record) => record.roleKey === value,
     render: (roleKey) => prop(`${roleKey}.name`)(roleEntity),
   }];
