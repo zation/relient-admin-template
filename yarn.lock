@@ -9200,10 +9200,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/relient-admin/-/relient-admin-3.4.1.tgz#70059ad1bca9293653843511983b683937e54993"
-  integrity sha512-kJ+oir8PAohdCfs9Yazn4sitSm2KeR+D+evl6FLN/szacLazmPZYy2tfK3C8zC75m/EkrSJP3b03tPOuGMe9Xw==
+relient-admin@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/relient-admin/-/relient-admin-3.5.0.tgz#5c9ecbe4a9897639c9c9de51f96ce491f5bb6ac8"
+  integrity sha512-Yu/W6UMih1yzVeaBo7/gVAY2VreJqDXoEEXDqVs1LEJ6C/Ze4YSTjUXvfQFouHqN3bOZSP1roFYBUG761u3FWQ==
   dependencies:
     "@ant-design/icons" ">=4.3.0"
     antd ">=4.9.4"
