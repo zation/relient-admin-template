@@ -6,18 +6,17 @@
     "npm": ">=5"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.3.0",
+    "@ant-design/icons": "^4.6.2",
     "@babel/polyfill": "^7.12.1",
-    "antd": "^4.9.4",
+    "antd": "^4.15.1",
     "bignumber.js": "^9.0.1",
     "body-parser": "^1.19.0",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "cookie-parser": "^1.4.5",
-    "core-js": "^3.8.1",
-    "date-fns": "^2.16.1",
+    "core-js": "^3.10.1",
+    "date-fns": "^2.21.1",
     "echarts": "^5.0.0",
     "express": "^4.17.1",
-    "final-form": "^4.20.1",
     "history": "^5.0.0",
     "isomorphic-fetch": "^3.0.0",
     "isomorphic-style-loader": "^5.1.0",
@@ -26,17 +25,16 @@
     "moment": "^2.27.0",
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
-    "query-string": "^6.13.1",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-final-form": "^6.5.1",
     "react-images": "^1.1.7",
     "react-photo-gallery": "^8.0.0",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "relient": "5.0.4",
-    "relient-admin": "4.0.2",
+    "relient": "5.0.5",
+    "relient-admin": "4.0.4",
     "universal-router": "^9.0.1"
   },
   "resolutions": {
@@ -48,28 +46,24 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-lodash": "^3.3.4",
     "enzyme": "^3.3.0",
-    "eslint": "^7.16.0",
+    "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-node": "^0.3.4",
     "eslint-plugin-css-modules": "^2.7.5",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "faker": "^5.1.0",
-    "husky": "^4.2.5",
+    "faker": "^5.5.3",
+    "husky": "^6.0.0",
     "lint-staged": "^10.2.11",
+    "pinst": "^2.1.6",
     "react-deep-force-update": "^2.1.1",
     "react-test-renderer": "^17.0.1",
     "relient-cli": "2.7.9",
-    "stylelint": "^13.6.1",
-    "stylelint-config-standard": "^20.0.0",
+    "stylelint": "^13.12.0",
+    "stylelint-config-standard": "^21.0.0",
     "stylelint-order": "^4.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --fix",
@@ -94,6 +88,9 @@
     "build-stats": "relient build --analyse",
     "serve": "relient serve",
     "start": "relient start",
-    "mocker": "relient mocker"
+    "mocker": "relient mocker",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   }
 }
