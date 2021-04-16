@@ -112,6 +112,9 @@ const result = ({ roleKeys }) => {
         text: '用户名',
       }],
     },
+    createButton: {
+      text: '创建帐号',
+    },
     creator: {
       title: '创建帐号',
       initialValues: createInitialValues,

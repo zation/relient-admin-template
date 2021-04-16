@@ -9456,10 +9456,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-4.0.4.tgz#2963514f1b403b9cac8d983053d84caf75f0c319"
-  integrity sha1-KWNRTxtAO5ysjZgwU9hMr3Xwwxk=
+relient-admin@4.0.8:
+  version "4.0.8"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-4.0.8.tgz#6b157062ab56a9f8ca5f742d253c632eddaaef6d"
+  integrity sha1-axVwYqtWqfjKX3QtJTxjLt2q720=
   dependencies:
     "@ant-design/icons" ">=4.6.2"
     "@types/js-cookie" "^2.2.6"
@@ -9486,7 +9486,7 @@ relient-admin@4.0.4:
     react-redux ">=7.2.2"
     redux ">=4.0.5"
     redux-actions ">=2.6.5"
-    relient "5.0.5"
+    relient "5.0.6"
     universal-router ">=9.0.1"
 
 relient-cli@2.7.9:
@@ -9565,10 +9565,10 @@ relient-cli@2.7.9:
     webpack-node-externals "^1.7.2"
     webpack-sources "^1.4.3"
 
-relient@5.0.5:
-  version "5.0.5"
-  resolved "https://registry.npm.taobao.org/relient/download/relient-5.0.5.tgz#e4f6c9a58e4ee84d8991e75c446c764672c4b35f"
-  integrity sha1-5PbJpY5O6E2JkedcRGx2RnLEs18=
+relient@5.0.6:
+  version "5.0.6"
+  resolved "https://registry.npm.taobao.org/relient/download/relient-5.0.6.tgz#c7cfb1cacbabb27f011b3729d8b3b13d941fcf72"
+  integrity sha1-x8+xysursn8BGzcp2LOxPZQfz3I=
   dependencies:
     "@formatjs/icu-messageformat-parser" ">=1.1.4"
     "@types/config" "^0.0.38"

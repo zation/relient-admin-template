@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
-import { message, Form } from 'antd';
+import { message } from 'antd';
+import { Form } from 'relient-admin/components';
 import { update as updateAction } from 'shared/actions/account';
 import { getCurrentAccount } from 'shared/selectors/account';
 import { flow, prop, pick, map } from 'lodash/fp';

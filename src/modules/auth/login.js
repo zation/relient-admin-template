@@ -4,7 +4,7 @@ import { Form, Button, message, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { push as pushAction } from 'relient/actions/history';
-import { useSubmit } from 'relient-admin/hooks';
+import { useForm } from 'relient-admin/hooks';
 import useRules from 'shared/hooks/use-rules';
 import { login as loginAction } from 'shared/actions/auth';
 import { HOME } from 'shared/constants/features';
@@ -23,7 +23,7 @@ const layout = {
 const result = () => {
   useStyles(s);
   const dispatch = useDispatch();
-  const { submit, submitting } = useSubmit(async (values) => {
+  const { submit, submitting } = useForm(async (values) => {
     const { account } = await dispatch(loginAction({ ...values }));
     await Promise.all(getPreloader(account, dispatch));
     message.success('登录成功');

@@ -13,7 +13,7 @@ export default ({ roleKeys }) => (state) => ({
     filter(({ key }) => includes(key)(roleKeys)),
     map(({ key, name }) => ({
       value: key,
-      text: name,
+      label: name,
     })),
   )(state),
   roleEntity: getEntity('role')(state),
