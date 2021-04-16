@@ -1,5 +1,5 @@
 import { handleActions, combineActions } from 'relient/reducers';
-import { ACTIVE } from 'relient-admin/constants/normal-status';
+import { NormalStatus } from 'relient-admin/constants/normal-status';
 import {
   LOGIN,
   SET_AUTHORIZATION,
@@ -15,7 +15,7 @@ export default {
     )]: (auth, {
       payload: { account, authorization },
     }) => {
-      if (account && account.status === ACTIVE) {
+      if (account && account.status === NormalStatus.Active) {
         return {
           isLogin: true,
           authorization,
@@ -38,7 +38,7 @@ export default {
 
     [REMOVE_AUTHORIZATION]: (auth) => ({ ...auth, authorization: null }),
 
-    [READ_MINE]: (auth, { payload: { id, status } }) => (status === ACTIVE ? {
+    [READ_MINE]: (auth, { payload: { id, status } }) => (status === NormalStatus.Active ? {
       ...auth,
       isLogin: true,
       currentAccountId: id,

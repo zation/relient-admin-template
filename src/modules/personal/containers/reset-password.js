@@ -1,42 +1,34 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Layout from 'shared/components/layout';
-import { Message } from 'antd';
+import { message } from 'antd';
 import { resetMinePassword as resetMinePasswordAction } from 'shared/actions/account';
-import { password, confirmedNewPassword } from 'shared/utils/validators';
+import useRules from 'shared/hooks/use-rules';
 import { Form } from 'relient-admin/components';
 import { useAction } from 'relient-admin/hooks';
 
-const fields = [{
-  name: 'oldPassword',
-  label: '旧密码',
-  required: true,
-  validate: password,
-  type: 'password',
-}, {
-  name: 'newPassword',
-  label: '新密码',
-  required: true,
-  validate: password,
-  type: 'password',
-}, {
-  name: 'confirmedNewPassword',
-  label: '重复新密码',
-  required: true,
-  validate: confirmedNewPassword,
-  type: 'password',
-}];
-
 const result = () => {
   const resetPassword = useAction(resetMinePasswordAction);
-  const onSubmit = useCallback(async (values, { reset, resetFieldState }) => {
+  const { password, sameAsRule } = useRules();
+  const fields = useMemo(() => [{
+    name: 'oldPassword',
+    label: '旧密码',
+    rules: [{ required: true, ...password }],
+    type: 'password',
+  }, {
+    name: 'newPassword',
+    label: '新密码',
+    rules: [{ required: true, ...password }],
+    type: 'password',
+  }, {
+    name: 'confirmedNewPassword',
+    label: '重复新密码',
+    rules: [{ required: true, ...password }, sameAsRule('newPassword', '新密码')],
+    type: 'password',
+  }], [password, sameAsRule]);
+  const onSubmit = useCallback(async (values, { resetFields }) => {
     await resetPassword(values);
-    Message.success('修改成功');
-    setTimeout(() => {
-      resetFieldState('oldPassword');
-      resetFieldState('newPassword');
-      resetFieldState('confirmedNewPassword');
-      reset();
-    });
+    message.success('修改成功');
+    resetFields();
   }, []);
 
   return (

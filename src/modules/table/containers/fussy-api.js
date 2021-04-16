@@ -1,7 +1,7 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Button, Table, Modal } from 'antd';
+import { Button, Table, Modal, Select } from 'antd';
 import { map, flow } from 'lodash/fp';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
@@ -12,8 +12,6 @@ import {
   update as updateOrderAction,
   create as createOrderAction,
 } from 'shared/actions/order';
-import { required } from 'shared/utils/validators';
-import { Select } from 'relient-admin/components';
 
 const getDataSource = (state) => map((id) => flow(
   getEntity(`order.${id}`),
@@ -27,15 +25,13 @@ const fields = [{
   label: '订单名称',
   name: 'name',
   type: 'text',
-  required: true,
-  validate: required,
+  rules: [{ required: true }],
 }, {
   label: '订单状态',
   name: 'status',
   component: Select,
   options: orderStatusOptions,
-  required: true,
-  validate: required,
+  rules: [{ required: true }],
 }];
 
 const result = ({

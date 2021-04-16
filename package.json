@@ -35,8 +35,8 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "relient": "4.4.1",
-    "relient-admin": "3.5.0",
+    "relient": "5.0.4",
+    "relient-admin": "4.0.2",
     "universal-router": "^9.0.1"
   },
   "resolutions": {

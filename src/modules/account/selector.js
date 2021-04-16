@@ -1,6 +1,6 @@
 import { flow, filter, map, includes, first, prop, orderBy } from 'lodash/fp';
 import { getEntityArray, getEntity } from 'relient/selectors';
-import { ACTIVE } from 'relient-admin/constants/normal-status';
+import { NormalStatus } from 'relient-admin/constants/normal-status';
 
 export default ({ roleKeys }) => (state) => ({
   data: flow(
@@ -24,6 +24,6 @@ export default ({ roleKeys }) => (state) => ({
       first,
       prop('key'),
     )(state),
-    status: ACTIVE,
+    status: NormalStatus.Active,
   },
 });

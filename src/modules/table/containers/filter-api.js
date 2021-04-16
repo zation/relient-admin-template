@@ -1,7 +1,7 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
-import { Button, Table, Drawer } from 'antd';
+import { Button, Table, Drawer, Select } from 'antd';
 import { map, flow } from 'lodash/fp';
 import { useAPITable, useAction, useTableFilter, useTableSearch } from 'relient-admin/hooks';
 import {
@@ -11,8 +11,6 @@ import {
 } from 'shared/actions/order';
 import { time } from 'relient/formatters';
 import { getEntity, getEntityArray } from 'relient/selectors';
-import { required } from 'shared/utils/validators';
-import { Select } from 'relient-admin/components';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 import { useSelector } from 'react-redux';
 
@@ -28,15 +26,13 @@ const fields = [{
   label: '订单名称',
   name: 'name',
   type: 'text',
-  required: true,
-  validate: required,
+  rules: [{ required: true }],
 }, {
   label: '订单状态',
   name: 'status',
   component: Select,
   options: orderStatusOptions,
-  required: true,
-  validate: required,
+  rules: [{ required: true }],
 }];
 
 const result = ({
@@ -95,7 +91,7 @@ const result = ({
     },
   });
   const filterProps = useTableFilter({ changeFilterValue, dataKey: 'accountIds', options: accountOptions });
-  const searchProps = useTableSearch({ changeFilterValue, dataKey: 'name', options: accountOptions });
+  const searchProps = useTableSearch({ changeFilterValue, dataKey: 'name' });
   const columns = [{
     title: '订单号',
     dataIndex: 'serialNumber',

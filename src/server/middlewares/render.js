@@ -42,6 +42,7 @@ export default async (req, res, next) => {
         dispatch(setAuthorization(authorization));
         await dispatch(readProfile());
       } catch (error) {
+        console.error(error);
         dispatch(removeAuthorization());
         res.clearCookie(AUTHORIZATION);
       }

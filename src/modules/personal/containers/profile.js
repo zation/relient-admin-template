@@ -1,42 +1,13 @@
 import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
-import { Message } from 'antd';
+import { message, Form } from 'antd';
 import { update as updateAction } from 'shared/actions/account';
 import { getCurrentAccount } from 'shared/selectors/account';
 import { flow, prop, pick, map } from 'lodash/fp';
-import { phoneNumber, required } from 'shared/utils/validators';
-import { PlainText, Form } from 'relient-admin/components';
+import useRules from 'shared/hooks/use-rules';
 import { getEntity } from 'relient/selectors';
 import { useAction } from 'relient-admin/hooks';
-
-const fields = [{
-  label: '用户名',
-  name: 'username',
-  type: 'text',
-  required: true,
-  validate: required,
-}, {
-  label: '角色',
-  name: 'roleName',
-  component: PlainText,
-}, {
-  label: '姓名',
-  name: 'name',
-  type: 'text',
-  required: true,
-  validate: required,
-}, {
-  label: '手机号',
-  name: 'phoneNumber',
-  type: 'text',
-  required: true,
-  validate: phoneNumber,
-}, {
-  label: '邮件',
-  name: 'email',
-  type: 'text',
-}];
 
 const result = () => {
   const {
@@ -52,13 +23,37 @@ const result = () => {
       }),
     )(state),
   }));
+  const { phoneNumber } = useRules();
+  const fields = [{
+    label: '用户名',
+    name: 'username',
+    type: 'text',
+    rules: [{ required: true }],
+  }, {
+    element: <span>{initialValues.roleName}</span>,
+    label: '角色',
+  }, {
+    label: '姓名',
+    name: 'name',
+    type: 'text',
+    rules: [{ required: true }],
+  }, {
+    label: '手机号',
+    name: 'phoneNumber',
+    type: 'text',
+    rules: [{ required: true }, phoneNumber],
+  }, {
+    label: '邮件',
+    name: 'email',
+    type: 'email',
+  }];
   const update = useAction(updateAction);
   const onSubmit = useCallback(async (values) => {
     await update({
       ...pick(map(prop('name'))(fields))(values),
       id: accountId,
     });
-    Message.success('修改成功');
+    message.success('修改成功');
   }, [update]);
 
   return (

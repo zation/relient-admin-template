@@ -2,10 +2,10 @@ import React, { useState, useCallback } from 'react';
 import { array } from 'prop-types';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
-import { Select, Switch as SwitchField, FormPop, getSwitchStatus } from 'relient-admin/components';
-import { Table, Message, Button, Drawer, Modal } from 'antd';
+import { FormPop, getSwitchStatus } from 'relient-admin/components';
+import { Table, message, Button, Drawer, Modal, Switch, Select } from 'antd';
 import { create as createAction, update as updateAction } from 'shared/actions/account';
-import { required, password, confirmedPassword, phoneNumber } from 'shared/utils/validators';
+import useRules from 'shared/hooks/use-rules';
 import { prop } from 'lodash/fp';
 import { formatNormalStatus, parseNormalStatus } from 'relient-admin/constants/normal-status';
 import { useAction, useLocalTable } from 'relient-admin/hooks';
@@ -13,19 +13,6 @@ import { useAction, useLocalTable } from 'relient-admin/hooks';
 import selector from './selector';
 
 const SwitchStatus = getSwitchStatus(updateAction);
-const passwordFields = [{
-  label: '密码',
-  name: 'password',
-  type: 'password',
-  required: true,
-  validate: password,
-}, {
-  label: '重复密码',
-  name: 'confirmedPassword',
-  type: 'password',
-  required: true,
-  validate: confirmedPassword,
-}];
 
 const result = ({ roleKeys }) => {
   const {
@@ -52,45 +39,56 @@ const result = ({ roleKeys }) => {
       id: editItem.id,
     });
     closePasswordModal();
-    Message.success('编辑成功');
+    message.success('编辑成功');
   }, [editItem]);
+  const { sameAsRule, phoneNumber, password } = useRules();
+
+  const passwordFields = [{
+    label: '密码',
+    name: 'password',
+    type: 'password',
+    rules: [{ required: true }, password],
+  }, {
+    label: '重复密码',
+    name: 'confirmedPassword',
+    type: 'password',
+    validate: [{ required: true }, sameAsRule('password', '密码')],
+  }];
 
   const fields = [{
     label: '用户名',
     name: 'username',
     type: 'text',
-    required: true,
-    validate: required,
+    rules: [{ required: true }],
   }, {
     label: '角色',
     name: 'roleKey',
     component: Select,
     options: roleOptions,
-    required: true,
-    validate: required,
+    rules: [{ required: true }],
   }, {
     label: '姓名',
     name: 'name',
     type: 'text',
-    required: true,
-    validate: required,
+    rules: [{ required: true }],
   }, {
     label: '手机号',
     name: 'phoneNumber',
     type: 'text',
-    required: true,
-    validate: phoneNumber,
+    validate: [{ required: true }, phoneNumber],
   }, {
     label: '邮件',
     name: 'email',
     type: 'text',
+    rules: [{ type: 'email' }],
   }, {
     label: '是否激活',
     name: 'status',
-    component: SwitchField,
-    required: true,
-    format: formatNormalStatus,
-    parse: parseNormalStatus,
+    component: Switch,
+    rules: [{ required: true }],
+    valuePropName: 'checked',
+    getValueFromEvent: formatNormalStatus,
+    normalize: parseNormalStatus,
   }];
 
   const {
@@ -176,7 +174,7 @@ const result = ({ roleKeys }) => {
       <FormPop
         component={Modal}
         visible={passwordModalVisible}
-        close={closePasswordModal}
+        onClose={closePasswordModal}
         onSubmit={onPasswordSubmit}
         fields={passwordFields}
         title="编辑密码"

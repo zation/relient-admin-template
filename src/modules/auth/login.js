@@ -1,16 +1,15 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import useStyles from 'isomorphic-style-loader/useStyles';
-import { Form, Button, Message } from 'antd';
+import { Form, Button, message, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Input } from 'relient-admin/components';
 import { useDispatch } from 'react-redux';
 import { push as pushAction } from 'relient/actions/history';
-import { username, password, required } from 'shared/utils/validators';
+import { useSubmit } from 'relient-admin/hooks';
+import useRules from 'shared/hooks/use-rules';
 import { login as loginAction } from 'shared/actions/auth';
 import { HOME } from 'shared/constants/features';
 import Captcha from 'shared/components/captcha';
 import getPreloader from 'shared/utils/preloader';
-import { Field, Form as FinalForm } from 'react-final-form';
 import Layout from './layout';
 
 import s from './base.less';
@@ -24,62 +23,52 @@ const layout = {
 const result = () => {
   useStyles(s);
   const dispatch = useDispatch();
-  const onSubmit = useCallback(async (values) => {
+  const { submit, submitting } = useSubmit(async (values) => {
     const { account } = await dispatch(loginAction({ ...values }));
     await Promise.all(getPreloader(account, dispatch));
-    Message.success('登录成功');
+    message.success('登录成功');
     dispatch(pushAction(HOME));
-  }, []);
+  });
+
+  const { password } = useRules();
 
   return (
     <Layout className={s.Root}>
-      <FinalForm onSubmit={onSubmit}>
-        {({ submitting, handleSubmit }) => (
-          <Form onFinish={handleSubmit}>
-            <Field
-              name="username"
-              component={Input}
-              htmlType="text"
-              placeholder="帐号"
-              validate={username}
-              size="large"
-              prefix={<UserOutlined />}
+      <Form onFinish={submit}>
+        <Item
+          rules={[{ required: true }]}
+          layout={layout}
+          name="username"
+        >
+          <Input placeholder="帐号" type="text" size="large" prefix={<UserOutlined />} />
+        </Item>
+        <Item
+          rules={[password]}
+          layout={layout}
+          name="password"
+        >
+          <Input placeholder="密码" type="password" size="large" prefix={<LockOutlined />} />
+        </Item>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 1 }}>
+            <Item
+              rules={[{ required: true }]}
               layout={layout}
-            />
-            <Field
-              name="password"
-              component={Input}
-              htmlType="password"
-              placeholder="密码"
-              validate={password}
-              size="large"
-              prefix={<LockOutlined />}
-              layout={layout}
-            />
-            <div style={{ display: 'flex' }}>
-              <div style={{ flex: 1 }}>
-                <Field
-                  name="captcha"
-                  component={Input}
-                  htmlType="text"
-                  placeholder="验证码"
-                  validate={required}
-                  size="large"
-                  layout={layout}
-                />
-              </div>
-              <div className={s.Captcha}>
-                <Captcha height={40} />
-              </div>
-            </div>
-            <Item className={s.Operation}>
-              <Button size="large" loading={submitting} className={s.Submit} type="primary" htmlType="submit">
-                登录
-              </Button>
+              name="captcha"
+            >
+              <Input placeholder="验证码" type="text" size="large" />
             </Item>
-          </Form>
-        )}
-      </FinalForm>
+          </div>
+          <div className={s.Captcha}>
+            <Captcha height={40} />
+          </div>
+        </div>
+        <Item className={s.Operation}>
+          <Button size="large" loading={submitting} className={s.Submit} type="primary" htmlType="submit">
+            登录
+          </Button>
+        </Item>
+      </Form>
     </Layout>
   );
 };
