@@ -1,4 +1,4 @@
-import { random, name, internet, phone, date } from 'faker';
+import { random, name, internet, phone, date, image } from 'faker';
 import { map, sample, range, find, propEq } from 'lodash/fp';
 import { NormalStatus, normalStatuses } from 'relient-admin/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
@@ -18,6 +18,7 @@ export const createItem = (values) => ({
   updatedAt: date.past(),
   gender: sample(genders),
   birthDate: date.past(),
+  images: map(() => image.image())(range(1, 4)),
   ...values,
 });
 

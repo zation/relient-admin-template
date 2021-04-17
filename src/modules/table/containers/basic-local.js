@@ -4,6 +4,7 @@ import Layout from 'shared/components/layout';
 import { Table } from 'antd';
 import { prop, includes, flow, split, nth, toUpper } from 'lodash/fp';
 import { useLocalTable, useTableSearch } from 'relient-admin/hooks';
+import { Images } from 'relient-admin/components';
 
 import selector from './local-selector';
 
@@ -80,6 +81,10 @@ const result = () => {
   }, {
     title: '用户名',
     dataIndex: 'username',
+  }, {
+    title: '图片',
+    dataIndex: 'images',
+    render: (images) => <Images images={images} space={20} width={60} />,
   }, {
     title: '角色',
     dataIndex: 'roleKey',

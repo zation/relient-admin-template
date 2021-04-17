@@ -68,7 +68,7 @@ export const features = [{
   items: [{
     key: LOCAL_PAGINATION_TABLE,
     link: 'local',
-    text: '本地分页表格',
+    text: '本地数据表格',
     icon: TableOutlined,
     items: [{
       key: BASIC_LOCAL_PAGINATION_TABLE,
@@ -84,7 +84,7 @@ export const features = [{
   }, {
     key: API_PAGINATION_TABLE,
     link: 'api',
-    text: '分页数据表格',
+    text: '远程数据表格',
     icon: TableOutlined,
     items: [{
       key: BASIC_API_PAGINATION_TABLE,
