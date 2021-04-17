@@ -18,7 +18,7 @@ const result = () => {
     tableHeader,
     getDataSource,
     pagination,
-    changeCustomQuery,
+    changeCustomQueryValue,
   } = useLocalTable({
     query: {
       fields: [{
@@ -36,27 +36,34 @@ const result = () => {
       }],
     },
     showReset: true,
+    customQueries: [{
+      field: 'email',
+      onFilter: (item, field, value) => {
+        const emailType = flow(prop(field), split('@'), nth(1), toUpper)(item);
+        return includes(toUpper(value))(emailType);
+      },
+    }, {
+      field: 'name',
+    }, {
+      field: 'phoneNumber',
+      onFilter: (item, filed, value) => includes(toUpper(value))(flow(prop(filed), toUpper)(item)),
+    }],
   });
 
   const searchNameProps = useTableSearch({
-    changeFilterValue: changeCustomQuery,
+    changeCustomQueryValue,
     dataKey: 'name',
     placeholder: 'Default exact match',
   });
   const searchEmailProps = useTableSearch({
-    changeFilterValue: changeCustomQuery,
+    changeCustomQueryValue,
     dataKey: 'email',
     placeholder: 'Search by email type',
-    onFilter: (item, field, value) => {
-      const emailType = flow(prop(field), split('@'), nth(1), toUpper)(item);
-      return includes(toUpper(value))(emailType);
-    },
   });
   const searchPhoneNumberProps = useTableSearch({
-    changeFilterValue: changeCustomQuery,
+    changeCustomQueryValue,
     dataKey: 'phoneNumber',
     placeholder: 'Fussy match',
-    onFilter: (item, filed, value) => includes(toUpper(value))(flow(prop(filed), toUpper)(item)),
   });
   const columns = [{
     title: '姓名',
