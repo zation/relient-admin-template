@@ -67,10 +67,10 @@ const result = ({
     query: {
       fields: [{
         key: 'name',
-        text: '订单名称',
+        label: '订单名称',
       }, {
         key: 'serialNumber',
-        text: '订单号',
+        label: '订单号',
       }],
     },
     createButton: {

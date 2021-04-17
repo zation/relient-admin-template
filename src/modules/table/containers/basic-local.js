@@ -23,29 +23,29 @@ const result = () => {
     query: {
       fields: [{
         key: 'name',
-        text: '姓名',
+        label: '姓名',
       }, {
         key: 'email',
-        text: '邮件',
+        label: '邮件',
       }, {
         key: 'phoneNumber',
-        text: '手机号',
+        label: '手机号',
       }, {
         key: 'username',
-        text: '用户名',
+        label: '用户名',
       }],
     },
     showReset: true,
     customQueries: [{
-      field: 'email',
+      dataKey: 'email',
       onFilter: (item, field, value) => {
         const emailType = flow(prop(field), split('@'), nth(1), toUpper)(item);
         return includes(toUpper(value))(emailType);
       },
     }, {
-      field: 'name',
+      dataKey: 'name',
     }, {
-      field: 'phoneNumber',
+      dataKey: 'phoneNumber',
       onFilter: (item, filed, value) => includes(toUpper(value))(flow(prop(filed), toUpper)(item)),
     }],
   });

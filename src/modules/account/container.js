@@ -100,16 +100,16 @@ const result = ({ roleKeys }) => {
     query: {
       fields: [{
         key: 'name',
-        text: '姓名',
+        label: '姓名',
       }, {
         key: 'email',
-        text: '邮件',
+        label: '邮件',
       }, {
         key: 'phoneNumber',
-        text: '手机号',
+        label: '手机号',
       }, {
         key: 'username',
-        text: '用户名',
+        label: '用户名',
       }],
     },
     createButton: {
