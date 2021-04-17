@@ -9189,10 +9189,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.0.9:
-  version "4.0.9"
-  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-4.0.9.tgz#96209f34a7a840caf7620dc567ad41f54331def8"
-  integrity sha1-liCfNKeoQMr3Yg3FZ61B9UMx3vg=
+relient-admin@4.0.10:
+  version "4.0.10"
+  resolved "https://registry.npm.taobao.org/relient-admin/download/relient-admin-4.0.10.tgz#d8262f7e98e9e9f5eb656c368eeecfebb198f061"
+  integrity sha1-2CYvfpjp6fXrZWw2ju7P67GY8GE=
   dependencies:
     "@ant-design/icons" ">=4.6.2"
     "@types/js-cookie" "^2.2.6"

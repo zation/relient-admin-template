@@ -2,7 +2,7 @@ import React from 'react';
 import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table, Drawer, Select } from 'antd';
-import { map, flow } from 'lodash/fp';
+import { map, flow, prop } from 'lodash/fp';
 import { useAPITable, useAction } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
@@ -12,6 +12,7 @@ import {
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
+import { Images, MultipleUploader } from 'relient-admin/components';
 
 const getDataSource = (state) => map((id) => flow(
   getEntity(`order.${id}`),
@@ -32,6 +33,10 @@ const fields = [{
   component: Select,
   options: orderStatusOptions,
   rules: [{ required: true }],
+}, {
+  label: '多张图片',
+  name: 'images',
+  component: MultipleUploader,
 }];
 
 const result = ({
@@ -90,6 +95,10 @@ const result = ({
   }, {
     title: '订单名称',
     dataIndex: 'name',
+  }, {
+    title: '多张图片',
+    dataIndex: 'images',
+    render: (images) => <Images images={map(prop('url'))(images)} space={20} width={60} />,
   }, {
     title: '用户',
     dataIndex: ['account', 'email'],

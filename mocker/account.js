@@ -1,4 +1,4 @@
-import { random, name, internet, phone, date, image } from 'faker';
+import { name, internet, phone, date, datatype } from 'faker';
 import { map, sample, range, find, propEq } from 'lodash/fp';
 import { NormalStatus, normalStatuses } from 'relient-admin/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
@@ -6,7 +6,7 @@ import { genders } from 'shared/constants/gender';
 import pagination from 'relient-admin/mocker/pagination';
 
 export const createItem = (values) => ({
-  id: random.number(),
+  id: datatype.number(),
   username: internet.userName(),
   password: internet.password(),
   phoneNumber: phone.phoneNumber(),
@@ -18,7 +18,6 @@ export const createItem = (values) => ({
   updatedAt: date.past(),
   gender: sample(genders),
   birthDate: date.past(),
-  images: map(() => image.image())(range(1, 4)),
   ...values,
 });
 

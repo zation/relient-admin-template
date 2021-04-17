@@ -1,18 +1,22 @@
-import { random, date } from 'faker';
+import { random, date, datatype, image, system } from 'faker';
 import { map, sample, range, filter, includes, flow, prop, split, toNumber } from 'lodash/fp';
 import { orderStatuses } from 'shared/constants/order-status';
 import pagination from 'relient-admin/mocker/pagination';
 import { items as accounts } from './account';
 
 export const createItem = (values) => ({
-  id: random.number(),
+  id: datatype.number(),
   accountId: flow(sample, prop('id'))(accounts),
-  total: random.number(),
+  total: datatype.number(),
   status: sample(orderStatuses),
-  serialNumber: random.number().toString(),
+  serialNumber: datatype.number().toString(),
   name: random.words(),
   updatedAt: date.past(),
   createdAt: date.past(),
+  images: map(() => ({
+    url: image.image(),
+    fileName: system.fileName(),
+  }))(range(1, 4)),
   ...values,
 });
 
