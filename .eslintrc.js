@@ -1,18 +1,25 @@
 // ESLint configuration
 // http://eslint.org/docs/user-guide/configuring
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
 
-  extends: [
-    'airbnb',
-    'plugin:css-modules/recommended',
+  plugins: [
+    '@typescript-eslint',
+    'css-modules',
   ],
-
-  plugins: ['css-modules'],
 
   globals: {
     __DEV__: true,
     __BROWSER__: true,
+  },
+
+  extends: [
+    'airbnb-typescript',
+    'plugin:css-modules/recommended',
+  ],
+
+  parserOptions: {
+    project: './tsconfig.json',
   },
 
   env: {
@@ -69,7 +76,7 @@ module.exports = {
 
     // Allow .js files to use JSX syntax
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx'] }],
 
     // Functional and class components are equivalent from React’s point of view
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
@@ -79,6 +86,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'react/forbid-prop-types': 'off',
     'react/require-default-props': 'off',
+    'max-len': ['error', { 'code': 120 }],
   },
 
   settings: {
