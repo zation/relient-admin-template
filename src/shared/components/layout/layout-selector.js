@@ -1,7 +1,7 @@
 import { flow, includes, prop, map } from 'lodash/fp';
 import { getCurrentAccount } from 'shared/selectors/account';
 import { features } from 'shared/constants/features';
-import { getSelectedFeatures } from 'relient-admin/features';
+import { getSelectedFeatures } from 'relient/features';
 import { getEntity } from 'relient/selectors';
 
 const filterFeaturesWithPermission = ({ currentRoleKey, permissionEntity, items }) => {

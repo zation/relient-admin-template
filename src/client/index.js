@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string';
 import { createPath } from 'history';
-import createRouter from 'relient-admin/create-router';
+import createRouter from 'relient/create-router';
 import {
   updateMeta,
   updateCustomMeta,

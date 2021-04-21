@@ -7,8 +7,7 @@ import {
   TableOutlined,
   HomeOutlined,
 } from '@ant-design/icons';
-import { setFeatures } from 'relient-admin/features';
-import getConfig from 'relient/config';
+import { setFeatures } from 'relient/features';
 
 export const HOME = 'HOME';
 
@@ -105,4 +104,4 @@ export const features = [{
   }],
 }];
 
-setFeatures(features, getConfig('baseUrl'));
+setFeatures(features);

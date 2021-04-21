@@ -6,7 +6,7 @@ import { logout as logoutAction } from 'shared/actions/auth';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Link } from 'relient-admin/components';
 import { last } from 'lodash/fp';
-import { getFeatureBy } from 'relient-admin/features';
+import { getFeatureBy } from 'relient/features';
 import getConfig from 'relient/config';
 import { getWithBaseUrl } from 'relient/url';
 import relientAdminStyles from 'relient-admin/styles.css';
