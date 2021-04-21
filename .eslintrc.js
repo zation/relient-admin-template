@@ -88,14 +88,4 @@ module.exports = {
     'react/require-default-props': 'off',
     'max-len': ['error', { 'code': 120 }],
   },
-
-  settings: {
-    // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-    // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
-    'import/resolver': {
-      node: {
-        moduleDirectory: ['node_modules', 'src'],
-      },
-    },
-  },
 };

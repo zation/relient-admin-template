@@ -7,7 +7,14 @@ export const LOGOUT = actionType('LOGOUT');
 export const SET_AUTHORIZATION = actionType('SET_AUTHORIZATION');
 export const REMOVE_AUTHORIZATION = actionType('REMOVE_AUTHORIZATION');
 
-export const login = createAction(
+export interface LoginRequest {
+  username: string
+  password: string
+  captcha: string
+  shouldRemember: boolean
+}
+
+export const login = createAction<LoginRequest, any, { ignoreAuthRedirection: boolean, shouldRemember: boolean }>(
   LOGIN,
   ({ username, password, captcha }) => post(
     '/auth/local',
@@ -19,6 +26,6 @@ export const login = createAction(
 
 export const logout = createAction(LOGOUT);
 
-export const setAuthorization = createAction(SET_AUTHORIZATION);
+export const setAuthorization = createAction<string>(SET_AUTHORIZATION);
 
-export const removeAuthorization = createAction(REMOVE_AUTHORIZATION);
+export const removeAuthorization = createAction<string>(REMOVE_AUTHORIZATION);

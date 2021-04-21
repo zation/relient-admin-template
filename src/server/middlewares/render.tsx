@@ -9,24 +9,26 @@ import getConfig from 'relient/config';
 import getPreloader from 'shared/utils/preloader';
 import App from 'shared/components/app';
 import { flow, reduce, concat, compact } from 'lodash/fp';
-import createRouter from 'relient-admin/create-router';
+import createRouter, { Route } from 'relient/create-router';
 import routes from 'modules/routes';
 import i18n from 'relient/i18n';
 import relientAdminMessageCN from 'relient-admin/messages/cn';
+import type { Request, Response, NextFunction } from 'express';
 import createStore from '../create-store';
-import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
+// @ts-ignore
+import chunks from './chunk-manifest.json';
 import Html from '../html';
 
 const router = createRouter({ routes, baseUrl: getConfig('baseUrl') });
 
-const getChunks = (route) => {
+const getChunks = (route: Route): string[] => {
   if (route.parent) {
     return [...(route.chunks || []), ...getChunks(route.parent)];
   }
   return route.chunks || [];
 };
 
-export default async (req, res, next) => {
+export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const origin = `${req.protocol}://${req.get('host')}`;
     const store = createStore({
@@ -36,10 +38,10 @@ export default async (req, res, next) => {
     });
 
     const { dispatch } = store;
-    const authorization = req.cookies[AUTHORIZATION];
+    const authorization: string = req.cookies[AUTHORIZATION];
     if (authorization) {
       try {
-        dispatch(setAuthorization(authorization));
+        dispatch<{ type: string; payload: string; meta: string; }>(setAuthorization(authorization));
         await dispatch(readProfile());
       } catch (error) {
         console.error(error);
@@ -97,7 +99,7 @@ export default async (req, res, next) => {
 
     const css = new Set(); // CSS for all rendered React components
     // eslint-disable-next-line no-underscore-dangle
-    const insertCss = (...styles) => styles.forEach((style) => css.add(style._getCss()));
+    const insertCss = (...styles: any[]) => styles.forEach((style) => css.add(style._getCss()));
     const children = ReactDOM.renderToString(
       <App
         insertCss={insertCss}
@@ -117,7 +119,7 @@ export default async (req, res, next) => {
         description={description}
         styles={[{
           id: 'css',
-          cssText: [...css].join(''),
+          cssText: Array.from(css).join(''),
         }]}
         scripts={flow(
           getChunks,

@@ -1,15 +1,15 @@
-const routes = [
+import type { Routes } from 'relient/create-router';
+
+const routes: Routes = [
   {
     path: '/auth',
     chunks: ['auth'],
-    children: true,
     load: () => import(/* webpackChunkName: 'auth' */ 'modules/auth'),
   },
 
   {
     path: '/account',
     chunks: ['account'],
-    children: true,
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'account' */ 'modules/account'),
   },
@@ -17,7 +17,6 @@ const routes = [
   {
     path: '/personal',
     chunks: ['personal'],
-    children: true,
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'personal' */ 'modules/personal'),
   },
@@ -25,7 +24,6 @@ const routes = [
   {
     path: '/table',
     chunks: ['table'],
-    children: true,
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'personal' */ 'modules/table'),
   },
@@ -33,7 +31,6 @@ const routes = [
   {
     path: '/',
     chunks: ['home'],
-    children: true,
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'home' */ 'modules/home'),
   },
@@ -41,7 +38,6 @@ const routes = [
   {
     path: '/(.*)',
     chunks: ['not-found'],
-    featureGroup: 'NOT_FOUND',
     requireAuth: true,
     load: () => import(/* webpackChunkName: 'not-found' */ 'modules/not-found'),
   },

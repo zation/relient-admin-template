@@ -8,8 +8,14 @@ import {
 } from '../actions/auth';
 import { READ_MINE } from '../actions/account';
 
+export interface AuthState {
+  authorization: string | null
+  isLogin: boolean
+  currentAccountId: number | null
+}
+
 export default {
-  auth: handleActions({
+  auth: handleActions<AuthState>({
     [combineActions(
       LOGIN,
     )]: (auth, {

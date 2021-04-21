@@ -7,7 +7,7 @@ import {
   TableOutlined,
   HomeOutlined,
 } from '@ant-design/icons';
-import { setFeatures } from 'relient-admin/features';
+import { setFeatures } from 'relient/features';
 import getConfig from 'relient/config';
 
 export const HOME = 'HOME';

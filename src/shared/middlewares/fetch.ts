@@ -1,7 +1,8 @@
 import { getEntity } from 'relient/selectors';
+import fetch from 'isomorphic-fetch';
 import { fetch as fetchMiddleware } from 'relient/middlewares';
 
-export default ({ fetch, apiDomain }) => fetchMiddleware({
+export default ({ apiDomain }: { apiDomain: string }) => fetchMiddleware({
   fetch,
   apiDomain,
   getDefaultHeader: ({ getState, withoutAuth }) => {

@@ -8,6 +8,11 @@ import {
   CREATE,
 } from '../actions/account';
 
+export interface Account {
+  id: number
+  username: string
+}
+
 export default {
   account: handleActions({
     [combineActions(

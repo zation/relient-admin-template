@@ -44,12 +44,12 @@ const result = ({ roleKeys }) => {
   const { sameAsRule, phoneNumber, password } = useRules();
 
   const passwordFields = [{
-    label: '密码',
+    label: 'password',
     name: 'password',
     type: 'password',
     rules: [{ required: true }, password],
   }, {
-    label: '重复密码',
+    label: 'confirmedPassword',
     name: 'confirmedPassword',
     type: 'password',
     validate: [{ required: true }, sameAsRule('password', '密码')],

@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string';
-import { createPath } from 'history';
-import createRouter from 'relient-admin/create-router';
 import {
-  updateMeta,
+  Action,
+  createPath,
+  Update,
+} from 'history';
+import createRouter from 'relient/create-router';
+import {
   updateCustomMeta,
   updateLink,
+  updateMeta,
 } from 'relient/dom';
 import deepForceUpdate from 'react-deep-force-update';
 import getConfig from 'relient/config';
@@ -26,7 +30,7 @@ const domainContext = {
 const i18nContext = i18n(global.messages, { ignoreNoMessageWarning: true });
 const baseUrlContext = getConfig('baseUrl');
 
-const insertCss = (...styles) => {
+const insertCss = (...styles: any[]) => {
   // eslint-disable-next-line no-underscore-dangle
   const removeCss = styles.map((style) => style._insertCss());
   return () => removeCss.forEach((dispose) => dispose());
@@ -34,7 +38,7 @@ const insertCss = (...styles) => {
 
 const container = document.getElementById('app');
 let currentLocation = history.location;
-let appInstance;
+let appInstance: typeof App | void;
 
 global.addEventListener('beforeunload', (event) => {
   if (global.isFormEditing) {
@@ -48,21 +52,23 @@ global.addEventListener('beforeunload', (event) => {
 
 // Switch off the native scroll restoration behavior and handle it manually
 // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
-const scrollPositionsHistory = {};
+const scrollPositionsHistory: {
+  [key: string]: { scrollX: number; scrollY: number }
+} = {};
 if (window.history && 'scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
 }
 
 // Re-render the app when window.location changes
-async function onLocationChange({ location, action }) {
+async function onLocationChange({ location, action }: Update) {
   // Remember the latest scroll position for the previous location
-  scrollPositionsHistory[currentLocation.key] = {
+  scrollPositionsHistory[currentLocation.key || ''] = {
     scrollX: window.pageXOffset,
     scrollY: window.pageYOffset,
   };
   // Delete stored scroll position for next page if any
   if (action === 'PUSH') {
-    delete scrollPositionsHistory[location.key];
+    delete scrollPositionsHistory[location.key || ''];
   }
   currentLocation = location;
 
@@ -106,7 +112,7 @@ async function onLocationChange({ location, action }) {
       () => {
         if (isInitialRender) {
           const elem = document.getElementById('css');
-          if (elem) elem.parentNode.removeChild(elem);
+          if (elem) elem.parentNode?.removeChild(elem);
           return;
         }
 
@@ -173,18 +179,19 @@ async function onLocationChange({ location, action }) {
 // Handle client-side navigation by using HTML5 History API
 // For more information visit https://github.com/mjackson/history#readme
 history.listen(onLocationChange);
-onLocationChange({ location: currentLocation });
+onLocationChange({ location: currentLocation, action: Action.Replace });
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
   module.hot.accept('modules/routes', () => {
     // eslint-disable-next-line global-require
     router = createRouter({ routes: require('modules/routes').default, baseUrl });
+    // @ts-ignore
     if (appInstance && appInstance.updater.isMounted(appInstance)) {
       // Force-update the whole tree, including components that refuse to update
       deepForceUpdate(appInstance);
     }
 
-    onLocationChange({ location: currentLocation });
+    onLocationChange({ location: currentLocation, action: Action.Replace });
   });
 }

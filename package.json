@@ -31,15 +31,18 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "relient": "5.0.6",
-    "relient-admin": "4.0.10",
-    "universal-router": "^9.0.1"
+    "relient": "/Users/liuyang/projects/relient/dist",
+    "relient-admin": "/Users/liuyang/projects/relient-admin/dist"
   },
   "resolutions": {
     "**/react": "^17.0.1",
     "**/react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.11",
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@types/morgan": "^1.9.2",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-plugin-import": "^1.13.3",
@@ -47,7 +50,6 @@
     "enzyme": "^3.3.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
-    "eslint-import-resolver-node": "^0.3.4",
     "eslint-plugin-css-modules": "^2.7.5",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",

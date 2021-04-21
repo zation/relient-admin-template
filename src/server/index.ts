@@ -1,5 +1,9 @@
 import path from 'path';
-import express from 'express';
+import express, {
+  NextFunction,
+  Request,
+  Response,
+} from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -10,11 +14,19 @@ import logger from './logger';
 
 const app = express();
 
+declare module 'express' {
+  interface Express {
+    hot: any
+  }
+}
+
 //
 // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
 // user agent is not known.
 // -----------------------------------------------------------------------------
+// @ts-ignore
 global.navigator = global.navigator || {};
+// @ts-ignore
 global.navigator.userAgent = global.navigator.userAgent || 'all';
 
 if (__DEV__) {
@@ -28,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('*', (req, res, next) => render(req, res, next));
-app.use((err, req, res, next) => handleError(err, req, res, next));
+app.use((err: any, req: Request, res: Response, next: NextFunction) => handleError(err, req, res, next));
 
 //
 // Launch the server
@@ -43,7 +55,6 @@ if (!module.hot) {
 // Hot Module Replacement
 // -----------------------------------------------------------------------------
 if (module.hot) {
-  app.hot = module.hot;
   module.hot.accept('./middlewares/render');
   module.hot.accept('./middlewares/handle-error');
 }

@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import { createEntitiesReducer } from 'relient/reducers';
-import feature from 'relient-admin/reducers/feature';
 import account from './account';
 import auth from './auth';
 import role from './role';
 import permission from './permission';
 import order from './order';
 
-export default combineReducers({
+export default combineReducers<any, any>({
   ...createEntitiesReducer([
     auth,
     account,
@@ -15,5 +14,4 @@ export default combineReducers({
     permission,
     order,
   ]),
-  ...feature,
 });
