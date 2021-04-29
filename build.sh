@@ -3,10 +3,10 @@
 REPOSITORY=registry.cn-hangzhou.aliyuncs.com/repo/project
 CI_BUILD_TAG=${1:-latest}
 ENV=${2:-production}
-CONTAINER=container
+CONTAINER=project
 
 yarn
-NODE_ENV=production npm run build
+NODE_ENV=production yarn build
 docker build -t ${REPOSITORY}:${CI_BUILD_TAG} .
 docker push ${REPOSITORY}:${CI_BUILD_TAG}
 git tag ${CI_BUILD_TAG}
