@@ -2,7 +2,7 @@ import React from 'react';
 import { node, string } from 'prop-types';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import Footer from 'shared/components/layout/footer';
-
+// eslint-disable-next-line css-modules/no-unused-class
 import globalStyle from 'shared/components/layout/global_.less';
 import s from './layout.less';
 

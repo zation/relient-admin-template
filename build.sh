@@ -7,7 +7,6 @@ CONTAINER=project
 
 yarn
 NODE_ENV=production yarn build
-docker build -t ${REPOSITORY}:${CI_BUILD_TAG} .
-docker push ${REPOSITORY}:${CI_BUILD_TAG}
+docker buildx build --no-cache --platform linux/amd64 --push -t ${REPOSITORY}:${CI_BUILD_TAG} .
 git tag ${CI_BUILD_TAG}
 git push origin --tags
