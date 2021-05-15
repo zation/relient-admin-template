@@ -31,10 +31,10 @@ const result = ({
         overlay={(
           <Menu className={s.Menu} selectedKeys={[]}>
             <Item>
-              <Link feature={PROFILE} showIcon />
+              <Link featureKey={PROFILE} showIcon />
             </Item>
             <Item>
-              <Link feature={PASSWORD} showIcon />
+              <Link featureKey={PASSWORD} showIcon />
             </Item>
             <Divider />
             <Item onClick={logout}>

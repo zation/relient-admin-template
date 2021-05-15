@@ -50,6 +50,7 @@ export const update = createAction(
     phoneNumber,
     email,
     status,
+    introduction,
   }) => put(`/account/${id}`, {
     id,
     name,
@@ -59,6 +60,7 @@ export const update = createAction(
     phoneNumber,
     email,
     status,
+    introduction,
   }),
 );
 
@@ -72,6 +74,7 @@ export const create = createAction(
     phoneNumber,
     email,
     status,
+    introduction,
   }) => post('/account', {
     name,
     roleKey,
@@ -80,6 +83,7 @@ export const create = createAction(
     phoneNumber,
     email,
     status,
+    introduction,
   }),
 );
 

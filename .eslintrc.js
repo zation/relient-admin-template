@@ -59,7 +59,7 @@ module.exports = {
       'error',
       {
         components: ['Link'],
-        specialLink: ['to', 'feature'],
+        specialLink: ['to', 'featureKey'],
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       },
     ],

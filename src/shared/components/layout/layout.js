@@ -56,7 +56,7 @@ const result = ({
         <div className={s.Title}>
           <h1 className={s.TitleText}>
             {title || (subTitle
-              ? <Link feature={last(selectedFeatureKeys)} />
+              ? <Link featureKey={last(selectedFeatureKeys)} />
               : getFeatureBy('text')(last(selectedFeatureKeys)))}
           </h1>
           {subTitle && <div className={s.Separator}>/</div>}

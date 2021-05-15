@@ -30,7 +30,7 @@ const MenuItem = ({
   </SubMenu>
 ) : (
   <Item key={key}>
-    <Link showIcon feature={key} />
+    <Link showIcon featureKey={key} />
   </Item>
 ));
 
