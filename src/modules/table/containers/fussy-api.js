@@ -5,7 +5,8 @@ import { Button, Table, Modal, Select } from 'antd';
 import { map, flow } from 'lodash/fp';
 import { time } from 'relient/formatters';
 import { getEntity } from 'relient/selectors';
-import { useAction, useAPITable } from 'relient-admin/hooks';
+import { useAction } from 'relient/actions';
+import { useAPITable } from 'relient-admin/hooks';
 import { orderStatusOptions, PENDING } from 'shared/constants/order-status';
 import {
   readAll as readAllOrdersAction,

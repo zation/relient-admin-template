@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { resetMinePassword as resetMinePasswordAction } from 'shared/actions/account';
 import useRules from 'shared/hooks/use-rules';
 import { Form } from 'relient-admin/components';
-import { useAction } from 'relient-admin/hooks';
+import { useAction } from 'relient/actions';
 
 const result = () => {
   const resetPassword = useAction(resetMinePasswordAction);

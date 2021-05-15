@@ -3,7 +3,8 @@ import { array, number } from 'prop-types';
 import Layout from 'shared/components/layout';
 import { Button, Table, Drawer, Select } from 'antd';
 import { map, flow, prop } from 'lodash/fp';
-import { useAPITable, useAction } from 'relient-admin/hooks';
+import { useAction } from 'relient/actions';
+import { useAPITable } from 'relient-admin/hooks';
 import {
   readAll as readAllOrdersAction,
   update as updateOrderAction,

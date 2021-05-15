@@ -9,7 +9,6 @@ import { last } from 'lodash/fp';
 import { getFeatureBy } from 'relient/features';
 import getConfig from 'relient/config';
 import { getWithBaseUrl } from 'relient/url';
-import relientAdminStyles from 'relient-admin/styles.css';
 import Sider from './sider';
 import globalStyle from './global_.less';
 import s from './layout.less';
@@ -26,7 +25,7 @@ const result = ({
   subTitle,
   multipleCard = false,
 }) => {
-  useStyles(globalStyle, relientAdminStyles, s);
+  useStyles(globalStyle, s);
   const { features, currentAccount, selectedFeatureKeys } = useSelector(selector);
   const dispatch = useDispatch();
   const logout = useCallback(() => {

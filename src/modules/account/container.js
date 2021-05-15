@@ -8,7 +8,8 @@ import { create as createAction, update as updateAction } from 'shared/actions/a
 import useRules from 'shared/hooks/use-rules';
 import { prop } from 'lodash/fp';
 import { formatNormalStatus, parseNormalStatus } from 'relient-admin/constants/normal-status';
-import { useAction, useLocalTable } from 'relient-admin/hooks';
+import { useAction } from 'relient/actions';
+import { useLocalTable } from 'relient-admin/hooks';
 
 import selector from './selector';
 

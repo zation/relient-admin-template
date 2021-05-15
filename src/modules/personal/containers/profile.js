@@ -8,7 +8,7 @@ import { getCurrentAccount } from 'shared/selectors/account';
 import { flow, prop, pick, map } from 'lodash/fp';
 import useRules from 'shared/hooks/use-rules';
 import { getEntity } from 'relient/selectors';
-import { useAction } from 'relient-admin/hooks';
+import { useAction } from 'relient/actions';
 
 const result = () => {
   const {
