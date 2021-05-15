@@ -8461,10 +8461,10 @@ relient-admin@4.1.1:
     relient "5.1.2"
     universal-router ">=9.0.1"
 
-relient-cli@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.nlark.com/relient-cli/download/relient-cli-3.0.2.tgz#46d742b576c14233c4fe66479510405dd430e329"
-  integrity sha1-RtdCtXbBQjPE/mZHlRBAXdQw4yk=
+relient-cli@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.nlark.com/relient-cli/download/relient-cli-3.0.3.tgz#e2943246b6c3013dfa7e23e96a9789c1a1dead11"
+  integrity sha1-4pQyRrbDAT36fiPpapeJwaHerRE=
   dependencies:
     "@babel/core" "^7.14.2"
     "@babel/plugin-proposal-class-properties" "^7.13.0"

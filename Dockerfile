@@ -7,7 +7,6 @@ WORKDIR /usr/src/app
 COPY ./build .
 
 # Install Node.js dependencies
-RUN npx --quiet pinst --disable
 RUN yarn install --production --no-progress
 
 # Run the container under "node" user by default
