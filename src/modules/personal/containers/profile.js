@@ -5,10 +5,11 @@ import { message } from 'antd';
 import { Form } from 'relient-admin/components';
 import { update as updateAction } from 'shared/actions/account';
 import { getCurrentAccount } from 'shared/selectors/account';
-import { flow, prop, pick, map } from 'lodash/fp';
+import { flow, prop } from 'lodash/fp';
 import useRules from 'shared/hooks/use-rules';
 import { getEntity } from 'relient/selectors';
 import { useAction } from 'relient/actions';
+import Editor from 'shared/components/editor';
 
 const result = () => {
   const {
@@ -47,11 +48,15 @@ const result = () => {
     label: '邮件',
     name: 'email',
     type: 'email',
+  }, {
+    label: '自我介绍',
+    name: 'introduction',
+    component: Editor,
   }];
   const update = useAction(updateAction);
   const onSubmit = useCallback(async (values) => {
     await update({
-      ...pick(map(prop('name'))(fields))(values),
+      ...values,
       id: accountId,
     });
     message.success('修改成功');

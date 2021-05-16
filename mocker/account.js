@@ -1,4 +1,4 @@
-import { name, internet, phone, date, datatype } from 'faker';
+import { name, internet, phone, date, datatype, lorem } from 'faker';
 import { map, sample, range, find, propEq } from 'lodash/fp';
 import { NormalStatus, normalStatuses } from 'relient-admin/constants/normal-status';
 import { ADMIN, roleKeys } from 'shared/constants/role-key';
@@ -18,6 +18,7 @@ export const createItem = (values) => ({
   updatedAt: date.past(),
   gender: sample(genders),
   birthDate: date.past(),
+  introduction: `<p>${lorem.paragraph()}</p>\n<p>${lorem.paragraph()}</p>`,
   ...values,
 });
 
