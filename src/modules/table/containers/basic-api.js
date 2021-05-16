@@ -66,10 +66,10 @@ const result = ({
     readAction: readAllOrders,
     query: {
       fields: [{
-        key: 'name',
+        dataKey: 'name',
         label: '订单名称',
       }, {
-        key: 'serialNumber',
+        dataKey: 'serialNumber',
         label: '订单号',
       }],
     },

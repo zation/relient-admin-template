@@ -22,16 +22,16 @@ const result = () => {
   } = useLocalTable({
     query: {
       fields: [{
-        key: 'name',
+        dataKey: 'name',
         label: '姓名',
       }, {
-        key: 'email',
+        dataKey: 'email',
         label: '邮件',
       }, {
-        key: 'phoneNumber',
+        dataKey: 'phoneNumber',
         label: '手机号',
       }, {
-        key: 'username',
+        dataKey: 'username',
         label: '用户名',
       }],
     },

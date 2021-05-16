@@ -2,14 +2,13 @@ import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import Layout from 'shared/components/layout';
 import { message } from 'antd';
-import { Form } from 'relient-admin/components';
+import { Form, Editor } from 'relient-admin/components';
 import { update as updateAction } from 'shared/actions/account';
 import { getCurrentAccount } from 'shared/selectors/account';
 import { flow, prop } from 'lodash/fp';
 import useRules from 'shared/hooks/use-rules';
 import { getEntity } from 'relient/selectors';
 import { useAction } from 'relient/actions';
-import Editor from 'shared/components/editor';
 
 const result = () => {
   const {
