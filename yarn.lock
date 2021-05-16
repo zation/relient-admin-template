@@ -8260,10 +8260,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.2.0:
-  version "4.2.0"
-  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.2.0.tgz#ec185a86c86025e9eda1354af69006f6a098dde3"
-  integrity sha1-7BhahshgJentoTVK9pAG9qCY3eM=
+relient-admin@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.2.1.tgz#a30b96d50f41d2a9b83a4aeef07f1bc7aee5b705"
+  integrity sha1-owuW1Q9B0qm4Okru8H8bx67ltwU=
   dependencies:
     "@ant-design/icons" ">=4.6.2"
     "@tinymce/tinymce-react" "^3.12.4"
