@@ -3,6 +3,7 @@ import AUTHORIZATION from 'relient-admin/constants/authorization';
 import {
   LOGIN,
   LOGOUT,
+  SET_AUTHORIZATION,
 } from 'shared/actions/auth';
 
 export default () => (next) => (action) => {
@@ -17,6 +18,9 @@ export default () => (next) => (action) => {
   }
   if (type === LOGOUT) {
     cookie.remove(AUTHORIZATION);
+  }
+  if (type === SET_AUTHORIZATION) {
+    cookie.set(AUTHORIZATION, action.payload);
   }
   return next(action);
 };
