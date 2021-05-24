@@ -22,7 +22,7 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
-app.use(getConfig('baseUrl'), express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -4,6 +4,7 @@ export default {
     ['lodash', { id: ['lodash'] }],
   ],
   baseUrl: '/admin/',
+  exportRoutes: ['/admin/auth/login'],
   proxy: {
     from: ['/api'],
     target: 'http://localhost:9001',

@@ -32,7 +32,7 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "relient": "5.1.3",
+    "relient": "5.1.4",
     "relient-admin": "4.2.1",
     "tinymce": "^5.8.0",
     "universal-router": "^9.0.1"
@@ -60,7 +60,8 @@
     "pinst": "^2.1.6",
     "react-deep-force-update": "^2.1.1",
     "react-test-renderer": "^17.0.1",
-    "relient-cli": "3.0.3",
+    "relient-cli": "3.1.2",
+    "serve": "^11.3.2",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-order": "^4.1.0"
@@ -86,7 +87,8 @@
     "bundle": "relient bundle",
     "build": "relient build",
     "build-stats": "relient build --analyse",
-    "serve": "relient serve",
+    "build-static": "relient build --static",
+    "serve": "serve ./build/public",
     "start": "relient start",
     "mocker": "relient mocker",
     "postinstall": "husky install",
