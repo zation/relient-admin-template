@@ -39,6 +39,7 @@ const result = () => {
           rules={[{ required: true }]}
           layout={layout}
           name="username"
+          messageVariables={{ label: '帐号' }}
         >
           <Input placeholder="帐号" type="text" size="large" prefix={<UserOutlined />} />
         </Item>
@@ -46,6 +47,7 @@ const result = () => {
           rules={[password]}
           layout={layout}
           name="password"
+          messageVariables={{ label: '密码' }}
         >
           <Input placeholder="密码" type="password" size="large" prefix={<LockOutlined />} />
         </Item>
