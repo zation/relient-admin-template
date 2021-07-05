@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "@babel/polyfill": "^7.12.1",
     "@tinymce/tinymce-react": "^3.12.4",
     "antd": "^4.15.1",
     "bignumber.js": "^9.0.1",
@@ -33,7 +32,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "relient": "5.1.4",
-    "relient-admin": "4.2.1",
+    "relient-admin": "4.3.0",
     "tinymce": "^5.8.0",
     "universal-router": "^9.0.1"
   },

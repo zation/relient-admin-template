@@ -1117,14 +1117,6 @@
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/polyfill@^7.12.1":
-  version "7.12.1"
-  resolved "https://registry.npm.taobao.org/@babel/polyfill/download/@babel/polyfill-7.12.1.tgz?cache=0&sync_timestamp=1608602031530&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fpolyfill%2Fdownload%2F%40babel%2Fpolyfill-7.12.1.tgz#1f2d6371d1261bbd961f3c5d5909150e12d0bd96"
-  integrity sha1-Hy1jcdEmG72WHzxdWQkVDhLQvZY=
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.4"
-
 "@babel/preset-env@^7.14.2":
   version "7.14.2"
   resolved "https://registry.nlark.com/@babel/preset-env/download/@babel/preset-env-7.14.2.tgz?cache=0&sync_timestamp=1620839457830&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fpreset-env%2Fdownload%2F%40babel%2Fpreset-env-7.14.2.tgz#e80612965da73579c84ad2f963c2359c71524ed5"
@@ -3139,11 +3131,6 @@ core-js-pure@^3.0.0:
   version "3.8.1"
   resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.8.1.tgz?cache=0&sync_timestamp=1607216021736&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js-pure%2Fdownload%2Fcore-js-pure-3.8.1.tgz#23f84048f366fdfcf52d3fd1c68fec349177d119"
   integrity sha1-I/hASPNm/fz1LT/Rxo/sNJF30Rk=
-
-core-js@^2.6.5:
-  version "2.6.12"
-  resolved "https://registry.npm.taobao.org/core-js/download/core-js-2.6.12.tgz?cache=0&sync_timestamp=1607215997560&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
-  integrity sha1-2TM9+nsGXjR8xWgiGdb2kIWcwuw=
 
 core-js@^3.10.1:
   version "3.10.1"
@@ -8511,10 +8498,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.2.1:
-  version "4.2.1"
-  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.2.1.tgz#a30b96d50f41d2a9b83a4aeef07f1bc7aee5b705"
-  integrity sha1-owuW1Q9B0qm4Okru8H8bx67ltwU=
+relient-admin@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.3.0.tgz?cache=0&sync_timestamp=1625493700912&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frelient-admin%2Fdownload%2Frelient-admin-4.3.0.tgz#5f34d8dbfdd158a643f47e95e48b22abf42dc2b1"
+  integrity sha1-XzTY2/3RWKZD9H6V5Isiq/QtwrE=
   dependencies:
     "@ant-design/icons" ">=4.6.2"
     "@tinymce/tinymce-react" "^3.12.4"

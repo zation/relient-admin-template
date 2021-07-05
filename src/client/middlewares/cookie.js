@@ -1,5 +1,5 @@
 import cookie from 'js-cookie';
-import AUTHORIZATION from 'relient-admin/constants/authorization';
+import { AUTHORIZATION } from 'shared/constants/cookie';
 import {
   LOGIN,
   LOGOUT,
