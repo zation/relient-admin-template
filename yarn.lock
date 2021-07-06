@@ -2633,15 +2633,9 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001165:
-  version "1.0.30001171"
-  resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30001171.tgz?cache=0&sync_timestamp=1609202109735&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001171.tgz#3291e11e02699ad0a29e69b8d407666fc843eba7"
-  integrity sha1-MpHhHgJpmtCinmm41Admb8hD66c=
-
-caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001196, caniuse-lite@^1.0.30001219:
-  version "1.0.30001228"
-  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001228.tgz?cache=0&sync_timestamp=1620658722974&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001228.tgz#bfdc5942cd3326fa51ee0b42fbef4da9d492a7fa"
-  integrity sha1-v9xZQs0zJvpR7gtC++9NqdSSp/o=
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001165, caniuse-lite@^1.0.30001196, caniuse-lite@^1.0.30001219:
+  version "1.0.30001242"
+  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001242.tgz"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -7845,9 +7839,9 @@ rc-dropdown@^3.1.3, rc-dropdown@~3.2.0:
     rc-trigger "^5.0.4"
 
 rc-field-form@~1.20.0:
-  version "1.20.0"
-  resolved "https://registry.npm.taobao.org/rc-field-form/download/rc-field-form-1.20.0.tgz?cache=0&sync_timestamp=1615543118228&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-field-form%2Fdownload%2Frc-field-form-1.20.0.tgz#2201092095429f7f020825462835c4086d2baf16"
-  integrity sha1-IgEJIJVCn38CCCVGKDXECG0rrxY=
+  version "1.20.1"
+  resolved "https://registry.nlark.com/rc-field-form/download/rc-field-form-1.20.1.tgz#d1c51888107cf075b42704b7b575bef84c359291"
+  integrity sha1-0cUYiBB88HW0JwS3tXW++Ew1kpE=
   dependencies:
     "@babel/runtime" "^7.8.4"
     async-validator "^3.0.3"
@@ -8498,10 +8492,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.3.0.tgz?cache=0&sync_timestamp=1625493700912&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frelient-admin%2Fdownload%2Frelient-admin-4.3.0.tgz#5f34d8dbfdd158a643f47e95e48b22abf42dc2b1"
-  integrity sha1-XzTY2/3RWKZD9H6V5Isiq/QtwrE=
+relient-admin@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.nlark.com/relient-admin/download/relient-admin-4.3.1.tgz?cache=0&sync_timestamp=1625560870745&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frelient-admin%2Fdownload%2Frelient-admin-4.3.1.tgz#ff135d2be80fb7c6291f7fc4eb6700c1e939bfe4"
+  integrity sha1-/xNdK+gPt8YpH3/E62cAwek5v+Q=
   dependencies:
     "@ant-design/icons" ">=4.6.2"
     "@tinymce/tinymce-react" "^3.12.4"

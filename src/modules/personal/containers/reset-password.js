@@ -21,6 +21,7 @@ const result = () => {
     type: 'password',
   }, {
     name: 'confirmedNewPassword',
+    dependencies: ['newPassword'],
     label: '重复新密码',
     rules: [{ required: true, ...password }, sameAsRule('newPassword', '新密码')],
     type: 'password',
