@@ -8,7 +8,7 @@ import fetch from 'isomorphic-fetch/fetch-npm-browserify';
 import fetchMiddleware from 'shared/middlewares/fetch';
 import { message } from 'antd';
 import { prop, flow, first } from 'lodash/fp';
-import pushMiddleware from 'relient-admin/middlewares/push';
+import pushMiddleware from 'relient/middlewares/push';
 import getConfig from 'relient/config';
 import authorization from './middlewares/cookie';
 import history from './history';

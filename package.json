@@ -31,15 +31,15 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "relient": "5.1.4",
-    "relient-admin": "4.3.1",
+    "relient": "5.2.0",
+    "relient-admin": "4.4.1",
     "tinymce": "^5.8.0",
     "universal-router": "^9.0.1"
   },
   "resolutions": {
     "**/react": "^17.0.1",
     "**/react-dom": "^17.0.1",
-    "**/relient": "5.1.4"
+    "**/relient": "5.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
