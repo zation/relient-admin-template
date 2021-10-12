@@ -8562,10 +8562,10 @@ relient-admin@4.4.2:
     tinymce "^5.8.0"
     universal-router ">=9.0.1"
 
-relient-cli@3.1.3:
-  version "3.1.3"
-  resolved "https://registry.nlark.com/relient-cli/download/relient-cli-3.1.3.tgz#205f38884ef8e61ba256f7efa8291bd491dd95b9"
-  integrity sha1-IF84iE745huiVvfvqCkb1JHdlbk=
+relient-cli@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.npmmirror.com/relient-cli/download/relient-cli-3.2.1.tgz#07107662efe1cbcc16a55407ec8d6f71da5ccc61"
+  integrity sha1-BxB2Yu/hy8wWpVQH7I1vcdpczGE=
   dependencies:
     "@babel/core" "^7.14.2"
     "@babel/plugin-proposal-class-properties" "^7.13.0"
