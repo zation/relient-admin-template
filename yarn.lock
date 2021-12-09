@@ -2980,7 +2980,7 @@ component-inherit@0.0.3:
   resolved "https://registry.npm.taobao.org/component-inherit/download/component-inherit-0.0.3.tgz#645fc4adf58b72b649d5cae65135619db26ff143"
   integrity sha1-ZF/ErfWLcrZJ1crmUTVhnbJv8UM=
 
-compressible@~2.0.14:
+compressible@~2.0.14, compressible@~2.0.16:
   version "2.0.18"
   resolved "https://registry.npm.taobao.org/compressible/download/compressible-2.0.18.tgz#af53cca6b070d4c3c0750fbd77286a6d7cc46fba"
   integrity sha1-r1PMprBw1MPAdQ+9dyhqbXzEb7o=
@@ -2997,6 +2997,19 @@ compression@1.7.3:
     compressible "~2.0.14"
     debug "2.6.9"
     on-headers "~1.0.1"
+    safe-buffer "5.1.2"
+    vary "~1.1.2"
+
+compression@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.nlark.com/compression/download/compression-1.7.4.tgz?cache=0&sync_timestamp=1624607989121&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcompression%2Fdownload%2Fcompression-1.7.4.tgz#95523eff170ca57c29a0ca41e6fe131f41e5bb8f"
+  integrity sha1-lVI+/xcMpXwpoMpB5v4TH0Hlu48=
+  dependencies:
+    accepts "~1.3.5"
+    bytes "3.0.0"
+    compressible "~2.0.16"
+    debug "2.6.9"
+    on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
 
@@ -8534,10 +8547,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.npmmirror.com/relient-admin/download/relient-admin-4.4.2.tgz#686d034e2d3792be834bbee2068048257aa002e9"
-  integrity sha1-aG0DTi03kr6DS77iBoBIJXqgAuk=
+relient-admin@4.7.1:
+  version "4.7.1"
+  resolved "https://registry.npmmirror.com/relient-admin/download/relient-admin-4.7.1.tgz#d94dbdf67de758a57b928ca92615df3cb176ebab"
+  integrity sha512-XfQBzPvln1UF17VQ1srC35y1E2Qs17wQnR3SfpbaCGnWk6b4/JKmMSewZxTLvT+sxMSsgSBIK+S0wgWJjezrsQ==
   dependencies:
     "@ant-design/icons" ">=4.7.0"
     "@tinymce/tinymce-react" "^3.12.4"

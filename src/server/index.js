@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import getConfig from 'relient/config';
+import compression from 'compression';
 import handleError from './middlewares/handle-error';
 import render from './middlewares/render';
 import logger from './logger';
@@ -22,6 +23,7 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
+app.use(compression());
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
