@@ -30,14 +30,14 @@ const result = ({
       <Dropdown
         overlay={(
           <Menu className={s.Menu} selectedKeys={[]}>
-            <Item>
+            <Item key={PROFILE}>
               <Link featureKey={PROFILE} showIcon />
             </Item>
-            <Item>
+            <Item key={PASSWORD}>
               <Link featureKey={PASSWORD} showIcon />
             </Item>
             <Divider />
-            <Item onClick={logout}>
+            <Item key="logout" onClick={logout}>
               <LogoutOutlined />
               登出
             </Item>
