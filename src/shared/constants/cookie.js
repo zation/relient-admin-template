@@ -1,2 +1,2 @@
 export const AUTHORIZATION = 'AUTHORIZATION';
-export const a = 'a';
+export const IS_MENU_COLLAPSED = 'IS_MENU_COLLAPSED';

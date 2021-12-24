@@ -1,10 +1,11 @@
 import cookie from 'js-cookie';
-import { AUTHORIZATION } from 'shared/constants/cookie';
+import { AUTHORIZATION, IS_MENU_COLLAPSED } from 'shared/constants/cookie';
 import {
   LOGIN,
   LOGOUT,
   SET_AUTHORIZATION,
 } from 'shared/actions/auth';
+import { SET_IS_MENU_COLLAPSED } from 'shared/actions/global';
 
 export default () => (next) => (action) => {
   const { type } = action;
@@ -21,6 +22,9 @@ export default () => (next) => (action) => {
   }
   if (type === SET_AUTHORIZATION) {
     cookie.set(AUTHORIZATION, action.payload);
+  }
+  if (type === SET_IS_MENU_COLLAPSED) {
+    cookie.set(IS_MENU_COLLAPSED, action.payload);
   }
   return next(action);
 };

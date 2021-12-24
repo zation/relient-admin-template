@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { readMine as readProfile } from 'shared/actions/account';
 import { setAuthorization, removeAuthorization } from 'shared/actions/auth';
-import { AUTHORIZATION } from 'shared/constants/cookie';
+import { setIsMenuCollapsed } from 'shared/actions/global';
+import { AUTHORIZATION, IS_MENU_COLLAPSED } from 'shared/constants/cookie';
 import { getEntity } from 'relient/selectors';
 import { getCurrentAccount } from 'shared/selectors/account';
 import getConfig from 'relient/config';
@@ -46,6 +47,10 @@ export default async (req, res, next) => {
         dispatch(removeAuthorization());
         res.clearCookie(AUTHORIZATION);
       }
+    }
+    const isMenuCollapsed = req.cookies[IS_MENU_COLLAPSED];
+    if (isMenuCollapsed === 'true') {
+      dispatch(setIsMenuCollapsed(true));
     }
 
     try {

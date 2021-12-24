@@ -39,5 +39,6 @@ export default (state) => {
       permissionEntity: getEntity('permission')(state),
       items: features,
     }),
+    isMenuCollapsed: prop('global.isMenuCollapsed')(state),
   };
 };

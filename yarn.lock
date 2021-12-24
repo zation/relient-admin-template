@@ -2628,8 +2628,8 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001165, caniuse-lite@^1.0.30001196, caniuse-lite@^1.0.30001219:
-  version "1.0.30001242"
-  resolved "https://registry.nlark.com/caniuse-lite/download/caniuse-lite-1.0.30001242.tgz"
+  version "1.0.30001292"
+  resolved "https://registry.npmmirror.com/caniuse-lite/download/caniuse-lite-1.0.30001292.tgz"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -8547,10 +8547,10 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-relient-admin@4.7.1:
-  version "4.7.1"
-  resolved "https://registry.npmmirror.com/relient-admin/download/relient-admin-4.7.1.tgz#d94dbdf67de758a57b928ca92615df3cb176ebab"
-  integrity sha512-XfQBzPvln1UF17VQ1srC35y1E2Qs17wQnR3SfpbaCGnWk6b4/JKmMSewZxTLvT+sxMSsgSBIK+S0wgWJjezrsQ==
+relient-admin@4.8.0:
+  version "4.8.0"
+  resolved "https://registry.npmmirror.com/relient-admin/download/relient-admin-4.8.0.tgz#4d0367c0065cc34544ff55441cb273cc9012c78d"
+  integrity sha512-JmfM4SnKhdfwZ3RRtMTjKM2i8vZuqZ/PbPvj3is3gzbXGVgy+lHUanpz2jkWE/4sNauMLoheLN80FIImz9MnyA==
   dependencies:
     "@ant-design/icons" ">=4.7.0"
     "@tinymce/tinymce-react" "^3.12.4"
@@ -8575,10 +8575,10 @@ relient-admin@4.7.1:
     tinymce "^5.8.0"
     universal-router ">=9.0.1"
 
-relient-cli@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.npmmirror.com/relient-cli/download/relient-cli-3.2.1.tgz#07107662efe1cbcc16a55407ec8d6f71da5ccc61"
-  integrity sha1-BxB2Yu/hy8wWpVQH7I1vcdpczGE=
+relient-cli@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.npmmirror.com/relient-cli/download/relient-cli-3.2.2.tgz#5e355940ff4396527d21cbb3eab39b4e34dbf54a"
+  integrity sha512-Uo9wiXrZFca0R9KMngtiveRxUpPd3E8OC/gUwH8NpdxGIn9RqTnrLIskVkwKBTp57h2se0lcnvgyrEqvy52c9A==
   dependencies:
     "@babel/core" "^7.14.2"
     "@babel/plugin-proposal-class-properties" "^7.13.0"

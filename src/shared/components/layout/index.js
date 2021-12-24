@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { string, node, bool } from 'prop-types';
 import { Layout, Card } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +10,7 @@ import { getFeatureBy } from 'relient/features';
 import getConfig from 'relient/config';
 import { getWithBaseUrl } from 'relient/url';
 import relientAdminStyle from 'relient-admin/styles.css';
+import { setIsMenuCollapsed } from 'shared/actions/global';
 import Sider from './sider';
 import globalStyle from './global_.less';
 import s from './index.less';
@@ -27,21 +28,23 @@ const result = ({
   multipleCard = false,
 }) => {
   useStyles(globalStyle, relientAdminStyle, s);
-  const { features, currentAccount, selectedFeatureKeys } = useSelector(selector);
+  const { features, currentAccount, selectedFeatureKeys, isMenuCollapsed } = useSelector(selector);
   const dispatch = useDispatch();
   const logout = useCallback(() => {
     dispatch(logoutAction());
     global.document.location.replace(getWithBaseUrl('/auth/login', getConfig('baseUrl')));
   }, [logoutAction]);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSider = useCallback(() => setIsCollapsed(!isCollapsed), [isCollapsed]);
+  const toggleSider = useCallback(
+    () => dispatch(setIsMenuCollapsed(!isMenuCollapsed)),
+    [isMenuCollapsed, setIsMenuCollapsed, dispatch],
+  );
 
   return (
     <Layout hasSider className={s.Root}>
       <Sider
         selectedFeatureKeys={selectedFeatureKeys}
         features={features}
-        isCollapsed={isCollapsed}
+        isCollapsed={isMenuCollapsed}
       />
       <Content style={{ height: '100%' }}>
         {currentAccount && (
@@ -50,7 +53,7 @@ const result = ({
             username={currentAccount.username}
             logout={logout}
             toggleSider={toggleSider}
-            isCollapsed={isCollapsed}
+            isCollapsed={isMenuCollapsed}
           />
         )}
 
