@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { object, func, node, string } from 'prop-types';
 import { Provider as ReactReduxProvider } from 'react-redux';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
@@ -18,21 +18,24 @@ const result = ({
   i18nContext,
   insertCss,
   baseUrlContext,
-}) => (
-  <StyleContext.Provider value={{ insertCss }}>
-    <ReactReduxProvider store={store}>
-      <DomainContext.Provider value={domainContext}>
-        <I18NContext.Provider value={i18nContext}>
-          <BaseUrlContext.Provider value={baseUrlContext}>
-            <ConfigProvider locale={zhCN}>
-              {children}
-            </ConfigProvider>
-          </BaseUrlContext.Provider>
-        </I18NContext.Provider>
-      </DomainContext.Provider>
-    </ReactReduxProvider>
-  </StyleContext.Provider>
-);
+}) => {
+  const styleContextProviderValue = useMemo(() => ({ insertCss }), [insertCss]);
+  return (
+    <StyleContext.Provider value={styleContextProviderValue}>
+      <ReactReduxProvider store={store}>
+        <DomainContext.Provider value={domainContext}>
+          <I18NContext.Provider value={i18nContext}>
+            <BaseUrlContext.Provider value={baseUrlContext}>
+              <ConfigProvider locale={zhCN}>
+                {children}
+              </ConfigProvider>
+            </BaseUrlContext.Provider>
+          </I18NContext.Provider>
+        </DomainContext.Provider>
+      </ReactReduxProvider>
+    </StyleContext.Provider>
+  );
+};
 
 result.propTypes = {
   children: node,
