@@ -100,6 +100,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'react/forbid-prop-types': 'off',
     'react/require-default-props': 'off',
+    'function-call-argument-newline': 'off',
   },
 
   settings: {
