@@ -150,7 +150,8 @@ const result = ({ roleKeys }) => {
   }, {
     title: '是否激活',
     width: 100,
-    render: SwitchStatus,
+    // NOTICE: don't use SwitchStatus directly: https://github.com/react-component/table/issues/756
+    render: ({ id, status }) => <SwitchStatus id={id} status={status} />,
   }, {
     title: '操作',
     key: 'operations',
