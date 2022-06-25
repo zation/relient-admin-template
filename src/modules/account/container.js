@@ -87,9 +87,12 @@ const result = ({ roleKeys }) => {
     name: 'status',
     component: Switch,
     rules: [{ required: true }],
-    valuePropName: 'checked',
-    getValueFromEvent: formatNormalStatus,
-    normalize: parseNormalStatus,
+    getValueFromEvent: parseNormalStatus,
+    // NOTICE: if only checked, value won't be changed when click twice
+    getValueProps: (value) => ({
+      value: formatNormalStatus(value),
+      checked: formatNormalStatus(value),
+    }),
   }];
 
   const {
